@@ -1,0 +1,13 @@
+COMMAND LINK NOOP BIG_ENDIAN "LINK NOOP"
+  <%= render "_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 0} %>
+  
+COMMAND LINK HK_REQ BIG_ENDIAN "LINK NOOP"
+  <%= render "_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 1} %>  
+  
+COMMAND LINK FWDMSG BIG_ENDIAN "LINK command to forward message"
+  <%= render "_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 15} %>
+  APPEND_PARAMETER DESTINATION 8 UINT 0 255 0 "MY address of destination xbee" 
+  APPEND_PARAMETER PAYLOAD 0 BLOCK "Command to be forwarded" 

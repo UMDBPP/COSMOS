@@ -1,5 +1,5 @@
-TELEMETRY SCORCH STATUS BIG_ENDIAN "SCORCH Status"
-  <%= render "_ccsds_pri_hdr_tlm.txt", locals: {apid: 220} %>
+TELEMETRY LINK STATUS BIG_ENDIAN "SCORCH Status"
+  <%= render "_ccsds_pri_hdr_tlm.txt", locals: {apid: 1} %>
   <%= render "_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM STATUS 16 UINT "Status code"
     STATE ARMED 170

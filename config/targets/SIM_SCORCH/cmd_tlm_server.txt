@@ -1,0 +1,5 @@
+# This is a segment of the main cmd_tlm_server.txt that will be used with
+# AUTO_INTERFACE_TARGETS or INTERFACE_TARGET
+
+INTERFACE SIM_SCORCH_INT simulated_target_interface.rb sim_scorch.rb
+  TARGET SIM_SCORCH
