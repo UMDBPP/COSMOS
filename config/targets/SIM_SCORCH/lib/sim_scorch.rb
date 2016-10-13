@@ -4,10 +4,15 @@ module Cosmos
     def initialize(target_name)
       super(target_name)
 
+	  # initalize so that the init status message is sent
+	  @status = 172 # AC = INITALIZED
+	  @send_response = true
+	  
       # We grab the STATUS packet to set initial values
       packet = @tlm_packets['STATUS']
       packet.enable_method_missing # required to use packet.<item> = value
-      packet.status = "INITALIZED" # 172 = INITALIZED
+      packet.status = @status
+	  
     end
 
     def set_rates
@@ -22,45 +27,60 @@ module Cosmos
       # We directly set the telemetry value from the only command
       # If you have more than one command you'll need to switch
       # on the packet.packet_name to determine what command it is
-	  fcncode = packet.read("fcncode")
-	  if(fcncode == 0) # NOOP
-	    # no change
-	  elsif(fcncode == 1) # STATUS request
-	    @tlm_packets['STATUS'].status = 
-	  elsif(fcncode == 10) # ARM 
-	    @tlm_packets['STATUS'].status = 170 # AA = ARMED
-	  elsif(fcncode == 13) # DISARM
-	    @tlm_packets['STATUS'].status = 221 # DD = DISARMED
-	  elsif(fcncode == 15) # FIRE
-        @tlm_packets['STATUS'].status = 255 # FF = FIRED
-      else
-		@tlm_packets['STATUS'].status = 187 # unrecognized
+	  
+	  # check the APID
+	  if packet.read("CCSDSAPID") == 200
+	    case packet.read("FCNCODE")
+		when 0 # NOOP
+		  # no change
+		when 1 # STATUS request
+		  # no change in status
+	      @send_response = true
+		when 10 # ARM 
+		  @status = 170 # AA = ARMED
+		  @send_response = true
+		when 13 # DISARM
+		  @status = 221 # DD = DISARMED
+		  @send_response = true
+		when 15 # FIRE
+		  @status = 255 # FF = FIRED
+		  @send_response = true
+		else
+		  @status = 187 # BB = unrecognized command
+		  @send_response = true
+		end
+	  else
+	    @status = 175 # AF = unrecognized message
+		@send_response = true
 	  end
-#	STATE UNRECOGNIZED_MESSAGE 175
 	
     end
 
     def read(count_100hz, time)
       # The SimulatedTarget implements get_pending_packets to return
       # packets at the correct time interval based on their rates
-      pending_packets = get_pending_packets(count_100hz)
+	  
+	  # pending_packets = get_pending_packets(count_100hz)
+      pending_packets = [] 
+	  
+	  if @send_response 
+	    # add the status packet to the list of output packets
+	    pending_packets['STATUS'] = @tlm_packets['STATUS']
 
-      pending_packets.each do |packet|
-        case packet.packet_name
-        when 'STATUS'
-          packet.counter += 1
-        when 'DATA'
-          # This method in SimulatedTarget cycles the specified telemetry
-          # point between the two given values by the given increment for
-          # each packet sent out.
-          cycle_tlm_item(packet, 'temp1', -95.0, 95.0, 1.0)
-
-          packet.timesec = time.tv_sec
-          packet.timeus  = time.tv_usec
-          packet.counter += 1
+		# update the packet payload
+        pending_packets['STATUS'].status = @status
+       
+	    # update header data
+        pending_packets['STATUS'].CCSDS_SEC = time.tv_sec
+        pending_packets['STATUS'].CCSDS_SUBSEC = time.tv_usec
+        pending_packets['STATUS'].CCSDSSEQCNT += 1
+		
+		# set send_respond back to false
+		@send_response = false
         end
       end
-      pending_packets
+	  
+      return pending_packets
     end
   end
 end
