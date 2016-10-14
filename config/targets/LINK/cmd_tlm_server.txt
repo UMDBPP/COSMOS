@@ -1,5 +1,0 @@
-# This is a segment of the main cmd_tlm_server.txt that will be used with
-# AUTO_INTERFACE_TARGETS or INTERFACE_TARGET
-
-#         interface name  file name                    write read baud   parity stop timeouts stream
-INTERFACE UART_INTERFACE  checksum_serial_interface.rb COM1  COM1 9600   NONE   1    nil nil  LENGTH

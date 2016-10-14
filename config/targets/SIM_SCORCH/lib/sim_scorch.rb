@@ -28,31 +28,31 @@ module Cosmos
       # If you have more than one command you'll need to switch
       # on the packet.packet_name to determine what command it is
 	  
-	  # check the APID
-	  if packet.read("CCSDSAPID") == 200
-	    case packet.read("FCNCODE")
-		when 0 # NOOP
-		  # no change
-		when 1 # STATUS request
-		  # no change in status
-	      @send_response = true
-		when 10 # ARM 
-		  @status = 170 # AA = ARMED
-		  @send_response = true
-		when 13 # DISARM
-		  @status = 221 # DD = DISARMED
-		  @send_response = true
-		when 15 # FIRE
-		  @status = 255 # FF = FIRED
-		  @send_response = true
-		else
-		  @status = 187 # BB = unrecognized command
-		  @send_response = true
-		end
-	  else
-	    @status = 175 # AF = unrecognized message
-		@send_response = true
-	  end
+	    # check the APID
+	    if packet.read("CCSDSAPID") == 200
+	      case packet.read("FCNCODE")
+		    when 0 # NOOP
+		      # no change
+		    when 1 # STATUS request
+		      # no change in status
+	        @send_response = true
+		    when 10 # ARM 
+		      @status = 170 # AA = ARMED
+		      @send_response = true
+		    when 13 # DISARM
+		      @status = 221 # DD = DISARMED
+		      @send_response = true
+		    when 15 # FIRE
+		      @status = 255 # FF = FIRED
+		      @send_response = true
+		    else
+		      @status = 187 # BB = unrecognized command
+		      @send_response = true
+		    end
+	    else
+	      @status = 175 # AF = unrecognized message
+		    @send_response = true
+	    end
 	
     end
 
@@ -60,27 +60,30 @@ module Cosmos
       # The SimulatedTarget implements get_pending_packets to return
       # packets at the correct time interval based on their rates
 	  
-	  # pending_packets = get_pending_packets(count_100hz)
+	    # pending_packets = get_pending_packets(count_100hz)
       pending_packets = [] 
 	  
-	  if @send_response 
-	    # add the status packet to the list of output packets
-	    pending_packets['STATUS'] = @tlm_packets['STATUS']
+	    if @send_response 
+	      # add the status packet to the list of output packets
+	      packet = @tlm_packets['STATUS']
 
-		# update the packet payload
-        pending_packets['STATUS'].status = @status
+		    # update the packet payload
+        packet.status = @status
        
-	    # update header data
-        pending_packets['STATUS'].CCSDS_SEC = time.tv_sec
-        pending_packets['STATUS'].CCSDS_SUBSEC = time.tv_usec
-        pending_packets['STATUS'].CCSDSSEQCNT += 1
+	      # update header data
+        packet.CCSDSVER = 1
+        packet.CCSDS_SEC = time.tv_sec
+        packet.CCSDS_SUBSEC = 0 #time.tv_usec
+        packet.CCSDSSEQCNT += 1
 		
-		# set send_respond back to false
-		@send_response = false
-        end
+		    # set send_respond back to false
+		    @send_response = false
+        
+        pending_packets << packet
+       
       end
 	  
-      return pending_packets
+      pending_packets
     end
   end
 end

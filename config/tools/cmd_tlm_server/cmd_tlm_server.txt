@@ -1,15 +1,15 @@
-TITLE 'COSMOS Command and Telemetry Server - Demo Configuration'
+TITLE 'COSMOS Command and Telemetry Server'
 
 PACKET_LOG_WRITER DEFAULT meta_packet_log_writer.rb META DATA config/data/meta_init.txt
 PACKET_LOG_WRITER COSMOSLOG packet_log_writer.rb cosmos
 
 # AUTO_INTERFACE_TARGETS # Use cmd_tlm_server.txt from all targets declared in system.txt
 
-INTERFACE_TARGET INST cmd_tlm_server.txt # Use cmd_tlm_server.txt in target package
+#NTERFACE_TARGET INST cmd_tlm_server.txt # Use cmd_tlm_server.txt in target package
 
-INTERFACE INST2_INT simulated_target_interface.rb sim_inst.rb
-  TARGET INST2
-  DONT_LOG
+#INTERFACE INST2_INT simulated_target_interface.rb sim_inst.rb
+#  TARGET INST2
+#  DONT_LOG
 
 INTERFACE_TARGET EXAMPLE cmd_tlm_server.txt # Use cmd_tlm_server.txt in target package
 
@@ -24,10 +24,17 @@ INTERFACE COSMOS_INT cmd_tlm_server_interface.rb
   # DONT_RECONNECT
   # RECONNECT_DELAY 15.0
   # LOG_RAW
-
+  
+#         interface name  file name                    write read baud   parity stop timeouts stream
+INTERFACE UART_INTERFACE  checksum_serial_interface.rb COM1  COM1 9600   NONE   1    nil nil  LENGTH
+  TARGET SCORCH
+  TARGET LINK  
+ 
+INTERFACE_TARGET SIM_SCORCH cmd_tlm_server.txt # Use cmd_tlm_server.txt in target package 
+ 
 ROUTER INST_ROUTER tcpip_server_interface.rb 2055 2055 10.0 nil LENGTH 32 16 7
   OPTION LISTEN_ADDRESS 127.0.0.1
-  ROUTE INST_INT
+#  ROUTE INST_INT
   # DONT_CONNECT
   # DONT_RECONNECT
   # DISABLE_DISCONNECT
