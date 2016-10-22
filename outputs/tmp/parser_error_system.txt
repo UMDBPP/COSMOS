@@ -1,0 +1,111 @@
+Error : Unable to require example_limits_response.rb due to cannot load such file -- example_limits_response.rb. Ensure example_limits_response.rb is in the COSMOS lib directory.
+Debug output in C:/COSMOS/BPP/outputs/tmp/parser_error_target.txt
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/target.rb:129:in `rescue in block in process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/target.rb:126:in `block in process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_loop'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/target.rb:121:in `process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/target.rb:178:in `process_target_config_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/target.rb:106:in `initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:404:in `new'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:404:in `block in process_targets'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_loop'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:354:in `process_targets'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:342:in `block in process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/top_level.rb:679:in `set_working_dir'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:223:in `process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:117:in `initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:204:in `new'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:204:in `block in instance'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:203:in `synchronize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:203:in `instance'
+(eval):1:in `paths'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/utilities/message_log.rb:31:in `initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server.rb:114:in `new'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server.rb:114:in `initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_gui.rb:86:in `new'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_gui.rb:86:in `block in configure_tabs'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/gui/dialogs/splash.rb:96:in `block in execute'
+
+Parsed Data (will only be present if parse ran successfully):
+
+# Declare Targets that make up the system
+# DECLARE_TARGET target_name [substitute_name]
+
+# AUTO_DECLARE_TARGETS
+#DECLARE_TARGET INST
+#DECLARE_TARGET INST INST2
+#DECLARE_TARGET EXAMPLE
+#DECLARE_TARGET TEMPLATED
+DECLARE_TARGET COSMOS
+DECLARE_TARGET META
+DECLARE_TARGET SYSTEM
+DECLARE_TARGET SCORCH
+DECLARE_TARGET SIM_SCORCH
+DECLARE_TARGET LINK
+
+# Ethernet Ports
+PORT CTS_API 7777
+PORT TLMVIEWER_API 7778
+PORT CTS_PREIDENTIFIED 7779
+
+# Default Packet Log Writer and Reader
+DEFAULT_PACKET_LOG_WRITER packet_log_writer.rb
+DEFAULT_PACKET_LOG_READER packet_log_reader.rb
+
+# Paths
+PATH LOGS ./outputs/logs
+PATH TMP ./outputs/tmp
+PATH SAVED_CONFIG ./outputs/saved_config
+PATH TABLES ./outputs/tables
+PATH HANDBOOKS ./outputs/handbooks
+PATH PROCEDURES ./procedures
+
+ALLOW_ACCESS ALL
+
+ENABLE_SOUND
+# DISABLE_DNS
+# STALENESS_SECONDS 30
+# CMD_TLM_VERSION version
+
+Unparsed Data:
+
+# Declare Targets that make up the system
+# DECLARE_TARGET target_name [substitute_name]
+
+# AUTO_DECLARE_TARGETS
+#DECLARE_TARGET INST
+#DECLARE_TARGET INST INST2
+#DECLARE_TARGET EXAMPLE
+#DECLARE_TARGET TEMPLATED
+DECLARE_TARGET COSMOS
+DECLARE_TARGET META
+DECLARE_TARGET SYSTEM
+DECLARE_TARGET SCORCH
+DECLARE_TARGET SIM_SCORCH
+DECLARE_TARGET LINK
+
+# Ethernet Ports
+PORT CTS_API 7777
+PORT TLMVIEWER_API 7778
+PORT CTS_PREIDENTIFIED 7779
+
+# Default Packet Log Writer and Reader
+DEFAULT_PACKET_LOG_WRITER packet_log_writer.rb
+DEFAULT_PACKET_LOG_READER packet_log_reader.rb
+
+# Paths
+PATH LOGS ./outputs/logs
+PATH TMP ./outputs/tmp
+PATH SAVED_CONFIG ./outputs/saved_config
+PATH TABLES ./outputs/tables
+PATH HANDBOOKS ./outputs/handbooks
+PATH PROCEDURES ./procedures
+
+ALLOW_ACCESS ALL
+
+ENABLE_SOUND
+# DISABLE_DNS
+# STALENESS_SECONDS 30
+# CMD_TLM_VERSION version

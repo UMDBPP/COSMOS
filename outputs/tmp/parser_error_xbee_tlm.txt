@@ -1,0 +1,169 @@
+Error : Can't append an item after a variably sized item
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/parsers/packet_item_parser.rb:66:in `rescue in create_packet_item'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/parsers/packet_item_parser.rb:46:in `create_packet_item'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/parsers/packet_item_parser.rb:23:in `parse'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/packet_config.rb:1339:in `start_item'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/packet_config.rb:1104:in `process_current_packet'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/packet_config.rb:189:in `block in process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_loop'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/packet_config.rb:112:in `process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:595:in `block (2 levels) in load_packets'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:593:in `each'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:593:in `block in load_packets'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:592:in `each'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:592:in `load_packets'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:157:in `telemetry'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:163:in `telemetry'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packet_logs/meta_packet_log_writer.rb:53:in `initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_config.rb:96:in `new'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_config.rb:96:in `block (2 levels) in process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_loop'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_config.rb:72:in `block in process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/top_level.rb:679:in `set_working_dir'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_config.rb:70:in `process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_config.rb:53:in `initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server.rb:131:in `new'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server.rb:131:in `initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_gui.rb:86:in `new'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_gui.rb:86:in `block in configure_tabs'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/gui/dialogs/splash.rb:96:in `block in execute'
+
+Parsed Data (will only be present if parse ran successfully):
+
+TELEMETRY XBEE ATCMDSTAT BIG_ENDIAN "Xbee AT command response message"
+  APPEND_ID_ITEM STARTDELIM 8 UINT 126 "Packet start sequence: 0x7E  126"
+  APPEND_ID_ITEM PKTLEN 16 UINT 5 "Packet length"
+  APPEND_ID_ITEM FRAMETYPE 8 UINT 136 "Packet type - AT cmd response: 0x88 = 136"
+  APPEND_ITEM FRAMEID 8 UINT "Packet ID"
+  APPEND_ITEM ATCMD 16 UINT "Packet command code"
+  APPEND_ITEM STATUS 8 UINT "Packet command code"
+    STATE OK 0
+    STATE ERROR 1
+    STATE BAD_CMD 2
+    STATE BAD_PARAM 3
+    STATE TX_FAIL 4
+  APPEND_ITEM CHECKSUM 8 UINT "Packet command code"
+  
+TELEMETRY XBEE ATCMDRESP BIG_ENDIAN "Xbee AT command response message"
+  APPEND_ID_ITEM STARTDELIM 8 UINT 126 "Packet start sequence: 0x7E  126"
+  APPEND_ID_ITEM PKTLEN 16 UINT 7 "Packet length"
+  APPEND_ID_ITEM FRAMETYPE 8 UINT 136 "Packet type - AT cmd response: 0x88 = 136"
+  APPEND_ITEM FRAMEID 8 UINT "Packet ID"
+  APPEND_ITEM ATCMD 16 UINT "Packet command code"
+  APPEND_ITEM STATUS 8 UINT "Packet command code"
+  APPEND_ITEM RESPONSE 16 UINT "Packet command code"
+  APPEND_ITEM CHECKSUM 8 UINT "Packet command code"
+
+TELEMETRY XBEE TXRESP BIG_ENDIAN "Xbee TX Transmit Status"
+  APPEND_ID_ITEM STARTDELIM 8 UINT 126 "Packet start sequence: 0x7E  126"
+  APPEND_ITEM PKTLEN 16 UINT "Packet length"
+  APPEND_ID_ITEM FRAMETYPE 8 UINT 137 "Packet type - TX Transmit Status: 0x89 = 137"
+  APPEND_ITEM FRAMEID 8 UINT "Packet ID"
+  APPEND_ITEM STATUS 8 UINT "Packet command code"
+    STATE SUCCESS 0
+    STATE NO_ACK 1
+    STATE CCA_FAIL 2
+    STATE PURGED_WO_TRANS 3
+    STATE NOT_ON_NETWORK 22
+    STATE SELF_ADDR 23
+    STATE ADDR_NOT_FOUND 24
+    STATE SOFTWARE_ERR 31
+    STATE DATA_TOO_LARGE 74
+  APPEND_ITEM CHECKSUM 8 UINT "Packet command code"
+  
+TELEMETRY XBEE MODEMRESP BIG_ENDIAN "Xbee TX Transmit Status"
+  APPEND_ID_ITEM STARTDELIM 8 UINT 126 "Packet start sequence: 0x7E  126"
+  APPEND_ITEM PKTLEN 16 UINT "Packet length"
+  APPEND_ID_ITEM FRAMETYPE 8 UINT 138 "Packet type - TX Transmit Status: 0x8A = 138"
+  APPEND_ITEM STATUS 8 UINT "Packet command code"
+    STATE HARDWARE_RESET 0
+    STATE WATCHDOG_RESET 1
+    STATE JOINED_NETWORK 2
+    STATE DISSOCIATED 3
+    STATE CONFIG_ERROR 4
+    STATE COORDINATOR_REALIGN 5
+    STATE COORDINATOR_STARTED 6
+  APPEND_ITEM CHECKSUM 8 UINT "Packet command code"
+  
+  TELEMETRY XBEE RX16MSG BIG_ENDIAN "Xbee 16-bit RX message"
+  APPEND_ID_ITEM STARTDELIM 8 UINT 126 "Packet start sequence: 0x7E  126"
+  APPEND_ITEM PKTLEN 16 UINT "Packet length"
+  APPEND_ID_ITEM FRAMETYPE 8 UINT 129 "Packet type - 16-bit RX: 0x81 = 129"
+  APPEND_ITEM SENDER_ADDR 16 UINT "Sender Address"
+  APPEND_ITEM RSSI 8 UINT "Signal Strength"
+  APPEND_ITEM OPTIONS 8 UINT "Rx options"
+    STATE ADDR_BROADCAST 1
+    STATE PAN_BROADCAST 2
+  APPEND_ITEM DATA 0 BLOCK "Packet data"
+  APPEND_ITEM CHECKSUM 8 UINT "Packet command code"
+
+Unparsed Data:
+
+TELEMETRY XBEE ATCMDSTAT BIG_ENDIAN "Xbee AT command response message"
+  APPEND_ID_ITEM STARTDELIM 8 UINT 126 "Packet start sequence: 0x7E  126"
+  APPEND_ID_ITEM PKTLEN 16 UINT 5 "Packet length"
+  APPEND_ID_ITEM FRAMETYPE 8 UINT 136 "Packet type - AT cmd response: 0x88 = 136"
+  APPEND_ITEM FRAMEID 8 UINT "Packet ID"
+  APPEND_ITEM ATCMD 16 UINT "Packet command code"
+  APPEND_ITEM STATUS 8 UINT "Packet command code"
+    STATE OK 0
+    STATE ERROR 1
+    STATE BAD_CMD 2
+    STATE BAD_PARAM 3
+    STATE TX_FAIL 4
+  APPEND_ITEM CHECKSUM 8 UINT "Packet command code"
+  
+TELEMETRY XBEE ATCMDRESP BIG_ENDIAN "Xbee AT command response message"
+  APPEND_ID_ITEM STARTDELIM 8 UINT 126 "Packet start sequence: 0x7E  126"
+  APPEND_ID_ITEM PKTLEN 16 UINT 7 "Packet length"
+  APPEND_ID_ITEM FRAMETYPE 8 UINT 136 "Packet type - AT cmd response: 0x88 = 136"
+  APPEND_ITEM FRAMEID 8 UINT "Packet ID"
+  APPEND_ITEM ATCMD 16 UINT "Packet command code"
+  APPEND_ITEM STATUS 8 UINT "Packet command code"
+  APPEND_ITEM RESPONSE 16 UINT "Packet command code"
+  APPEND_ITEM CHECKSUM 8 UINT "Packet command code"
+
+TELEMETRY XBEE TXRESP BIG_ENDIAN "Xbee TX Transmit Status"
+  APPEND_ID_ITEM STARTDELIM 8 UINT 126 "Packet start sequence: 0x7E  126"
+  APPEND_ITEM PKTLEN 16 UINT "Packet length"
+  APPEND_ID_ITEM FRAMETYPE 8 UINT 137 "Packet type - TX Transmit Status: 0x89 = 137"
+  APPEND_ITEM FRAMEID 8 UINT "Packet ID"
+  APPEND_ITEM STATUS 8 UINT "Packet command code"
+    STATE SUCCESS 0
+    STATE NO_ACK 1
+    STATE CCA_FAIL 2
+    STATE PURGED_WO_TRANS 3
+    STATE NOT_ON_NETWORK 22
+    STATE SELF_ADDR 23
+    STATE ADDR_NOT_FOUND 24
+    STATE SOFTWARE_ERR 31
+    STATE DATA_TOO_LARGE 74
+  APPEND_ITEM CHECKSUM 8 UINT "Packet command code"
+  
+TELEMETRY XBEE MODEMRESP BIG_ENDIAN "Xbee TX Transmit Status"
+  APPEND_ID_ITEM STARTDELIM 8 UINT 126 "Packet start sequence: 0x7E  126"
+  APPEND_ITEM PKTLEN 16 UINT "Packet length"
+  APPEND_ID_ITEM FRAMETYPE 8 UINT 138 "Packet type - TX Transmit Status: 0x8A = 138"
+  APPEND_ITEM STATUS 8 UINT "Packet command code"
+    STATE HARDWARE_RESET 0
+    STATE WATCHDOG_RESET 1
+    STATE JOINED_NETWORK 2
+    STATE DISSOCIATED 3
+    STATE CONFIG_ERROR 4
+    STATE COORDINATOR_REALIGN 5
+    STATE COORDINATOR_STARTED 6
+  APPEND_ITEM CHECKSUM 8 UINT "Packet command code"
+  
+  TELEMETRY XBEE RX16MSG BIG_ENDIAN "Xbee 16-bit RX message"
+  APPEND_ID_ITEM STARTDELIM 8 UINT 126 "Packet start sequence: 0x7E  126"
+  APPEND_ITEM PKTLEN 16 UINT "Packet length"
+  APPEND_ID_ITEM FRAMETYPE 8 UINT 129 "Packet type - 16-bit RX: 0x81 = 129"
+  APPEND_ITEM SENDER_ADDR 16 UINT "Sender Address"
+  APPEND_ITEM RSSI 8 UINT "Signal Strength"
+  APPEND_ITEM OPTIONS 8 UINT "Rx options"
+    STATE ADDR_BROADCAST 1
+    STATE PAN_BROADCAST 2
+  APPEND_ITEM DATA 0 BLOCK "Packet data"
+  APPEND_ITEM CHECKSUM 8 UINT "Packet command code"

@@ -1,6 +1,6 @@
 TELEMETRY SCORCH STATUS BIG_ENDIAN "SCORCH Status"
-  <%= render "_ccsds_pri_hdr_tlm.txt", locals: {apid: 220} %>
-  <%= render "_ccsds_sec_hdr_tlm.txt" %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 220} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM STATUS 16 UINT "Status code"
     STATE ARMED 170
 	  STATE DISARMED 221
@@ -8,3 +8,13 @@ TELEMETRY SCORCH STATUS BIG_ENDIAN "SCORCH Status"
 	  STATE FIRED 255
 	  STATE UNRECOGNIZED_COMMAND 187
 	  STATE UNRECOGNIZED_MESSAGE 175
+        
+TELEMETRY SCORCH HK_STATUS BIG_ENDIAN "SCORCH HK Packet"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 210} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM CmdExeCtr 16 UINT "Commands executed counter"
+  APPEND_ITEM CmdRejCtr 16 UINT "Commands rejected counter"
+  APPEND_ITEM XbeeRcvdByteCtr 32 UINT "Xbee received byte counter"
+  APPEND_ITEM XbeeSentByteCtr 32 UINT "Xbee sent byte counter"
+  APPEND_ITEM RunTime 32 UINT "Xbee sent byte counter"
+    UNITS Seconds sec

@@ -1,0 +1,23 @@
+# Requires for limits responses and custom conversion classes
+#REQUIRE example_limits_response.rb
+
+# Ignored Parameters
+# IGNORE_PARAMETER parameter_name
+IGNORE_PARAMETER STARTDELIM
+IGNORE_PARAMETER PKTLEN
+IGNORE_PARAMETER FRAMETYPE
+IGNORE_PARAMETER FRAMEID
+
+
+# Ignored Items
+# IGNORE_ITEM item_name
+IGNORE_ITEM STARTDELIM
+IGNORE_ITEM PKTLEN
+IGNORE_ITEM FRAMETYPE
+IGNORE_ITEM FRAMEID
+
+# Explicitly define command and telemetry files
+# If not given then all the files in cmd/tlm will be processed in
+# alphabetical order
+COMMANDS xbee_cmd.txt
+TELEMETRY xbee_tlm.txt

@@ -1,5 +1,5 @@
 # Requires for limits responses and custom conversion classes
-REQUIRE example_limits_response.rb
+# REQUIRE example_limits_response.rb
 
 # Ignored Parameters
 # IGNORE_PARAMETER parameter_name

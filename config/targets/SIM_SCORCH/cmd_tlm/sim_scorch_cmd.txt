@@ -1,5 +1,5 @@
 COMMAND SIM_SCORCH CMD BIG_ENDIAN "SCORCH NOOP"
-  <%= render "_ccsds_pri_hdr_cmd.txt", locals: {apid: 200} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 200} %>
   PARAMETER CCSDSRESERVED 48 1 UINT MIN_UINT8 MIN_UINT8 0 "CCSDS SECONDARY HEADER RESERVED FIELD"
   PARAMETER FCNCODE 49 7 UINT 0 128 0 "CCSDS SECONDARY HEADER FUNCTION CODE"
     STATE NOOP 0

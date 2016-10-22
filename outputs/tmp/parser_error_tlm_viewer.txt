@@ -1,0 +1,98 @@
+Error : Unknown target INST
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/tlm_viewer/tlm_viewer_config.rb:227:in `start_target'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/tlm_viewer/tlm_viewer_config.rb:180:in `block in initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_loop'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/tlm_viewer/tlm_viewer_config.rb:119:in `initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/tlm_viewer/tlm_viewer.rb:88:in `new'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/tlm_viewer/tlm_viewer.rb:88:in `load_config'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/tlm_viewer/tlm_viewer.rb:115:in `block in initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/gui/dialogs/splash.rb:96:in `block in execute'
+
+Parsed Data (will only be present if parse ran successfully):
+
+# Automatically pull in screens from all targets
+AUTO_TARGETS
+
+# Create a new dropdown with a few specific sceens
+GROUP "My group"
+  GROUP_SCREEN "COSMOS" "version.txt"
+  GROUP_SCREEN "INST" "hs.txt"
+  GROUP_SCREEN "INST2" "hs.txt"
+
+# NEW_COLUMN
+
+# AUTO_TARGET INST
+
+# TARGET "INST"
+#  SCREEN "adcs.txt"
+#  SCREEN "array.txt"
+#  SCREEN "block.txt"
+#  SCREEN "commanding.txt"
+#  SCREEN "graphs.txt"
+#  SCREEN "ground.txt"
+#  SCREEN "hs.txt"
+#  SCREEN "latest.txt" 480 324
+#    SHOW_ON_STARTUP
+#  SCREEN "other.txt"
+#  SCREEN "tabs.txt"
+
+#TARGET "INST2"
+#  SCREEN "adcs.txt"
+#  SCREEN "array.txt"
+#  SCREEN "block.txt"
+#  SCREEN "commanding.txt" 898 317
+#    SHOW_ON_STARTUP
+#  SCREEN "graphs.txt"
+#  SCREEN "ground.txt"
+#  SCREEN "hs.txt"
+#  SCREEN "latest.txt"
+#  SCREEN "other.txt"
+#  SCREEN "tabs.txt"
+
+# ADD_SHOW_ON_STARTUP INST ADCS 10 10
+# ADD_SHOW_ON_STARTUP INST HS 500 500
+
+Unparsed Data:
+
+# Automatically pull in screens from all targets
+AUTO_TARGETS
+
+# Create a new dropdown with a few specific sceens
+GROUP "My group"
+  GROUP_SCREEN "COSMOS" "version.txt"
+  GROUP_SCREEN "INST" "hs.txt"
+  GROUP_SCREEN "INST2" "hs.txt"
+
+# NEW_COLUMN
+
+# AUTO_TARGET INST
+
+# TARGET "INST"
+#  SCREEN "adcs.txt"
+#  SCREEN "array.txt"
+#  SCREEN "block.txt"
+#  SCREEN "commanding.txt"
+#  SCREEN "graphs.txt"
+#  SCREEN "ground.txt"
+#  SCREEN "hs.txt"
+#  SCREEN "latest.txt" 480 324
+#    SHOW_ON_STARTUP
+#  SCREEN "other.txt"
+#  SCREEN "tabs.txt"
+
+#TARGET "INST2"
+#  SCREEN "adcs.txt"
+#  SCREEN "array.txt"
+#  SCREEN "block.txt"
+#  SCREEN "commanding.txt" 898 317
+#    SHOW_ON_STARTUP
+#  SCREEN "graphs.txt"
+#  SCREEN "ground.txt"
+#  SCREEN "hs.txt"
+#  SCREEN "latest.txt"
+#  SCREEN "other.txt"
+#  SCREEN "tabs.txt"
+
+# ADD_SHOW_ON_STARTUP INST ADCS 10 10
+# ADD_SHOW_ON_STARTUP INST HS 500 500

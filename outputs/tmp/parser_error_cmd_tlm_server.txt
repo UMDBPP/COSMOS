@@ -1,0 +1,204 @@
+Error : Can't append an item after a variably sized item
+Debug output in C:/COSMOS/BPP/outputs/tmp/parser_error_xbee_tlm.txt
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/parsers/packet_item_parser.rb:66:in `rescue in create_packet_item'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/parsers/packet_item_parser.rb:46:in `create_packet_item'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/parsers/packet_item_parser.rb:23:in `parse'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/packet_config.rb:1339:in `start_item'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/packet_config.rb:1104:in `process_current_packet'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/packet_config.rb:189:in `block in process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_loop'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/packet_config.rb:112:in `process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:595:in `block (2 levels) in load_packets'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:593:in `each'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:593:in `block in load_packets'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:592:in `each'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:592:in `load_packets'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:157:in `telemetry'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:163:in `telemetry'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packet_logs/meta_packet_log_writer.rb:53:in `initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_config.rb:96:in `new'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_config.rb:96:in `block (2 levels) in process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_loop'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_config.rb:72:in `block in process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/top_level.rb:679:in `set_working_dir'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_config.rb:70:in `process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_config.rb:53:in `initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server.rb:131:in `new'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server.rb:131:in `initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_gui.rb:86:in `new'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_gui.rb:86:in `block in configure_tabs'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/gui/dialogs/splash.rb:96:in `block in execute'
+
+Parsed Data (will only be present if parse ran successfully):
+
+TITLE 'COSMOS Command and Telemetry Server'
+
+PACKET_LOG_WRITER DEFAULT meta_packet_log_writer.rb META DATA config/data/meta_init.txt
+PACKET_LOG_WRITER COSMOSLOG packet_log_writer.rb cosmos
+
+INTERFACE COSMOS_INT cmd_tlm_server_interface.rb
+  TARGET COSMOS
+  DISABLE_DISCONNECT
+  LOG COSMOSLOG
+  # DONT_LOG
+  # DONT_CONNECT
+  # DONT_RECONNECT
+  # RECONNECT_DELAY 15.0
+  # LOG_RAW
+  
+  
+  
+# CCSDS_INT is a serial interface designed to talk directly to a payload's serial connection using CCSDS messages.
+# The interface will calculate the checksum and length of any packet sent through it and will overwrite 
+# those fields of the CCSDS header.
+
+#         interface_name  file_name          write read baud   parity stop timeouts stream len_loc len_len len_offset
+INTERFACE CCSDS_INT       interface_ccsds.rb COM9  COM9 9600   NONE   1    nil nil  LENGTH 32      16      7
+  #TARGET SCORCH
+  #TARGET LINK  
+  DONT_CONNECT
+  
+# LINKCCSDS_INT is designed to talk to payloads through the LINK message routing.
+# This iterface performs the same actions as the CCSDS_INT for the outgoing packets. 
+#
+# The interface will also automatically wrap any non-LINK message sent through it (as identified by the APIDs
+# of the message not being in the range assigned to LINK in APIDs.txt) with a LINK XB_FSWMSG command header
+# and a destination xbee address (as defined in APIDs.txt) so that LINK will forward the message to the 
+# proper payload. 
+
+#         interface name  file name              write read baud   parity stop timeouts stream len_loc len_len len_offset
+INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM9  COM9 9600   NONE   1    nil nil  LENGTH 32      16      7
+  TARGET SCORCH
+  #TARGET LINK  
+  DONT_CONNECT
+  
+# XBEE_INT is designed to talk directly to an Xbee unit.
+# For Xbee packets (identified by the start bytes '0x7E') this interface will calculate the length and checksum 
+# fields of any message sent through it and will override those fields of the XBee header.
+#
+# The interface will also wrap any non-XBee message sent through it (as identified by the lack of start bytes)
+# with a Xbee header which will result in the message being sent to the proper address (as defined in APIDs.txt). 
+
+#         interface name  file name              write read baud   parity stop timeouts stream len_loc len_len len_offset
+INTERFACE XBEE_INT  interface_ccsds_xbee.rb      COM6  COM6 9600   NONE   1    nil nil  LENGTH 8       16      4
+  TARGET XBEE
+  #TARGET SCORCH
+  TARGET LINK  
+ 
+INTERFACE_TARGET SIM_SCORCH cmd_tlm_server.txt # Use cmd_tlm_server.txt in target package 
+  DONT_CONNECT
+  
+ROUTER INST_ROUTER tcpip_server_interface.rb 2055 2055 10.0 nil LENGTH 32 16 7
+  OPTION LISTEN_ADDRESS 127.0.0.1
+#  ROUTE INST_INT
+  # DONT_CONNECT
+  # DONT_RECONNECT
+  # DISABLE_DISCONNECT
+  # RECONNECT_DELAY 15.0
+  # LOG_RAW
+
+# BACKGROUND_TASK example_background_task.rb
+
+# AUTO_INTERFACE_TARGETS # Use cmd_tlm_server.txt from all targets declared in system.txt
+
+#NTERFACE_TARGET INST cmd_tlm_server.txt # Use cmd_tlm_server.txt in target package
+
+#INTERFACE INST2_INT simulated_target_interface.rb sim_inst.rb
+#  TARGET INST2
+#  DONT_LOG
+
+#INTERFACE_TARGET EXAMPLE cmd_tlm_server.txt # Use cmd_tlm_server.txt in target package
+
+#INTERFACE_TARGET TEMPLATED cmd_tlm_server.txt # Use cmd_tlm_server.txt in target package
+
+#COLLECT_METADATA META DATA
+
+
+
+Unparsed Data:
+
+TITLE 'COSMOS Command and Telemetry Server'
+
+PACKET_LOG_WRITER DEFAULT meta_packet_log_writer.rb META DATA config/data/meta_init.txt
+PACKET_LOG_WRITER COSMOSLOG packet_log_writer.rb cosmos
+
+INTERFACE COSMOS_INT cmd_tlm_server_interface.rb
+  TARGET COSMOS
+  DISABLE_DISCONNECT
+  LOG COSMOSLOG
+  # DONT_LOG
+  # DONT_CONNECT
+  # DONT_RECONNECT
+  # RECONNECT_DELAY 15.0
+  # LOG_RAW
+  
+  
+  
+# CCSDS_INT is a serial interface designed to talk directly to a payload's serial connection using CCSDS messages.
+# The interface will calculate the checksum and length of any packet sent through it and will overwrite 
+# those fields of the CCSDS header.
+
+#         interface_name  file_name          write read baud   parity stop timeouts stream len_loc len_len len_offset
+INTERFACE CCSDS_INT       interface_ccsds.rb COM9  COM9 9600   NONE   1    nil nil  LENGTH 32      16      7
+  #TARGET SCORCH
+  #TARGET LINK  
+  DONT_CONNECT
+  
+# LINKCCSDS_INT is designed to talk to payloads through the LINK message routing.
+# This iterface performs the same actions as the CCSDS_INT for the outgoing packets. 
+#
+# The interface will also automatically wrap any non-LINK message sent through it (as identified by the APIDs
+# of the message not being in the range assigned to LINK in APIDs.txt) with a LINK XB_FSWMSG command header
+# and a destination xbee address (as defined in APIDs.txt) so that LINK will forward the message to the 
+# proper payload. 
+
+#         interface name  file name              write read baud   parity stop timeouts stream len_loc len_len len_offset
+INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM9  COM9 9600   NONE   1    nil nil  LENGTH 32      16      7
+  TARGET SCORCH
+  #TARGET LINK  
+  DONT_CONNECT
+  
+# XBEE_INT is designed to talk directly to an Xbee unit.
+# For Xbee packets (identified by the start bytes '0x7E') this interface will calculate the length and checksum 
+# fields of any message sent through it and will override those fields of the XBee header.
+#
+# The interface will also wrap any non-XBee message sent through it (as identified by the lack of start bytes)
+# with a Xbee header which will result in the message being sent to the proper address (as defined in APIDs.txt). 
+
+#         interface name  file name              write read baud   parity stop timeouts stream len_loc len_len len_offset
+INTERFACE XBEE_INT  interface_ccsds_xbee.rb      COM6  COM6 9600   NONE   1    nil nil  LENGTH 8       16      4
+  TARGET XBEE
+  #TARGET SCORCH
+  TARGET LINK  
+ 
+INTERFACE_TARGET SIM_SCORCH cmd_tlm_server.txt # Use cmd_tlm_server.txt in target package 
+  DONT_CONNECT
+  
+ROUTER INST_ROUTER tcpip_server_interface.rb 2055 2055 10.0 nil LENGTH 32 16 7
+  OPTION LISTEN_ADDRESS 127.0.0.1
+#  ROUTE INST_INT
+  # DONT_CONNECT
+  # DONT_RECONNECT
+  # DISABLE_DISCONNECT
+  # RECONNECT_DELAY 15.0
+  # LOG_RAW
+
+# BACKGROUND_TASK example_background_task.rb
+
+# AUTO_INTERFACE_TARGETS # Use cmd_tlm_server.txt from all targets declared in system.txt
+
+#NTERFACE_TARGET INST cmd_tlm_server.txt # Use cmd_tlm_server.txt in target package
+
+#INTERFACE INST2_INT simulated_target_interface.rb sim_inst.rb
+#  TARGET INST2
+#  DONT_LOG
+
+#INTERFACE_TARGET EXAMPLE cmd_tlm_server.txt # Use cmd_tlm_server.txt in target package
+
+#INTERFACE_TARGET TEMPLATED cmd_tlm_server.txt # Use cmd_tlm_server.txt in target package
+
+#COLLECT_METADATA META DATA
+
+

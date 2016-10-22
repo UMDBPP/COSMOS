@@ -1,13 +1,37 @@
 COMMAND LINK NOOP BIG_ENDIAN "LINK NOOP"
-  <%= render "_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
-  <%= render "_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 0} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 0} %>
   
-COMMAND LINK HK_REQ BIG_ENDIAN "LINK NOOP"
-  <%= render "_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
-  <%= render "_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 1} %>  
+COMMAND LINK GND_HK_REQ BIG_ENDIAN "LINK HK Request Command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 10} %>  
   
-COMMAND LINK FWDMSG BIG_ENDIAN "LINK command to forward message"
-  <%= render "_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
-  <%= render "_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 15} %>
+COMMAND LINK XB_HK_REQ BIG_ENDIAN "LINK HK Request Command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 20} %>  
+  APPEND_PARAMETER DESTINATION 8 UINT 0 255 0 "MY address of destination xbee" 
+
+COMMAND LINK GND_FWDMSG BIG_ENDIAN "LINK command to forward message"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 15} %>
+  APPEND_PARAMETER PAYLOAD 0 BLOCK "Command to be forwarded" 
+  
+COMMAND LINK XB_FWDMSG BIG_ENDIAN "LINK command to forward message"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 25} %>
   APPEND_PARAMETER DESTINATION 8 UINT 0 255 0 "MY address of destination xbee" 
   APPEND_PARAMETER PAYLOAD 0 BLOCK "Command to be forwarded" 
+  
+COMMAND LINK RESETCTR BIG_ENDIAN "LINK Reset Counters command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 30} %>
+
+COMMAND LINK TLMFLTRTBL BIG_ENDIAN "LINK Telemeter Filter Table command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 40} %>
+  
+COMMAND LINK SETFLTRTBLIDX BIG_ENDIAN "LINK Set Filter Table Idx"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 45} %>
+  APPEND_PARAMETER IDX 8 UINT 0 10 0 "Index of filter table to override" 
+  APPEND_PARAMETER IDX 16 UINT 0 65535 0 "APID of packet" 

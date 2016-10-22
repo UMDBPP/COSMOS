@@ -1,0 +1,104 @@
+Error : Unable to require example_limits_response.rb due to cannot load such file -- example_limits_response.rb. Ensure example_limits_response.rb is in the COSMOS lib directory.
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/target.rb:129:in `rescue in block in process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/target.rb:126:in `block in process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_loop'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/target.rb:121:in `process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/target.rb:178:in `process_target_config_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/target.rb:106:in `initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:404:in `new'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:404:in `block in process_targets'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_loop'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:354:in `process_targets'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:342:in `block in process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/top_level.rb:679:in `set_working_dir'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:223:in `process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:117:in `initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:204:in `new'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:204:in `block in instance'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:203:in `synchronize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:203:in `instance'
+(eval):1:in `paths'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/utilities/message_log.rb:31:in `initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server.rb:114:in `new'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server.rb:114:in `initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_gui.rb:86:in `new'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_gui.rb:86:in `block in configure_tabs'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/gui/dialogs/splash.rb:96:in `block in execute'
+
+Parsed Data (will only be present if parse ran successfully):
+
+# Requires for limits responses and custom conversion classes
+REQUIRE example_limits_response.rb
+
+# Ignored Parameters
+# IGNORE_PARAMETER parameter_name
+IGNORE_PARAMETER CCSDSVER
+IGNORE_PARAMETER CCSDSTYPE
+IGNORE_PARAMETER CCSDSSHF
+IGNORE_PARAMETER CCSDSAPID
+IGNORE_PARAMETER CCSDSSEQFLAGS
+IGNORE_PARAMETER CCSDSSEQCNT
+IGNORE_PARAMETER CCSDSLENGTH
+IGNORE_PARAMETER PKTID
+IGNORE_PARAMETER CCSDSRESERVED
+IGNORE_PARAMETER CHECKSUM
+
+# Ignored Items
+# IGNORE_ITEM item_name
+IGNORE_ITEM CCSDSVER
+IGNORE_ITEM CCSDSTYPE
+IGNORE_ITEM CCSDSSHF
+IGNORE_ITEM CCSDSAPID
+IGNORE_ITEM CCSDSSEQFLAGS
+IGNORE_ITEM CCSDSSEQCNT
+IGNORE_ITEM CCSDSLENGTH
+
+IGNORE_ITEM RECEIVED_COUNT
+IGNORE_ITEM RECEIVED_TIMESECONDS
+IGNORE_ITEM RECEIVED_TIMEFORMATTED
+
+# Explicitly define command and telemetry files
+# If not given then all the files in cmd/tlm will be processed in
+# alphabetical order
+COMMANDS sim_scorch_cmd.txt
+TELEMETRY sim_scorch_tlm.txt
+
+Unparsed Data:
+
+# Requires for limits responses and custom conversion classes
+REQUIRE example_limits_response.rb
+
+# Ignored Parameters
+# IGNORE_PARAMETER parameter_name
+IGNORE_PARAMETER CCSDSVER
+IGNORE_PARAMETER CCSDSTYPE
+IGNORE_PARAMETER CCSDSSHF
+IGNORE_PARAMETER CCSDSAPID
+IGNORE_PARAMETER CCSDSSEQFLAGS
+IGNORE_PARAMETER CCSDSSEQCNT
+IGNORE_PARAMETER CCSDSLENGTH
+IGNORE_PARAMETER PKTID
+IGNORE_PARAMETER CCSDSRESERVED
+IGNORE_PARAMETER CHECKSUM
+
+# Ignored Items
+# IGNORE_ITEM item_name
+IGNORE_ITEM CCSDSVER
+IGNORE_ITEM CCSDSTYPE
+IGNORE_ITEM CCSDSSHF
+IGNORE_ITEM CCSDSAPID
+IGNORE_ITEM CCSDSSEQFLAGS
+IGNORE_ITEM CCSDSSEQCNT
+IGNORE_ITEM CCSDSLENGTH
+
+IGNORE_ITEM RECEIVED_COUNT
+IGNORE_ITEM RECEIVED_TIMESECONDS
+IGNORE_ITEM RECEIVED_TIMEFORMATTED
+
+# Explicitly define command and telemetry files
+# If not given then all the files in cmd/tlm will be processed in
+# alphabetical order
+COMMANDS sim_scorch_cmd.txt
+TELEMETRY sim_scorch_tlm.txt

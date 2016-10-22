@@ -1,0 +1,74 @@
+Error : CCSDSAPID: LITTLE_ENDIAN bitfield with bit_offset 5 and bit_size 11 is invalid
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/parsers/packet_item_parser.rb:66:in `rescue in create_packet_item'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/parsers/packet_item_parser.rb:46:in `create_packet_item'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/parsers/packet_item_parser.rb:23:in `parse'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/packet_config.rb:1339:in `start_item'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/packet_config.rb:1104:in `process_current_packet'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/packet_config.rb:189:in `block in process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_loop'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packets/packet_config.rb:112:in `process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:595:in `block (2 levels) in load_packets'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:593:in `each'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:593:in `block in load_packets'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:592:in `each'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:592:in `load_packets'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:157:in `telemetry'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/system/system.rb:163:in `telemetry'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/packet_logs/meta_packet_log_writer.rb:53:in `initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_config.rb:96:in `new'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_config.rb:96:in `block (2 levels) in process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_loop'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/config/config_parser.rb:191:in `parse_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_config.rb:72:in `block in process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/top_level.rb:679:in `set_working_dir'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_config.rb:70:in `process_file'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_config.rb:53:in `initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server.rb:131:in `new'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server.rb:131:in `initialize'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_gui.rb:86:in `new'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/tools/cmd_tlm_server/cmd_tlm_server_gui.rb:86:in `block in configure_tabs'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/cosmos-3.8.2/lib/cosmos/gui/dialogs/splash.rb:96:in `block in execute'
+
+Parsed Data (will only be present if parse ran successfully):
+
+TELEMETRY LINK STATUS LITTLE_ENDIAN "Link HK Packet"
+    ITEM CCSDSVER 0 3 UINT "CCSDS PACKET VERSION NUMBER (SEE CCSDS 133.0-B-1)"
+  ITEM CCSDSTYPE 3 1 UINT "CCSDS PACKET TYPE (COMMAND OR TELEMETRY)"
+    STATE TLM 0
+    STATE CMD 1
+  ITEM CCSDSSHF 4 1 UINT "CCSDS SECONDARY HEADER FLAG"
+    STATE FALSE 0
+    STATE TRUE 1
+  ID_ITEM CCSDSAPID 5 11 UINT 110 "CCSDS APPLICATION PROCESS ID"
+  ITEM CCSDSSEQFLAGS 16 2 UINT "CCSDS SEQUENCE FLAGS"
+    STATE FIRST 0
+    STATE CONT 1
+    STATE LAST 2
+    STATE NOGROUP 3
+  ITEM CCSDSSEQCNT 18 14 UINT "CCSDS PACKET SEQUENCE COUNT"
+  ITEM CCSDSLENGTH 32 16 UINT "CCSDS PACKET DATA LENGTH"
+    APPEND_ITEM CCSDS_SEC 32 UINT "SECONDS SINCE EPOCH (JANUARY 1ST, 1958, MIDNIGHT)"
+  APPEND_ITEM CCSDS_SUBSEC 16 UINT "SUBSECONDS SINCE EPOCH"
+  APPEND_ITEM CmdExeCtr 16 UINT "Commands executed counter"
+  APPEND_ITEM CmdRejCtr 16 UINT "Commands rejected counter"
+  APPEND_ITEM RadioRcvdByteCtr 32 UINT "Radio received byte counter"
+  APPEND_ITEM XbeeRcvdByteCtr 32 UINT "Xbee received byte counter"
+  APPEND_ITEM RadioSentByteCtr 32 UINT "Radio sent byte counter"
+  APPEND_ITEM XbeeSentByteCtr 32 UINT "Xbee sent byte counter"
+  APPEND_ITEM RunTime 32 UINT "Xbee sent byte counter"
+    UNITS Seconds S
+
+Unparsed Data:
+
+TELEMETRY LINK STATUS LITTLE_ENDIAN "Link HK Packet"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 110} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM CmdExeCtr 16 UINT "Commands executed counter"
+  APPEND_ITEM CmdRejCtr 16 UINT "Commands rejected counter"
+  APPEND_ITEM RadioRcvdByteCtr 32 UINT "Radio received byte counter"
+  APPEND_ITEM XbeeRcvdByteCtr 32 UINT "Xbee received byte counter"
+  APPEND_ITEM RadioSentByteCtr 32 UINT "Radio sent byte counter"
+  APPEND_ITEM XbeeSentByteCtr 32 UINT "Xbee sent byte counter"
+  APPEND_ITEM RunTime 32 UINT "Xbee sent byte counter"
+    UNITS Seconds S

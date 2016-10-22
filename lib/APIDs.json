@@ -1,0 +1,20 @@
+{"LINK":{
+  "XBEE":"2",
+  "100":"Cmd",
+  "110":"HK Tlm Msg",
+  "120":"Gnd Message"
+  "130":"FLTR TBL Message"
+  },
+"SCORCH":{
+  "XBEE":"3",
+  "200":"Cmd",
+  "210":"HK Tlm Msg",
+  "220":"Status Tlm Msg"
+  },
+"MARS":{
+  "XBEE":"4",
+  "300":"Cmd",
+  "310":"HK Tlm Msg",
+  "320":"Status Tlm Msg"
+  }
+}

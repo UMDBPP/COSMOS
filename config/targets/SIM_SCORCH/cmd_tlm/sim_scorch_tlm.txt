@@ -1,6 +1,6 @@
 TELEMETRY SIM_SCORCH STATUS BIG_ENDIAN "SCORCH Status"
-  <%= render "_ccsds_pri_hdr_tlm.txt", locals: {apid: 220} %>
-  <%= render "_ccsds_sec_hdr_tlm.txt" %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 220} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM STATUS 16 UINT "Status code"
     STATE ARMED 170
 	  STATE DISARMED 221
