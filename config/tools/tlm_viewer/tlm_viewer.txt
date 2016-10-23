@@ -2,10 +2,10 @@
 AUTO_TARGETS
 
 # Create a new dropdown with a few specific sceens
-GROUP "My group"
-  GROUP_SCREEN "COSMOS" "version.txt"
-  GROUP_SCREEN "INST" "hs.txt"
-  GROUP_SCREEN "INST2" "hs.txt"
+#GROUP "My group"
+#  GROUP_SCREEN "COSMOS" "version.txt"
+#  GROUP_SCREEN "LINK" "hs.txt"
+#  GROUP_SCREEN "SCORCH" "hs.txt"
 
 # NEW_COLUMN
 

@@ -197,7 +197,7 @@ def prepend_xbeecmd(packet_data)
   str = "\x7E\x00\x05\x01\x01\x00".force_encoding('ASCII-8BIT') << addr_str << "\x00".force_encoding('ASCII-8BIT')
   
   # prepend the LINK XB_FwdMsg command to the command to be sent
-  packet_data.prepend(str )
+  packet_data.prepend(str)
   
   # debug statement
   #puts packet_data

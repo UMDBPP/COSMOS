@@ -2,7 +2,7 @@
   "XBEE":"2",
   "100":"Cmd",
   "110":"HK Tlm Msg",
-  "120":"Gnd Message"
+  "120":"Gnd Message",
   "130":"FLTR TBL Message"
   },
 "SCORCH":{
