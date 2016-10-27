@@ -1,0 +1,39 @@
+TELEMETRY CAMERA HK_MSG BIG_ENDIAN "CAMERA HK Packet"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 610} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM CmdExeCtr 16 UINT "Commands executed counter"
+  APPEND_ITEM CmdRejCtr 16 UINT "Commands rejected counter"
+  APPEND_ITEM XbeeRcvdByteCtr 32 UINT "Xbee received byte counter"
+  APPEND_ITEM XbeeSentByteCtr 32 UINT "Xbee sent byte counter"
+  APPEND_ITEM RunTime 32 UINT "Xbee sent byte counter"
+    UNITS Seconds sec
+    
+TELEMETRY CAMERA ENV_STAT BIG_ENDIAN "CAMERA Environmental Status Msg"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 620} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM BME_PRESSURE 32 FLOAT "BME Pressure"
+  APPEND_ITEM BME_TEMPERATURE 32 FLOAT "BME Temperature"
+  APPEND_ITEM BME_HUMIDITY 32 FLOAT "BME Humidty"
+  APPEND_ITEM SSC_PRESSURE 32 FLOAT "SSC Pressure"
+  APPEND_ITEM SSC_TEMPERATURE 32 FLOAT "SSC Temperature"
+  APPEND_ITEM BNO_TEMPERATURE 32 FLOAT "BNO Temperature"
+  APPEND_ITEM MCP_TEMPERATURE 32 FLOAT "MCP Temperature"
+
+TELEMETRY CAMERA PWR_STAT BIG_ENDIAN "CAMERA Power Status Msg"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 630} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM BATTERY_VOLT 32 FLOAT "Battery Voltage"
+  APPEND_ITEM CURRENT_CONSUMPTION 32 FLOAT "CURRENT_CONSUMPTION"
+  
+TELEMETRY CAMERA IMU_STAT BIG_ENDIAN "CAMERA IMU Status Msg"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 630} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM ACCEL_X 32 FLOAT "Acceleration X"
+  APPEND_ITEM ACCEL_Y 32 FLOAT "Acceleration Y"
+  APPEND_ITEM ACCEL_Z 32 FLOAT "Acceleration Z"
+  APPEND_ITEM GYRO_X 32 FLOAT "Gryo X"
+  APPEND_ITEM GYRO_Y 32 FLOAT "Gryo Y"
+  APPEND_ITEM GYRO_Z 32 FLOAT "Gryo Z"
+  APPEND_ITEM MAG_X 32 FLOAT "Magnetometer X"
+  APPEND_ITEM MAG_Y 32 FLOAT "Magnetometer Y"
+  APPEND_ITEM MAG_Z 32 FLOAT "Magnetometer Z"

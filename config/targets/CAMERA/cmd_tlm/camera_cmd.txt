@@ -1,0 +1,19 @@
+COMMAND CAMERA NOOP BIG_ENDIAN "CAMERA NOOP"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 600} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 0} %>
+  
+COMMAND CAMERA HK_REQ BIG_ENDIAN "CAMERA HK Request Command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 600} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 10} %>  
+  
+COMMAND CAMERA ENV_STAT_REQ BIG_ENDIAN "CAMERA Environmental Request Command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 600} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 20} %>  
+  
+COMMAND CAMERA PWR_STAT_REQ BIG_ENDIAN "CAMERA Power Status Request Command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 600} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 30} %>  
+  
+COMMAND CAMERA IMU_STAT_REQ BIG_ENDIAN "CAMERA IMU Status Request Command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 600} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 40} %>  
