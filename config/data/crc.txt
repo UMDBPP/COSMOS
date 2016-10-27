@@ -1,5 +1,5 @@
 USER_MODIFIED
-"lib/APIDs.json" 0xE9FB843D
+"lib/APIDs.json" 0xC336E20F
 "lib/example_background_task.rb" 0x01426696
 "lib/example_target.rb" 0xFBEF2AE3
 "lib/interface_ccsds.rb" 0x58027469
@@ -25,6 +25,9 @@ USER_MODIFIED
 "config/data/vswitchoff.gif" 0xFAE436C9
 "config/data/vswitchon.gif" 0xD747AC45
 "config/system/system.txt" 0x91AAAAA2
+"config/targets/CAMERA/cmd_tlm/camera_cmd.txt" 0xED9B6F7D
+"config/targets/CAMERA/cmd_tlm/camera_tlm.txt" 0x74F4DEFB
+"config/targets/CAMERA/target.txt" 0xF99AE9D3
 "config/targets/COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt" 0x84A2DBFD
 "config/targets/COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt" 0xFEA226A7
 "config/targets/COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt" 0xFC5B9A25
@@ -41,7 +44,7 @@ USER_MODIFIED
 "config/targets/LINK/target.txt" 0xC78BA79E
 "config/targets/META/cmd_tlm/meta_cmd.txt" 0x674D6D66
 "config/targets/META/cmd_tlm/meta_tlm.txt" 0x797CE3D0
-"config/targets/SCORCH/cmd_tlm/scorch_cmd.txt" 0xB4DA66EB
+"config/targets/SCORCH/cmd_tlm/scorch_cmd.txt" 0x4AFFDCBC
 "config/targets/SCORCH/cmd_tlm/scorch_tlm.txt" 0x6D6EB146
 "config/targets/SCORCH/target.txt" 0x9DF9B974
 "config/targets/SIM_SCORCH/cmd_tlm/sim_scorch_cmd.txt" 0xEDE361D8
@@ -84,7 +87,7 @@ USER_MODIFIED
 "config/tools/table_manager/MCConfigurationTable_fsw2_def.txt" 0x9DE18AEA
 "config/tools/table_manager/PPSSelectionTable_def.txt" 0xE7A1E70B
 "config/tools/table_manager/TLMMonitoringTable_def.txt" 0xBD70F0A7
-"config/tools/test_runner/test_runner.txt" 0xC621D659
+"config/tools/test_runner/test_runner.txt" 0xD6119BD2
 "config/tools/tlm_extractor/tlm_extractor.txt" 0x0B97FA7D
 "config/tools/tlm_extractor/tlm_extractor2.txt" 0x5C780BD2
 "config/tools/tlm_extractor/tlm_extractor3.txt" 0x475006AA
@@ -221,4 +224,5 @@ USER_MODIFIED
 "procedures/link_test.rb" 0x0A7A2909
 "procedures/plot_test.rb" 0x0C2972E4
 "procedures/run_example_test.rb" 0x0F244140
+"procedures/scorch_test.rb" 0x735DB75B
 "procedures/test.rb" 0xCE4DA55A
