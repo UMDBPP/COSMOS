@@ -34,10 +34,25 @@ INTERFACE CCSDS_INT       interface_ccsds.rb COM9  COM9 9600   NONE   1    nil n
 # proper payload. 
 
 #         interface name  file name              write read baud   parity stop timeouts stream len_loc len_len len_offset
-INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM9  COM9 9600   NONE   1    nil nil  LENGTH 32      16      7
+INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM11 COM11 9600   NONE   1    nil nil  LENGTH 32      16      7
   TARGET SCORCH
   TARGET LINK  
+  TARGET CAMERA
   DONT_CONNECT
+  
+# RFD900_INT is designed to talk to payloads through the LINK message routing.
+# This iterface performs the same actions as the CCSDS_INT for the outgoing packets. 
+#
+# The interface will also automatically wrap any non-LINK message sent through it (as identified by the APIDs
+# of the message not being in the range assigned to LINK in APIDs.txt) with a LINK XB_FSWMSG command header
+# and a destination xbee address (as defined in APIDs.txt) so that LINK will forward the message to the 
+# proper payload. 
+
+#         interface name  file name              write read baud   parity stop timeouts stream      write_term read_term
+INTERFACE RFD900_INT      serial_interface.rb    COM11 COM11 9600  NONE   1    nil nil  TERMINATED  0x0D0A     0x0D0A
+  TARGET RFD900
+  DONT_CONNECT
+  
   
 # XBEE_INT is designed to talk directly to an Xbee unit.
 # For Xbee packets (identified by the start bytes '0x7E') this interface will calculate the length and checksum 

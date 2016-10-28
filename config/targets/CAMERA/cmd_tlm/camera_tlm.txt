@@ -12,28 +12,64 @@ TELEMETRY CAMERA ENV_STAT BIG_ENDIAN "CAMERA Environmental Status Msg"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 620} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM BME_PRESSURE 32 FLOAT "BME Pressure"
+    UNITS hectaPascal hPA
+    FORMAT_STRING "%0.6f"
   APPEND_ITEM BME_TEMPERATURE 32 FLOAT "BME Temperature"
+    UNITS Celcius degC
+    FORMAT_STRING "%0.6f"
   APPEND_ITEM BME_HUMIDITY 32 FLOAT "BME Humidty"
+    UNITS Percent %
+    FORMAT_STRING "%0.6f"
   APPEND_ITEM SSC_PRESSURE 32 FLOAT "SSC Pressure"
+    UNITS PoundsPerSqInch PSI
+    FORMAT_STRING "%0.6f"
   APPEND_ITEM SSC_TEMPERATURE 32 FLOAT "SSC Temperature"
+    UNITS Celcius degC
+    FORMAT_STRING "%0.6f"
   APPEND_ITEM BNO_TEMPERATURE 32 FLOAT "BNO Temperature"
+    UNITS Celcius degC
+    FORMAT_STRING "%0.6f"
   APPEND_ITEM MCP_TEMPERATURE 32 FLOAT "MCP Temperature"
+    UNITS Celcius degC
+    FORMAT_STRING "%0.6f"
 
 TELEMETRY CAMERA PWR_STAT BIG_ENDIAN "CAMERA Power Status Msg"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 630} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM BATTERY_VOLT 32 FLOAT "Battery Voltage"
+    UNITS Volt V
+    FORMAT_STRING "%0.6f"
   APPEND_ITEM CURRENT_CONSUMPTION 32 FLOAT "CURRENT_CONSUMPTION"
+    UNITS Amp A
+    FORMAT_STRING "%0.6f"
   
 TELEMETRY CAMERA IMU_STAT BIG_ENDIAN "CAMERA IMU Status Msg"
-  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 630} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 640} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM ACCEL_X 32 FLOAT "Acceleration X"
+    UNITS Meter/Sec m/s
+    FORMAT_STRING "%0.6f"
   APPEND_ITEM ACCEL_Y 32 FLOAT "Acceleration Y"
+    UNITS Meter/Sec m/s
+    FORMAT_STRING "%0.6f"
   APPEND_ITEM ACCEL_Z 32 FLOAT "Acceleration Z"
+    UNITS Meter/Sec m/s
+    FORMAT_STRING "%0.6f"
   APPEND_ITEM GYRO_X 32 FLOAT "Gryo X"
+    UNITS Radian/Sec rad/s
+    FORMAT_STRING "%0.6f"
   APPEND_ITEM GYRO_Y 32 FLOAT "Gryo Y"
+    UNITS Radian/Sec rad/s
+    FORMAT_STRING "%0.6f"
   APPEND_ITEM GYRO_Z 32 FLOAT "Gryo Z"
+    UNITS Radian/Sec rad/s
+    FORMAT_STRING "%0.6f"
   APPEND_ITEM MAG_X 32 FLOAT "Magnetometer X"
+    UNITS microTesla uT
+    FORMAT_STRING "%0.6f"
   APPEND_ITEM MAG_Y 32 FLOAT "Magnetometer Y"
+    UNITS microTesla uT
+    FORMAT_STRING "%0.6f"
   APPEND_ITEM MAG_Z 32 FLOAT "Magnetometer Z"
+    UNITS microTesla uT
+    FORMAT_STRING "%0.6f"

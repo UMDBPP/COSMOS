@@ -138,10 +138,10 @@ def prepend_fwdmsgcmd(packet_data)
   end
   
   # encode that address as a hex string
-  addr_str = ["%02x" % addr.to_i()].pack("H*")
+  addr_str= ["%02x" % addr.to_i()].pack("H*")
   
   # create the forward message command including the destination address
-  str = "\x10\x64\xC0\x00\x00\x03\x19\x63\x02".force_encoding('ASCII-8BIT') << addr_str
+  str = "\x10\x64\xC0\x00\x00\x03\x19\x63".force_encoding('ASCII-8BIT') << addr_str
   
   puts str
   puts packet_data

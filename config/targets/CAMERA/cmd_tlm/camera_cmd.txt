@@ -4,7 +4,11 @@ COMMAND CAMERA NOOP BIG_ENDIAN "CAMERA NOOP"
   
 COMMAND CAMERA HK_REQ BIG_ENDIAN "CAMERA HK Request Command"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 600} %>
-  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 10} %>  
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 10} %>
+  
+COMMAND CAMERA RESETCTR BIG_ENDIAN "CAMERA Reset Counters Command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 600} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 15} %>  
   
 COMMAND CAMERA ENV_STAT_REQ BIG_ENDIAN "CAMERA Environmental Request Command"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 600} %>
