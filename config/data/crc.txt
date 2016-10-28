@@ -25,7 +25,7 @@ USER_MODIFIED
 "config/data/vswitchoff.gif" 0xFAE436C9
 "config/data/vswitchon.gif" 0xD747AC45
 "config/system/system.txt" 0x026FDC85
-"config/targets/CAMERA/cmd_tlm/camera_cmd.txt" 0xB4DF26D1
+"config/targets/CAMERA/cmd_tlm/camera_cmd.txt" 0x1E0324E0
 "config/targets/CAMERA/cmd_tlm/camera_tlm.txt" 0x8B33F3D1
 "config/targets/CAMERA/screens/env.txt" 0xD8A74D83
 "config/targets/CAMERA/screens/status.txt" 0x8449A7DD
@@ -40,12 +40,13 @@ USER_MODIFIED
 "config/targets/COSMOS/screens/limits_change.txt" 0xE8C47C54
 "config/targets/COSMOS/screens/version.txt" 0x393D4F72
 "config/targets/COSMOS/target.txt" 0xB39D9281
-"config/targets/LINK/cmd_tlm/link_cmd.txt" 0x4D42CBC4
+"config/targets/LINK/cmd_tlm/link_cmd.txt" 0x7EBFC0B6
 "config/targets/LINK/cmd_tlm/link_tlm.txt" 0x860F6AAE
 "config/targets/LINK/screens/status.txt" 0x9C2BFAC0
 "config/targets/LINK/target.txt" 0xC78BA79E
-"config/targets/RFD900/cmd_tlm/rfd900_cmd.txt" 0xE533C68B
-"config/targets/RFD900/cmd_tlm/rfd900_tlm.txt" 0x860F6AAE
+"config/targets/RFD900/cmd_tlm/rfd900_cmd.txt" 0x885E608E
+"config/targets/RFD900/cmd_tlm/rfd900_tlm.txt" 0x713CEC0F
+"config/targets/RFD900/target.txt" 0xADDB11C4
 "config/targets/SCORCH/cmd_tlm/scorch_cmd.txt" 0x4AFFDCBC
 "config/targets/SCORCH/cmd_tlm/scorch_tlm.txt" 0x6D6EB146
 "config/targets/SCORCH/target.txt" 0x9DF9B974
@@ -61,7 +62,7 @@ USER_MODIFIED
 "config/targets/XBEE/cmd_tlm/xbee_cmd.txt" 0xD2EED8C4
 "config/targets/XBEE/cmd_tlm/xbee_tlm.txt" 0x264E8A42
 "config/targets/XBEE/target.txt" 0x249E0895
-"config/tools/cmd_tlm_server/cmd_tlm_server.txt" 0x7AC82117
+"config/tools/cmd_tlm_server/cmd_tlm_server.txt" 0xA21358E8
 "config/tools/data_viewer/data_viewer.txt" 0xCAC3B017
 "config/tools/handbook_creator/default_toc.xsl" 0x4122A040
 "config/tools/handbook_creator/handbook_creator.txt" 0xAA806C94

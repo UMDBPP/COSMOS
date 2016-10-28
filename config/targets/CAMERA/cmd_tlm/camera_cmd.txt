@@ -21,3 +21,8 @@ COMMAND CAMERA PWR_STAT_REQ BIG_ENDIAN "CAMERA Power Status Request Command"
 COMMAND CAMERA IMU_STAT_REQ BIG_ENDIAN "CAMERA IMU Status Request Command"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 600} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 40} %>  
+  
+COMMAND CAMERA REBOOT BIG_ENDIAN "CAMERA Reboot Command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 600} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 99} %>  
+  HAZARDOUS
