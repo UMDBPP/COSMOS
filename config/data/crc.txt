@@ -1,5 +1,5 @@
 USER_MODIFIED
-"lib/APIDs.json" 0x9A79BF30
+"lib/APIDs.json" 0xEB650BD2
 "lib/example_background_task.rb" 0x01426696
 "lib/example_target.rb" 0xFBEF2AE3
 "lib/interface_ccsds.rb" 0x58027469
@@ -40,7 +40,7 @@ USER_MODIFIED
 "config/targets/COSMOS/screens/limits_change.txt" 0xE8C47C54
 "config/targets/COSMOS/screens/version.txt" 0x393D4F72
 "config/targets/COSMOS/target.txt" 0xB39D9281
-"config/targets/LINK/cmd_tlm/link_cmd.txt" 0x7EBFC0B6
+"config/targets/LINK/cmd_tlm/link_cmd.txt" 0xD9CA1553
 "config/targets/LINK/cmd_tlm/link_tlm.txt" 0x860F6AAE
 "config/targets/LINK/screens/status.txt" 0x9C2BFAC0
 "config/targets/LINK/target.txt" 0xC78BA79E
@@ -225,9 +225,11 @@ USER_MODIFIED
 "procedures/cosmos_api_test.rb" 0x54B5DC56
 "procedures/disconnect.rb" 0x5F3A18E5
 "procedures/example_test.rb" 0x99122132
+"procedures/get_tlm.rb" 0xF77B4A33
 "procedures/link_interface_test.rb" 0x664BBE78
 "procedures/link_test.rb" 0x0A7A2909
 "procedures/plot_test.rb" 0x0C2972E4
 "procedures/run_example_test.rb" 0x0F244140
 "procedures/scorch_test.rb" 0x735DB75B
+"procedures/set_fltr_tbl.rb" 0xD8F5CC35
 "procedures/test.rb" 0xCE4DA55A

@@ -1,21 +1,24 @@
 {"LINK":{
   "XBEE":"2",
-  "100":"Cmd",
-  "110":"HK Tlm Msg",
-  "120":"Gnd Message",
-  "130":"FLTR TBL Message"
+  "200":"Cmd",
+  "210":"HK Tlm Msg",
+  "220":"Gnd Message",
+  "230":"FLTR TBL Message",
+  "240":"Env Msg",
+  "250":"Pwr Msg",
+  "260":"IMU MSg"
   },
 "SCORCH":{
   "XBEE":"3",
-  "200":"Cmd",
-  "210":"HK Tlm Msg",
-  "220":"Status Tlm Msg"
-  },
-"MARS":{
-  "XBEE":"4",
   "300":"Cmd",
   "310":"HK Tlm Msg",
   "320":"Status Tlm Msg"
+  },
+"MARS":{
+  "XBEE":"4",
+  "400":"Cmd",
+  "410":"HK Tlm Msg",
+  "420":"Status Tlm Msg"
   },
 "CAMERA":{
   "XBEE":"6",
