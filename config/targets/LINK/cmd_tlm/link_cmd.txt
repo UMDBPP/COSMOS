@@ -6,11 +6,13 @@ COMMAND LINK HK_REQ BIG_ENDIAN "LINK HK Request Command"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 200} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 10} %>  
   APPEND_PARAMETER DESTINATION 8 UINT 0 255 0 "MY address of destination xbee" 
-
+  <%= render "../../COMMON/cmd_tlm/_xbee_addr.txt" %>  
+  
 COMMAND LINK FWD_MSG BIG_ENDIAN "LINK command to forward message"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 200} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 20} %>
-  APPEND_PARAMETER DESTINATION 8 UINT 0 255 0 "MY address of destination xbee" 
+  APPEND_PARAMETER DESTINATION 8 UINT 0 255 0 "MY address of destination xbee"
+  <%= render "../../COMMON/cmd_tlm/_xbee_addr.txt" %>    
   APPEND_PARAMETER PAYLOAD 0 BLOCK "Command to be forwarded" 
   
 COMMAND LINK RESET_CTR BIG_ENDIAN "LINK Reset Counters command"
@@ -21,6 +23,7 @@ COMMAND LINK FLTR_REQ BIG_ENDIAN "LINK Telemeter Filter Table command"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 200} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 40} %>
   APPEND_PARAMETER DESTINATION 8 UINT 0 255 0 "MY address of destination xbee" 
+  <%= render "../../COMMON/cmd_tlm/_xbee_addr.txt" %>  
     
 COMMAND LINK SETFLTRTBLIDX BIG_ENDIAN "LINK Set Filter Table Idx"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 200} %>
@@ -32,16 +35,19 @@ COMMAND LINK REQ_ENV BIG_ENDIAN "LINK Telemeter Filter Table command"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 200} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 60} %>
   APPEND_PARAMETER DESTINATION 8 UINT 0 255 0 "MY address of destination xbee" 
+  <%= render "../../COMMON/cmd_tlm/_xbee_addr.txt" %>  
   
 COMMAND LINK REQ_PWR BIG_ENDIAN "LINK Telemeter Filter Table command"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 200} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 70} %>  
   APPEND_PARAMETER DESTINATION 8 UINT 0 255 0 "MY address of destination xbee" 
+  <%= render "../../COMMON/cmd_tlm/_xbee_addr.txt" %>  
   
 COMMAND LINK REQ_IMU BIG_ENDIAN "LINK Telemeter Filter Table command"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 200} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 80} %>
   APPEND_PARAMETER DESTINATION 8 UINT 0 255 0 "MY address of destination xbee" 
+  <%= render "../../COMMON/cmd_tlm/_xbee_addr.txt" %>  
     
 COMMAND LINK REBOOT BIG_ENDIAN "LINK Reboot command"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 200} %>
