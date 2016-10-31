@@ -9,19 +9,11 @@ class InterfaceCcsdsLink < SerialInterface
   
     # packet.buffer appears to be a string and is hard to manipulate
     data = packet.buffer
-   
-    # update the packet length for the packet being sent
-    data = update_ccsds_length(data)
     
-    # update the packet checksum for the packet being sent
-    data = update_ccsds_checksum(data)
-   
     # if the packet is not a link message, prepend a LINK command to foward
     # the message to the appropriate payload
     if(!isLinkPkt(data))
       puts "Found non-link packet!"
-      # prepend the link command to forward the data if its not a link command
-      data = prepend_fwdmsgcmd(data)
       
       # update the packet length for the LINK forward command
       data = update_ccsds_length(data)
@@ -29,11 +21,19 @@ class InterfaceCcsdsLink < SerialInterface
       # update the packet checksum for the LINK forward command
       data = update_ccsds_checksum(data)
       
+      # prepend the link command to forward the data if its not a link command
+      data = prepend_fwdmsgcmd(data)
+      
     else
       puts "Found link packet!"
-      # don't modify link commands
-    end  
+    end
+   
+    # update the packet length for the packet being sent
+    data = update_ccsds_length(data)
     
+    # update the packet checksum for the packet being sent
+    data = update_ccsds_checksum(data)
+            
     p data
     
     return data

@@ -23,7 +23,7 @@ def update_ccsds_checksum(packet_data)
     
     # not sure why the pack is necessary for assigning into an element of the data array
     packet_data[7] = [checksum].pack("C")
-
+    p checksum
     # return the data with the length field updated
     return packet_data
 end
@@ -141,10 +141,7 @@ def prepend_fwdmsgcmd(packet_data)
   addr_str= ["%02x" % addr.to_i()].pack("H*")
   
   # create the forward message command including the destination address
-  str = "\x10\x64\xC0\x00\x00\x03\x19\x63".force_encoding('ASCII-8BIT') << addr_str
-  
-  puts str
-  puts packet_data
+  str = "\x10\xC8\xC0\x00\x00\x00\x14\x00".force_encoding('ASCII-8BIT') << addr_str
   
   # prepend the LINK XB_FwdMsg command to the command to be sent
   packet_data.prepend(str )
