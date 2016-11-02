@@ -38,6 +38,7 @@ INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM11 COM11 9600   NONE   1    
   TARGET SCORCH
   TARGET LINK  
   TARGET CAMERA
+  TARGET MARS
   DONT_CONNECT
   
 # RFD900_INT is designed to talk to payloads through the LINK message routing.

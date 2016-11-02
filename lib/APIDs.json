@@ -18,7 +18,9 @@
   "XBEE":"4",
   "400":"Cmd",
   "410":"HK Tlm Msg",
-  "420":"Status Tlm Msg"
+  "420":"Env Stat Msg",
+  "430":"Pwr Stat Msg",
+  "440":"IMU Stat Msg"
   },
 "CAMERA":{
   "XBEE":"6",
@@ -27,5 +29,6 @@
   "620":"Env Stat Msg",
   "630":"Pwr Stat Msg",
   "640":"IMU Stat Msg"
+  "650":"Arm Stat Msg"
   }
 }
