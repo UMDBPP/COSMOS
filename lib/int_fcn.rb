@@ -141,7 +141,7 @@ def prepend_fwdmsgcmd(packet_data)
   addr_str= ["%02x" % addr.to_i()].pack("H*")
   
   # create the forward message command including the destination address
-  str = "\x10\xC8\xC0\x00\x00\x00\x14\x00".force_encoding('ASCII-8BIT') << addr_str
+  str = "\x10\xC8\xC0\x00\x00\x04\x28\x00".force_encoding('ASCII-8BIT') << addr_str
   
   # prepend the LINK XB_FwdMsg command to the command to be sent
   packet_data.prepend(str )
