@@ -1,4 +1,4 @@
-TELEMETRY MARS HK_MSG BIG_ENDIAN "MARS HK Packet"
+TELEMETRY MARS HK_Pkt BIG_ENDIAN "MARS HK Packet"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 410} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM CmdExeCtr 16 UINT "Commands executed counter"

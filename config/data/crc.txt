@@ -45,10 +45,10 @@ USER_MODIFIED
 "config/targets/LINK/cmd_tlm/link_tlm.txt" 0x9DCB9387
 "config/targets/LINK/screens/status.txt" 0xF9AAE800
 "config/targets/LINK/target.txt" 0xC78BA79E
-"config/targets/MARS/cmd_tlm/mars_cmd.txt" 0xBE48C7F2
-"config/targets/MARS/cmd_tlm/mars_tlm.txt" 0xED7E31EE
+"config/targets/MARS/cmd_tlm/mars_cmd.txt" 0x6771625F
+"config/targets/MARS/cmd_tlm/mars_tlm.txt" 0x9325BC0F
 "config/targets/MARS/screens/env.txt" 0xD8A74D83
-"config/targets/MARS/screens/status.txt" 0x8449A7DD
+"config/targets/MARS/screens/status.txt" 0x50A518D5
 "config/targets/MARS/target.txt" 0xB958A7FE
 "config/targets/RFD900/cmd_tlm/rfd900_cmd.txt" 0xF7BCB5E7
 "config/targets/RFD900/cmd_tlm/rfd900_tlm.txt" 0x210F1E7A
