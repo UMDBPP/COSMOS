@@ -35,21 +35,15 @@ COMMAND MARS REBOOT BIG_ENDIAN "MARS Reboot Command"
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 99} %>  
   HAZARDOUS
   
-COMMAND MARS ARM BIG_ENDIAN "MARS Arm Command"
+COMMAND MARS EXTEND BIG_ENDIAN "MARS EXTEND Command"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 400} %>
-  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 50} %>  
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 1} %>  
+  
+COMMAND MARS RETRACT BIG_ENDIAN "MARS RETRACT Command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 400} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 2} %>  
   HAZARDOUS
   
-COMMAND MARS FIRE BIG_ENDIAN "MARS FIRE Command"
+COMMAND MARS STATUS BIG_ENDIAN "MARS STATUS Command"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 400} %>
-  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 55} %>  
-  HAZARDOUS
-  
-COMMAND MARS DISARM BIG_ENDIAN "MARS Disarm Command"
-  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 400} %>
-  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 60} %>  
-  
-COMMAND MARS ARM_STAT_REQ BIG_ENDIAN "MARS Arm Status Request Command"
-  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 400} %>
-  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 70} %>  
-  APPEND_PARAMETER DESTINATION 8 UINT 0 255 2 "MY address of destination xbee" 
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 3} %>  

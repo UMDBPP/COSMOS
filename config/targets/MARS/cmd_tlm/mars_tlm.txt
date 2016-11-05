@@ -1,5 +1,5 @@
 TELEMETRY MARS HK_MSG BIG_ENDIAN "MARS HK Packet"
-  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 610} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 410} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM CmdExeCtr 16 UINT "Commands executed counter"
   APPEND_ITEM CmdRejCtr 16 UINT "Commands rejected counter"
@@ -9,7 +9,7 @@ TELEMETRY MARS HK_MSG BIG_ENDIAN "MARS HK Packet"
     UNITS Seconds sec
     
 TELEMETRY MARS ENV_STAT BIG_ENDIAN "MARS Environmental Status Msg"
-  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 620} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 420} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM BME_PRESSURE 32 FLOAT "BME Pressure"
     UNITS hectaPascal hPA
@@ -34,7 +34,7 @@ TELEMETRY MARS ENV_STAT BIG_ENDIAN "MARS Environmental Status Msg"
     FORMAT_STRING "%0.6f"
 
 TELEMETRY MARS PWR_STAT BIG_ENDIAN "MARS Power Status Msg"
-  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 630} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 430} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM BATTERY_VOLT 32 FLOAT "Battery Voltage"
     UNITS Volt V
@@ -44,7 +44,7 @@ TELEMETRY MARS PWR_STAT BIG_ENDIAN "MARS Power Status Msg"
     FORMAT_STRING "%0.6f"
   
 TELEMETRY MARS IMU_STAT BIG_ENDIAN "MARS IMU Status Msg"
-  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 640} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 440} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM ACCEL_X 32 FLOAT "Acceleration X"
     UNITS Meter/Sec m/s
@@ -74,11 +74,9 @@ TELEMETRY MARS IMU_STAT BIG_ENDIAN "MARS IMU Status Msg"
     UNITS microTesla uT
     FORMAT_STRING "%0.6f"
     
-TELEMETRY MARS ARM_STATUS BIG_ENDIAN "MARS Status"
-  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 650} %>
+TELEMETRY MARS STATUS BIG_ENDIAN "MARS Status"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 401} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
-  APPEND_ITEM STATUS 16 UINT "Status code"
-    STATE ARMED 170
-	  STATE DISARMED 221
-	  STATE INITALIZED 172
-	  STATE FIRED 255
+  APPEND_ITEM STATUS 8 UINT "Status code"
+    STATE RETRACTED 0
+	  STATE EXTENDED 1
