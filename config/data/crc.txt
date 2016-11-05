@@ -45,10 +45,10 @@ USER_MODIFIED
 "config/targets/LINK/cmd_tlm/link_tlm.txt" 0x9DCB9387
 "config/targets/LINK/screens/status.txt" 0xF9AAE800
 "config/targets/LINK/target.txt" 0xC78BA79E
-"config/targets/MARS/cmd_tlm/mars_cmd.txt" 0x6771625F
-"config/targets/MARS/cmd_tlm/mars_tlm.txt" 0x9325BC0F
+"config/targets/MARS/cmd_tlm/mars_cmd.txt" 0x8E617E6A
+"config/targets/MARS/cmd_tlm/mars_tlm.txt" 0xF131E81B
 "config/targets/MARS/screens/env.txt" 0xD8A74D83
-"config/targets/MARS/screens/status.txt" 0x50A518D5
+"config/targets/MARS/screens/status.txt" 0x5E3B83E3
 "config/targets/MARS/target.txt" 0xB958A7FE
 "config/targets/RFD900/cmd_tlm/rfd900_cmd.txt" 0xF7BCB5E7
 "config/targets/RFD900/cmd_tlm/rfd900_tlm.txt" 0x210F1E7A
@@ -234,6 +234,7 @@ USER_MODIFIED
 "procedures/get_tlm.rb" 0xA0D4F80A
 "procedures/link_interface_test.rb" 0x664BBE78
 "procedures/link_test.rb" 0xD380DD2B
+"procedures/mars_test.rb" 0x56D67A57
 "procedures/plot_test.rb" 0x0C2972E4
 "procedures/run_example_test.rb" 0x0F244140
 "procedures/scorch_test.rb" 0x735DB75B

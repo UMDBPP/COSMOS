@@ -78,8 +78,8 @@ TELEMETRY MARS STATUS BIG_ENDIAN "MARS Status"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 401} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM STATUS 8 UINT "Status code"
-    STATE RETRACTED 0
-	  STATE EXTENDED 1
+    STATE RETRACTED 225
+	  STATE EXTENDED 226
     STATE INIT 172
     STATE FAIL 175
     STATE BAD_CMD 187

@@ -1,5 +1,6 @@
 REQUIRE_UTILITY 'link_test'
 REQUIRE_UTILITY 'scorch_test'
+REQUIRE_UTILITY 'mars_test'
 #REQUIRE_UTILITY 'example_test'
 LINE_DELAY 0
 # RESULTS_WRITER 'results_writer.rb'

@@ -45,7 +45,7 @@ class CmdViaRadioTest < Cosmos::Test
     wait(5)
     
     # request telemetry to verify NoOp cmd
-    cmd("LINK", "REQ_HK", "DESTINATION" => 0)
+    cmd("LINK", "REQ_HK", "DESTINATION" => 2)
     wait_check("LINK HK_Pkt CMDREJCTR == 0", 0.5)
     wait_check("LINK HK_Pkt CMDEXECTR == 0", 0.5)
     wait_check("LINK HK_Pkt RADIORCVDBYTECTR == 9", 0.5)
@@ -363,7 +363,11 @@ class CmdViaXbeeTest < Cosmos::Test
    wait_check("LINK FLTRTBL APIDS == [200, 210, 220, 300, 310, 320, 0, 0, 0, 0]", 0.5)
 
   end
-
+  def teardown
+  
+    # reboot link to reset it
+    cmd_no_hazardous_check("LINK", "REBOOT")
+  end
   def helper_method
 
   end
