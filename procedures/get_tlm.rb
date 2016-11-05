@@ -9,11 +9,16 @@ for i in 0..100
    sleep(0.25)
    cmd("CAMERA IMU_STAT_REQ")
    sleep(0.25)
-   cmd("LINK GND_HK_REQ")
+   cmd("LINK HK_REQ")
    sleep(0.25)
-   cmd("LINK TLMFLTRTBL")
-   $i +=1
-   for ii in 0..10
+   cmd("LINK REQ_ENV")
+   sleep(0.25)
+   cmd("LINK REQ_PWR")
+   sleep(0.25)
+   cmd("LINK REQ_IMU")
+   sleep(0.25)
+   cmd("LINK FLTR_REQ")
+   for ii in 0..5
       puts("sleep #{ii} sec" )
       sleep(1)  
    end

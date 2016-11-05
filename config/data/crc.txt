@@ -1,5 +1,5 @@
 USER_MODIFIED
-"lib/APIDs.json" 0xF6774644
+"lib/APIDs.json" 0xA05C960B
 "lib/example_background_task.rb" 0x01426696
 "lib/example_target.rb" 0xFBEF2AE3
 "lib/interface_ccsds.rb" 0x58027469
@@ -50,8 +50,8 @@ USER_MODIFIED
 "config/targets/MARS/screens/env.txt" 0xD8A74D83
 "config/targets/MARS/screens/status.txt" 0x8449A7DD
 "config/targets/MARS/target.txt" 0xB958A7FE
-"config/targets/RFD900/cmd_tlm/rfd900_cmd.txt" 0x885E608E
-"config/targets/RFD900/cmd_tlm/rfd900_tlm.txt" 0x713CEC0F
+"config/targets/RFD900/cmd_tlm/rfd900_cmd.txt" 0xF7BCB5E7
+"config/targets/RFD900/cmd_tlm/rfd900_tlm.txt" 0x210F1E7A
 "config/targets/RFD900/target.txt" 0xADDB11C4
 "config/targets/SCORCH/cmd_tlm/scorch_cmd.txt" 0x9212CF41
 "config/targets/SCORCH/cmd_tlm/scorch_tlm.txt" 0x614C56B4
@@ -68,7 +68,7 @@ USER_MODIFIED
 "config/targets/XBEE/cmd_tlm/xbee_cmd.txt" 0xD2EED8C4
 "config/targets/XBEE/cmd_tlm/xbee_tlm.txt" 0x264E8A42
 "config/targets/XBEE/target.txt" 0x249E0895
-"config/tools/cmd_tlm_server/cmd_tlm_server.txt" 0xC3440643
+"config/tools/cmd_tlm_server/cmd_tlm_server.txt" 0xB4D1853D
 "config/tools/data_viewer/data_viewer.txt" 0xCAC3B017
 "config/tools/handbook_creator/default_toc.xsl" 0x4122A040
 "config/tools/handbook_creator/handbook_creator.txt" 0xAA806C94
@@ -231,7 +231,7 @@ USER_MODIFIED
 "procedures/cosmos_api_test.rb" 0x54B5DC56
 "procedures/disconnect.rb" 0x5F3A18E5
 "procedures/example_test.rb" 0x99122132
-"procedures/get_tlm.rb" 0xF77B4A33
+"procedures/get_tlm.rb" 0xA0D4F80A
 "procedures/link_interface_test.rb" 0x664BBE78
 "procedures/link_test.rb" 0x0A7A2909
 "procedures/plot_test.rb" 0x0C2972E4

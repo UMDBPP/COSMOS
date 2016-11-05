@@ -50,7 +50,8 @@ INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM11 COM11 9600   NONE   1    
 # proper payload. 
 
 #         interface name  file name              write read baud   parity stop timeouts stream      write_term read_term
-INTERFACE RFD900_INT      serial_interface.rb    COM11 COM11 9600  NONE   1    nil nil  TERMINATED  0x0D0A     0x0D0A
+#INTERFACE RFD900_INT      serial_interface.rb    COM11 COM11 9600  NONE   1    nil nil  TERMINATED  ''     0x0D0A
+INTERFACE RFD900_INT      serial_interface.rb    COM11 COM11 9600  NONE   1    nil nil  BURST
   TARGET RFD900
   DONT_CONNECT
   

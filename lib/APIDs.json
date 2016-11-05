@@ -2,11 +2,12 @@
   "XBEE":"2",
   "200":"Cmd",
   "210":"HK Tlm Msg",
-  "220":"Gnd Message",
-  "230":"FLTR TBL Message",
-  "240":"Env Msg",
-  "250":"Pwr Msg",
-  "260":"IMU MSg"
+  "211":"Env Msg",
+  "212":"Pwr Msg",
+  "213":"IMU Msg",
+  "214":"Init Msg",
+  "215":"FLTR TBL Message",
+  "240":"Gnd Message"
   },
 "SCORCH":{
   "XBEE":"3",
@@ -20,7 +21,8 @@
   "410":"HK Tlm Msg",
   "420":"Env Stat Msg",
   "430":"Pwr Stat Msg",
-  "440":"IMU Stat Msg"
+  "440":"IMU Stat Msg",
+  "450":"Act Stat Msg"
   },
 "CAMERA":{
   "XBEE":"6",
@@ -28,7 +30,7 @@
   "610":"HK Tlm Msg",
   "620":"Env Stat Msg",
   "630":"Pwr Stat Msg",
-  "640":"IMU Stat Msg"
+  "640":"IMU Stat Msg",
   "650":"Arm Stat Msg"
   }
 }
