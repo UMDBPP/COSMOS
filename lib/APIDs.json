@@ -15,7 +15,7 @@
   "310":"HK Tlm Msg",
   "320":"Status Tlm Msg"
   },
-"MARS":{
+"MARS1":{
   "XBEE":"4",
   "400":"Cmd",
   "410":"HK Tlm Msg",
@@ -23,6 +23,15 @@
   "430":"Pwr Stat Msg",
   "440":"IMU Stat Msg",
   "450":"Act Stat Msg"
+  },
+"MARS2":{
+  "XBEE":"5",
+  "500":"Cmd",
+  "510":"HK Tlm Msg",
+  "520":"Env Stat Msg",
+  "530":"Pwr Stat Msg",
+  "540":"IMU Stat Msg",
+  "550":"Act Stat Msg"
   },
 "CAMERA":{
   "XBEE":"6",
