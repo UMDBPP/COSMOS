@@ -23,7 +23,7 @@ def update_ccsds_checksum(packet_data)
     
     # not sure why the pack is necessary for assigning into an element of the data array
     packet_data[7] = [checksum].pack("C")
-    p checksum
+
     # return the data with the length field updated
     return packet_data
 end
@@ -145,9 +145,7 @@ def prepend_fwdmsgcmd(packet_data)
   
   # prepend the LINK XB_FwdMsg command to the command to be sent
   packet_data.prepend(str )
-  
-  puts packet_data
-  
+    
   return packet_data
 end
 
