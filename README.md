@@ -14,16 +14,14 @@ the configuration for a ground station to send commands to and interpret telemet
         
         ruby dk.rb install
         
-4. Install COSMOS, as well as its dependencies:
+4. Download [RubyGems, the Ruby package manager](https://rubygems.org/rubygems/rubygems-2.6.8.zip) and extract the ZIP archive to its own folder. After extracting, open a command line windows in the extracted folder and run:
+
+        ruby setup.rb
+
+5. Install COSMOS, as well as its dependencies:
 
         gem install cosmos
-        
-   If you get an error with the above command, try updating RubyGems (the Ruby package manager):
-   
-        gem update --system
-        
-   If updating RubyGems fails, follow the instructions on [this page](https://rubygems.org/pages/download/) to manually update RubyGems, then try installing again.
 
-5. Clone this repository using Git to get the configuration for our payloads. For help using Git, read [this guide](http://zrb.io/git/).
+6. Clone this repository using Git to get the configuration for our payloads. For help using Git, read [this guide](http://zrb.io/git/).
 
-6. Start COSMOS by opening your local clone of this repository and running "launcher.bat".
+7. Start COSMOS by opening your local clone of this repository and running "launcher.bat".
