@@ -4,9 +4,9 @@ The COSMOS ground system is an open-source spacecraft ground system created by B
 the configuration for a ground station to send commands to and interpret telemetry from UMD BPP payloads.
 
 ## Installing COSMOS
-1. Download and install [Ruby 2.2.5 32-bit](http://dl.bintray.com/oneclick/rubyinstaller/ruby-2.2.5-i386-mingw32.7z). Make sure "Add Ruby executables to your PATH" is checked.
+1. Download and install [Ruby 2.2.5 32-bit](http://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.2.5.exe). Make sure "Add Ruby executables to your PATH" is checked.
 
-2. Download the [32bit Devkit for Ruby 2.0 and Above](http://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe) and extract to its own folder. 
+2. Download the [32-bit Devkit for Ruby 2.0 and Above](http://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe) and extract to its own folder. 
 
 3. Open a command line and move to the folder you just extracted the Devkit to (in Windows, Shift + RightClick -> "Open command window here") and run the following commands:
 
