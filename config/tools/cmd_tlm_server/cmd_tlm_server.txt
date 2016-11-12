@@ -34,7 +34,7 @@ INTERFACE CCSDS_INT       interface_ccsds.rb COM9  COM9 9600   NONE   1    nil n
 # proper payload. 
 
 #         interface name  file name              write read baud   parity stop timeouts stream len_loc len_len len_offset
-INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM9 COM9 57600   NONE   1    nil nil  LENGTH 32      16      7
+INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM11 COM11 57600   NONE   1    nil nil  LENGTH 32      16      7
   TARGET SCORCH
   TARGET LINK  
   TARGET CAMERA

@@ -1,4 +1,4 @@
-TELEMETRY MARS HK_Pkt BIG_ENDIAN "MARS HK Packet"
+TELEMETRY MARS2 HK_Pkt BIG_ENDIAN "MARS2 HK Packet"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 510} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM CmdExeCtr 16 UINT "Commands executed counter"
@@ -8,7 +8,7 @@ TELEMETRY MARS HK_Pkt BIG_ENDIAN "MARS HK Packet"
   APPEND_ITEM RunTime 32 UINT "Xbee sent byte counter"
     UNITS Seconds sec
     
-TELEMETRY MARS ENV_STAT BIG_ENDIAN "MARS Environmental Status Msg"
+TELEMETRY MARS2 ENV_STAT BIG_ENDIAN "MARS2 Environmental Status Msg"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 520} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM BME_PRESSURE 32 FLOAT "BME Pressure"
@@ -33,7 +33,7 @@ TELEMETRY MARS ENV_STAT BIG_ENDIAN "MARS Environmental Status Msg"
     UNITS Celcius degC
     FORMAT_STRING "%0.6f"
 
-TELEMETRY MARS PWR_STAT BIG_ENDIAN "MARS Power Status Msg"
+TELEMETRY MARS2 PWR_STAT BIG_ENDIAN "MARS2 Power Status Msg"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 530} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM BATTERY_VOLT 32 FLOAT "Battery Voltage"
@@ -43,7 +43,7 @@ TELEMETRY MARS PWR_STAT BIG_ENDIAN "MARS Power Status Msg"
     UNITS Amp A
     FORMAT_STRING "%0.6f"
   
-TELEMETRY MARS IMU_STAT BIG_ENDIAN "MARS IMU Status Msg"
+TELEMETRY MARS2 IMU_STAT BIG_ENDIAN "MARS2 IMU Status Msg"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 540} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM ACCEL_X 32 FLOAT "Acceleration X"
@@ -74,7 +74,7 @@ TELEMETRY MARS IMU_STAT BIG_ENDIAN "MARS IMU Status Msg"
     UNITS microTesla uT
     FORMAT_STRING "%0.6f"
     
-TELEMETRY MARS STATUS BIG_ENDIAN "MARS Status"
+TELEMETRY MARS2 STATUS BIG_ENDIAN "MARS2 Status"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 501} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM STATUS 8 UINT "Status code"

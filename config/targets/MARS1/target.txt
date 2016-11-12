@@ -31,5 +31,5 @@ IGNORE_ITEM RECEIVED_TIMEFORMATTED
 # Explicitly define command and telemetry files
 # If not given then all the files in cmd/tlm will be processed in
 # alphabetical order
-COMMANDS mars_cmd.txt
-TELEMETRY mars_tlm.txt
+COMMANDS mars1_cmd.txt
+TELEMETRY mars1_tlm.txt
