@@ -1,4 +1,9 @@
-{"LINK":{
+{"RFD900":{
+  "XBEE":"1",
+  "101":"RSSIPkt",
+  "102":"HKPkt"
+  },
+"LINK":{
   "XBEE":"2",
   "200":"Cmd",
   "210":"HK Tlm Msg",
@@ -22,7 +27,7 @@
   "420":"Env Stat Msg",
   "430":"Pwr Stat Msg",
   "440":"IMU Stat Msg",
-  "450":"Act Stat Msg"
+  "401":"Act Stat Msg"
   },
 "MARS2":{
   "XBEE":"5",
@@ -31,7 +36,7 @@
   "520":"Env Stat Msg",
   "530":"Pwr Stat Msg",
   "540":"IMU Stat Msg",
-  "550":"Act Stat Msg"
+  "501":"Act Stat Msg"
   },
 "CAMERA":{
   "XBEE":"6",

@@ -50,3 +50,13 @@ COMMAND MARS STATUS BIG_ENDIAN "MARS STATUS Command"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 500} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 3} %>  
   APPEND_PARAMETER DESTINATION 8 UINT 0 255 2 "MY address of destination xbee" 
+  
+COMMAND MARS DM_DELAY BIG_ENDIAN "MARS STATUS Command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 500} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 4} %>  
+  APPEND_PARAMETER DESTINATION 8 UINT 0 255 2 "MY address of destination xbee" 
+  
+COMMAND MARS DM_DEACTIVATE BIG_ENDIAN "MARS STATUS Command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 500} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 5} %>  
+  APPEND_PARAMETER DESTINATION 8 UINT 0 255 2 "MY address of destination xbee" 

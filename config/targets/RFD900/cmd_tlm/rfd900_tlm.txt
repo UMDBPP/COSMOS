@@ -13,3 +13,30 @@ TELEMETRY RFD900 RADIO_REPORT BIG_ENDIAN "RFD900 RSSI REPORT"
   APPEND_ITEM NOISE 8 UINT "Background noise level"
   APPEND_ITEM NOISE_REMOTE 8 UINT "Remote background noise level"
   APPEND_ITEM ChkSum 16 UINT "Length of payload"
+  
+TELEMETRY RFD900 OK BIG_ENDIAN "RFD900 Enter AT Mode"
+  APPEND_ID_ITEM RESPONSE 0 STRING "[2] OK"
+  
+TELEMETRY RFD900 HKPKT BIG_ENDIAN "RFD900 Enter AT Mode"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 101} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM NODEID 8 UINT "Xbee received byte counter"
+  APPEND_ITEM PKTS 8 UINT "Radio sent byte counter"
+  APPEND_ITEM TXE 8 UINT "Xbee sent byte counter"
+  APPEND_ITEM RXE 8 UINT "Xbee sent byte counter"
+  APPEND_ITEM STX 8 UINT "Xbee sent byte counter"
+  APPEND_ITEM SRX 8 UINT "Xbee sent byte counter"
+  APPEND_ITEM ECC1 8 UINT "Xbee sent byte counter"
+  APPEND_ITEM ECC2 8 UINT "Xbee sent byte counter"
+  APPEND_ITEM TEMP 8 UINT "Xbee sent byte counter"
+  APPEND_ITEM DCO 8 UINT "Xbee sent byte counter"
+
+TELEMETRY RFD900 RSSIPKT BIG_ENDIAN "RFD900 Enter AT Mode"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 102} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM NODEID 8 UINT "Xbee received byte counter"
+  APPEND_ITEM LOCAL_RSSI 8 UINT "Radio sent byte counter"
+  APPEND_ITEM REMOTE_RSSI 8 UINT "Xbee sent byte counter"
+  APPEND_ITEM LOCAL_NOISE 8 UINT "Xbee sent byte counter"
+  APPEND_ITEM REMOTE_NOISE 8 UINT "Xbee sent byte counter"
+  
