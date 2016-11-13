@@ -121,3 +121,7 @@ TELEMETRY LINK FLTRTBL BIG_ENDIAN "Link Filter Table"
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ARRAY_ITEM APIDS 16 UINT 240 "Array APIDs in filter table"
   
+TELEMETRY LINK TIME_MSG BIG_ENDIAN "Link Time message"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 216} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM TIME 32 UINT "Current Link time"

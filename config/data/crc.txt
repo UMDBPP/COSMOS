@@ -42,8 +42,8 @@ USER_MODIFIED
 "config/targets/COSMOS/screens/limits_change.txt" 0xE8C47C54
 "config/targets/COSMOS/screens/version.txt" 0x393D4F72
 "config/targets/COSMOS/target.txt" 0xB39D9281
-"config/targets/LINK/cmd_tlm/link_cmd.txt" 0x0AB76B59
-"config/targets/LINK/cmd_tlm/link_tlm.txt" 0x9DCB9387
+"config/targets/LINK/cmd_tlm/link_cmd.txt" 0x837F56CC
+"config/targets/LINK/cmd_tlm/link_tlm.txt" 0x55F289E1
 "config/targets/LINK/screens/status.txt" 0xF9AAE800
 "config/targets/LINK/target.txt" 0xC78BA79E
 "config/targets/MARS1/cmd_tlm/mars1_cmd.txt" 0xD4668CB5
@@ -75,7 +75,7 @@ USER_MODIFIED
 "config/targets/XBEE/cmd_tlm/xbee_cmd.txt" 0xD2EED8C4
 "config/targets/XBEE/cmd_tlm/xbee_tlm.txt" 0x264E8A42
 "config/targets/XBEE/target.txt" 0x249E0895
-"config/tools/cmd_tlm_server/cmd_tlm_server.txt" 0x426667FF
+"config/tools/cmd_tlm_server/cmd_tlm_server.txt" 0x99BDAED4
 "config/tools/data_viewer/data_viewer.txt" 0xCAC3B017
 "config/tools/handbook_creator/default_toc.xsl" 0x4122A040
 "config/tools/handbook_creator/handbook_creator.txt" 0xAA806C94
