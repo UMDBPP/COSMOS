@@ -46,7 +46,7 @@ COMMAND MARS2 RETRACT BIG_ENDIAN "MARS2 RETRACT Command"
   APPEND_PARAMETER DESTINATION 8 UINT 0 255 2 "MY address of destination xbee" 
   HAZARDOUS "This will drop the payload."
   
-COMMAND MARS2 STATUS BIG_ENDIAN "MARS2 STATUS Command"
+COMMAND MARS2 REQ_STAT BIG_ENDIAN "MARS2 STATUS Command"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 500} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 3} %>  
   APPEND_PARAMETER DESTINATION 8 UINT 0 255 2 "MY address of destination xbee" 

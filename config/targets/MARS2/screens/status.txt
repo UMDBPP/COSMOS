@@ -52,7 +52,7 @@ VERTICAL
      VERTICALBOX
       SECTIONHEADER "Status"
       
-      BUTTON 'Request Update' 'cmd("MARS2", "STATUS", "DESTINATION" => 2)'
+      BUTTON 'Request Update' 'cmd("MARS2", "REQ_STAT", "DESTINATION" => 2)'
       LABELVALUE MARS2 STATUS STATUS
     END
   
