@@ -42,8 +42,8 @@ USER_MODIFIED
 "config/targets/COSMOS/screens/limits_change.txt" 0xE8C47C54
 "config/targets/COSMOS/screens/version.txt" 0x393D4F72
 "config/targets/COSMOS/target.txt" 0xB39D9281
-"config/targets/LINK/cmd_tlm/link_cmd.txt" 0x837F56CC
-"config/targets/LINK/cmd_tlm/link_tlm.txt" 0x55F289E1
+"config/targets/LINK/cmd_tlm/link_cmd.txt" 0x04D12582
+"config/targets/LINK/cmd_tlm/link_tlm.txt" 0x47BA7190
 "config/targets/LINK/screens/status.txt" 0xF9AAE800
 "config/targets/LINK/target.txt" 0xC78BA79E
 "config/targets/MARS1/cmd_tlm/mars1_cmd.txt" 0xD4668CB5
