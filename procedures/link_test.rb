@@ -201,6 +201,8 @@ class CmdViaRadioTest < Cosmos::Test
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the SETFLTRTBLIDX command works source: radio"
 
+    # should store original values in table and restore them after test
+    # should use random integers each time
     for i in 0..14
       cmd("LINK", "SETFLTRTBLIDX", "FLTR_IDX" => i, "FLTR_VAL" => 0) 
       wait(0.2)
@@ -219,8 +221,6 @@ class CmdViaRadioTest < Cosmos::Test
   def test_11_reqtime_radio
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the SETFLTRTBLIDX command works source: radio"
-
-    raise "Test not implemented yet"
     
     time_rcvd_cnt_pre = tlm_variable("LINK TIME_MSG RECEIVED_COUNT", :CONVERTED)
       
@@ -248,11 +248,12 @@ class CmdViaRadioTest < Cosmos::Test
     time_pre = tlm_variable("LINK TIME_MSG TIME", :CONVERTED)
     
     # set a time 100sec in the past
-    cmd("LINK", "SET_TIME", TIME => time_pre - 100)
-    wait(0.5)
+    cmd("LINK", "SET_TIME", "TIME" => time_pre.to_i - 100)
+    wait(0.2)
     
     # request the new time
     cmd("LINK", "REQ_TIME")
+    wait(0.2)
     
     # get the time returned
     time_post = tlm_variable("LINK TIME_MSG TIME", :CONVERTED)
@@ -268,12 +269,14 @@ class CmdViaRadioTest < Cosmos::Test
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the SETFLTRTBLIDX command works source: radio"
 
-    fileinfo_rcvd_cnt_pre = tlm_variable("LINK PWR_STAT RECEIVED_COUNT", :CONVERTED)
+    fileinfo_rcvd_cnt_pre = tlm_variable("LINK FILEINFO_MSG RECEIVED_COUNT", :CONVERTED)
       
-    cmd("LINK", "REQ_FILEINFO")
+    # note, this command doesn't always return a packet (if the file idx
+    # requested isn't actually a file)
+    cmd("LINK", "REQ_FILEINFO", "FILE_IDX" => 2)
     wait(0.5)
 
-    fileinfo_rcvd_cnt_post = tlm_variable("LINK PWR_STAT RECEIVED_COUNT", :CONVERTED)
+    fileinfo_rcvd_cnt_post = tlm_variable("LINK FILEINFO_MSG RECEIVED_COUNT", :CONVERTED)
 
     # check if we received one
     if(fileinfo_rcvd_cnt_post == fileinfo_rcvd_cnt_pre)
@@ -286,7 +289,19 @@ class CmdViaRadioTest < Cosmos::Test
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the SETFLTRTBLIDX command works source: radio"
 
-    raise "Test not implemented yet"
+    filepart_rcvd_cnt_pre = tlm_variable("LINK FILEPART_MSG RECEIVED_COUNT", :CONVERTED)
+      
+    # note, this command doesn't always return a packet (if the file idx
+    # requested isn't actually a file)
+    cmd("LINK", "REQ_FILEPART", "FILE_IDX" => 2, "START_BYTE" => 0, "END_BYTE" => 10)
+    wait(0.5)
+
+    filepart_rcvd_cnt_post = tlm_variable("LINK FILEPART_MSG RECEIVED_COUNT", :CONVERTED)
+
+    # check if we received one
+    if(filepart_rcvd_cnt_post == filepart_rcvd_cnt_pre)
+      raise "Pre: #{filepart_rcvd_cnt_pre.to_i}, Post #{filepart_rcvd_cnt_post.to_i}. Didn't receive packet!"
+    end
 
   end
   
@@ -295,12 +310,12 @@ class CmdViaRadioTest < Cosmos::Test
     Cosmos::Test.puts "This test verifies requirement that the RESET_CTR command works source: radio"
 
     cmd("LINK", "RESET_CTR")
-    wait(0.1)
+    wait(0.2)
     
     # request telemetry to verify NoOp cmd
     cmd("LINK", "REQ_HK", "DESTINATION" => 2)
     wait_check("LINK HK_Pkt CMDREJCTR == 0", 0.5)
-    wait_check("LINK HK_Pkt CMDEXECTR == 0", 0.5)
+    wait_check("LINK HK_Pkt CMDEXECTR == 1", 0.5)
     wait_check("LINK HK_Pkt RADIORCVDBYTECTR == 9", 0.5)
     wait_check("LINK HK_Pkt RADIOSENTBYTECTR == 0", 0.5)
     wait_check("LINK HK_Pkt XBEERCVDBYTECTR == 0", 0.5)

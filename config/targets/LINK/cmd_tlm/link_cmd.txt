@@ -57,8 +57,8 @@ COMMAND LINK REQ_FILEPART BIG_ENDIAN "LINK Request FileInfo command"
   APPEND_PARAMETER DESTINATION 8 UINT 0 255 0 "MY address of destination xbee" 
   <%= render "../../COMMON/cmd_tlm/_xbee_addr.txt" %>    
   APPEND_PARAMETER FILE_IDX 8 UINT 0 255 0 "Index of file" 
-  APPEND_PARAMETER FILE_IDX 32 UINT MIN_UINT32 MAX_UINT32 0 "Requested first byte" 
-  APPEND_PARAMETER FILE_IDX 32 UINT MIN_UINT32 MAX_UINT32 0 "Requested last byte" 
+  APPEND_PARAMETER START_BYTE 32 UINT MIN_UINT32 MAX_UINT32 0 "Requested first byte" 
+  APPEND_PARAMETER END_BYTE 32 UINT MIN_UINT32 MAX_UINT32 0 "Requested last byte" 
 
 COMMAND LINK SETFLTRTBLIDX BIG_ENDIAN "LINK Set Filter Table Idx"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 200} %>
