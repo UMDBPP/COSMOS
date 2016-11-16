@@ -131,3 +131,8 @@ TELEMETRY LINK FILEINFO_MSG BIG_ENDIAN "Link Time message"
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM FILENAME 104 STRING "Filename"
   APPEND_ITEM FILESIZE 32 UINT "Filesize"
+  
+TELEMETRY LINK FILEPART_MSG BIG_ENDIAN "Link Time message"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 218} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM FILENAME 0 DERIVED "Contents"
