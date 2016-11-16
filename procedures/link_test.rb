@@ -36,7 +36,25 @@ class CmdViaRadioTest < Cosmos::Test
     #wait_check("XBEE ATCMDRESP RESPONSE == 2827", 0.5)
   end
   
-  def test_1_reboot_radio
+  def test_01_reqhk_radio
+    puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
+    Cosmos::Test.puts "This test verifies requirement that the NoOp command works source: radio"
+    
+    init_rcvd_cnt_pre = tlm_variable("LINK HK_PKT RECEIVED_COUNT", :CONVERTED)
+
+    # issue a NoOp cmd
+    cmd("LINK", "REQ_HK")
+    wait(0.5)
+
+    init_rcvd_cnt_post = tlm_variable("LINK HK_PKT RECEIVED_COUNT", :CONVERTED)
+
+    # check if we received one
+    if(init_rcvd_cnt_post == init_rcvd_cnt_pre)
+      raise "Pre: #{init_rcvd_cnt_pre.to_i}, Post #{init_rcvd_cnt_post.to_i}. Didn't receive packet!"
+    end
+  end
+  
+  def test_02_reboot_radio
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies that on startup the counters are zeroed."
         
@@ -54,7 +72,7 @@ class CmdViaRadioTest < Cosmos::Test
     wait_check("LINK HK_Pkt XBEESENTBYTECTR == 0", 0.5)
   end
   
-  def test_2_noop_radio
+  def test_03_noop_radio
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the NoOp command results in a command execution and that the REQ_HK command returns HK telemetry source: radio"
     
@@ -72,7 +90,7 @@ class CmdViaRadioTest < Cosmos::Test
     wait_check("LINK HK_Pkt XBEESENTBYTECTR == 0", 0.5)
   end
   
-  def test_3_reqenv_radio
+  def test_04_reqenv_radio
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the NoOp command works source: radio"
     
@@ -90,7 +108,7 @@ class CmdViaRadioTest < Cosmos::Test
     end
   end
   
-  def test_4_reqfltr_radio
+  def test_05_reqfltr_radio
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the NoOp command works source: radio"
     
@@ -108,7 +126,7 @@ class CmdViaRadioTest < Cosmos::Test
     end
   end
   
-  def test_5_reqimu_radio
+  def test_06_reqimu_radio
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the NoOp command works source: radio"
     
@@ -126,7 +144,7 @@ class CmdViaRadioTest < Cosmos::Test
     end
   end
   
-  def test_6_reqinit_radio
+  def test_07_reqinit_radio
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the NoOp command works source: radio"
     
@@ -144,7 +162,7 @@ class CmdViaRadioTest < Cosmos::Test
     end
   end
   
-  def test_6_reqpwr_radio
+  def test_08_reqpwr_radio
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the NoOp command works source: radio"
     
@@ -162,7 +180,7 @@ class CmdViaRadioTest < Cosmos::Test
     end
   end
    
-  def test_7_fwdmsg_radio
+  def test_09_fwdmsg_radio
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the GND_FWDMSG command works source: radio"
         
@@ -179,22 +197,114 @@ class CmdViaRadioTest < Cosmos::Test
     wait_check("LINK HK_Pkt XBEESENTBYTECTR == 99", 0.5)
   end
   
-  def test_8_setfltrtblidx_radio
-      puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
-      Cosmos::Test.puts "This test verifies requirement that the SETFLTRTBLIDX command works source: radio"
+  def test_10_setfltrtblidx_radio
+    puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
+    Cosmos::Test.puts "This test verifies requirement that the SETFLTRTBLIDX command works source: radio"
 
-      for i in 0..14
-        cmd("LINK", "SETFLTRTBLIDX", "FLTR_IDX" => i, "FLTR_VAL" => 0) 
-        wait(0.2)
-      end
-      cmd("LINK", "SETFLTRTBLIDX", "FLTR_IDX" => 6, "FLTR_VAL" => 10)
+    for i in 0..14
+      cmd("LINK", "SETFLTRTBLIDX", "FLTR_IDX" => i, "FLTR_VAL" => 0) 
       wait(0.2)
+    end
+    cmd("LINK", "SETFLTRTBLIDX", "FLTR_IDX" => 6, "FLTR_VAL" => 10)
+    wait(0.2)
+    
+    # request updated values
+    cmd("LINK", "REQ_FLTR")
+    
+    # check that the values changed
+    wait_check("LINK FLTRTBL APIDS == [0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0]", 0.5)
+
+  end
+  
+  def test_11_reqtime_radio
+    puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
+    Cosmos::Test.puts "This test verifies requirement that the SETFLTRTBLIDX command works source: radio"
+
+    raise "Test not implemented yet"
+    
+    time_rcvd_cnt_pre = tlm_variable("LINK TIME_MSG RECEIVED_COUNT", :CONVERTED)
       
-      # request updated values
-      cmd("LINK", "REQ_FLTR")
+    cmd("LINK", "REQ_TIME")
+    wait(0.5)
+
+    time_rcvd_cnt_post = tlm_variable("LINK TIME_MSG RECEIVED_COUNT", :CONVERTED)
+
+    # check if we received one
+    if(time_rcvd_cnt_post == time_rcvd_cnt_pre)
+      raise "Pre: #{time_rcvd_cnt_pre.to_i}, Post #{time_rcvd_cnt_post.to_i}. Didn't receive packet!"
+    end
+
+  end
+  
+  def test_12_settime_radio
+    puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
+    Cosmos::Test.puts "This test verifies requirement that the SETFLTRTBLIDX command works source: radio"
+
+    # request the current time    
+    cmd("LINK", "REQ_TIME")
+    wait(0.5)
+    
+    # get the time returned
+    time_pre = tlm_variable("LINK TIME_MSG TIME", :CONVERTED)
+    
+    # set a time 100sec in the past
+    cmd("LINK", "SET_TIME", TIME => time_pre - 100)
+    wait(0.5)
+    
+    # request the new time
+    cmd("LINK", "REQ_TIME")
+    
+    # get the time returned
+    time_post = tlm_variable("LINK TIME_MSG TIME", :CONVERTED)
+    
+    # check if the new time is less than the old time (ie, the SET_TIME cmd set it to the past)
+    if(time_post >= time_pre)
+      raise "Pre: #{time_pre.to_i}, Post #{time_post.to_i}. Time not set correctly!"
+    end
+
+  end
+  
+  def test_13_req_fileinfo_radio
+    puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
+    Cosmos::Test.puts "This test verifies requirement that the SETFLTRTBLIDX command works source: radio"
+
+    fileinfo_rcvd_cnt_pre = tlm_variable("LINK PWR_STAT RECEIVED_COUNT", :CONVERTED)
       
-      # check that the values changed
-      wait_check("LINK FLTRTBL APIDS == [0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0]", 0.5)
+    cmd("LINK", "REQ_FILEINFO")
+    wait(0.5)
+
+    fileinfo_rcvd_cnt_post = tlm_variable("LINK PWR_STAT RECEIVED_COUNT", :CONVERTED)
+
+    # check if we received one
+    if(fileinfo_rcvd_cnt_post == fileinfo_rcvd_cnt_pre)
+      raise "Pre: #{fileinfo_rcvd_cnt_pre.to_i}, Post #{fileinfo_rcvd_cnt_post.to_i}. Didn't receive packet!"
+    end
+
+  end
+  
+  def test_14_req_filepart_radio
+    puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
+    Cosmos::Test.puts "This test verifies requirement that the SETFLTRTBLIDX command works source: radio"
+
+    raise "Test not implemented yet"
+
+  end
+  
+  def test_15_reset_ctr_radio
+    puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
+    Cosmos::Test.puts "This test verifies requirement that the RESET_CTR command works source: radio"
+
+    cmd("LINK", "RESET_CTR")
+    wait(0.1)
+    
+    # request telemetry to verify NoOp cmd
+    cmd("LINK", "REQ_HK", "DESTINATION" => 2)
+    wait_check("LINK HK_Pkt CMDREJCTR == 0", 0.5)
+    wait_check("LINK HK_Pkt CMDEXECTR == 0", 0.5)
+    wait_check("LINK HK_Pkt RADIORCVDBYTECTR == 9", 0.5)
+    wait_check("LINK HK_Pkt RADIOSENTBYTECTR == 0", 0.5)
+    wait_check("LINK HK_Pkt XBEERCVDBYTECTR == 0", 0.5)
+    wait_check("LINK HK_Pkt XBEESENTBYTECTR == 0", 0.5)
 
   end
   

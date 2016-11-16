@@ -71,7 +71,7 @@ COMMAND LINK FWD_MSG BIG_ENDIAN "LINK command to forward message"
 COMMAND LINK SET_TIME BIG_ENDIAN "LINK command to set time"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 200} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 50} %>
-  APPEND_PARAMETER DESTINATION 32 UINT 0 2147483647 0 "Time (in sec) to set"
+  APPEND_PARAMETER TIME 32 UINT 0 2147483647 0 "Time (in sec) to set"
   
 COMMAND LINK REBOOT BIG_ENDIAN "LINK Reboot command"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 200} %>
