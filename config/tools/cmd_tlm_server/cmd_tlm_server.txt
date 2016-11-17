@@ -34,7 +34,7 @@ INTERFACE CCSDS_INT       interface_ccsds.rb COM9  COM9 9600   NONE   1    nil n
 # proper payload. 
 
 #         interface name  file name              write read baud   parity stop timeouts stream len_loc len_len len_offset
-INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM6 COM6 57600   NONE   1    nil nil  LENGTH 32      16      7
+INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM1 COM1 57600   NONE   1    nil nil  LENGTH 32      16      7
   TARGET SCORCH
   TARGET LINK  
   TARGET CAMERA
@@ -52,8 +52,7 @@ INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM6 COM6 57600   NONE   1    n
 # proper payload. 
 
 #         interface name  file name              write read baud   parity stop timeouts stream      write_term read_term
-INTERFACE RFD900_INT      interface_rfd900.rb    COM9 COM9 57600  NONE   1    nil nil  TERMINATED  ''     0x0D0A
-#INTERFACE RFD900_INT      serial_interface.rb    COM11 COM11 57600  NONE   1    nil nil  BURST
+INTERFACE RFD900_INT      interface_rfd900.rb    COM1  COM1 57600  NONE   1    nil nil  TERMINATED  ''         0x0D0A
   #TARGET RFD900
   DONT_CONNECT
   

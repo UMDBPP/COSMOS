@@ -1,23 +1,106 @@
-COMMAND RFD900 MAV_HEARTBEAT BIG_ENDIAN "MAVLINK heartbeat command"
-  APPEND_PARAMETER SYNC 8 UINT 254 254 254 "Sync pattern"
-  APPEND_PARAMETER LEN 8 UINT 0 255 9 "Pkt Len"
-  APPEND_PARAMETER SEQ 8 UINT 0 255 104 "Pkt Len"
-  APPEND_PARAMETER SYSID 8 UINT 0 255 255 "Pkt Len"
-  APPEND_PARAMETER COMPID 8 UINT 0 255 0 "Pkt Len"
-  APPEND_PARAMETER MSGID 8 UINT 0 255 0 "Pkt Len"
-  APPEND_PARAMETER TYPE 8 UINT 0 255 0 "FreeBalloon"
-  APPEND_PARAMETER AutoPilot 8 UINT 0 255 6 "No autopilot"
-  APPEND_PARAMETER BaseMode 8 UINT 0 255 8 "PreFlight"
-  APPEND_PARAMETER CustomMode 8 UINT 0 255 192 "Pkt Len"
-  APPEND_PARAMETER SystemStatus 8 UINT 0 255 4 "UnInitalized"
-  APPEND_PARAMETER MavlinkVersion 8 UINT 0 255 3 "Pkt Len"
-  APPEND_PARAMETER ChkSum 16 UINT 0 65535 43631 "Pkt Checksum"
+COMMAND RFD900 ATMODE BIG_ENDIAN "RFD900 enter AT mode command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 10} %>
+  APPEND_PARAMETER CMD_STR 0 STRING "+++"
   
-COMMAND RFD900 ATMODE BIG_ENDIAN "MAVLINK heartbeat command"
-  APPEND_PARAMETER CMD 0 STRING "+++"
+COMMAND RFD900 NORMAL_MODE BIG_ENDIAN "RFD900 exit AT mode command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 20} %>
+  APPEND_PARAMETER CMD_STR 0 STRING "ATO"
+  
+COMMAND RFD900 GET_RADIO_VER BIG_ENDIAN "RFD900 get radio version command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 30} %>
+  APPEND_PARAMETER CMD_STR 0 STRING "ATI"
+  
+COMMAND RFD900 GET_RADIO_TYPE BIG_ENDIAN "RFD900 get radio type command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 31} %>
+  APPEND_PARAMETER CMD_STR 0 STRING "ATI2"
+  
+COMMAND RFD900 GET_RADIO_FREQ BIG_ENDIAN "RFD900 get radio frequency command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 32} %>
+  APPEND_PARAMETER CMD_STR 0 STRING "ATI3"
+  
+COMMAND RFD900 GET_BOARD_VER BIG_ENDIAN "RFD900 get board version command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 33} %>
+  APPEND_PARAMETER CMD_STR 0 STRING "ATI4"
+  
+COMMAND RFD900 REQ_SETTINGS BIG_ENDIAN "RFD900 get all settings command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 34} %>
+  APPEND_PARAMETER CMD_STR 0 STRING "ATI5"
+  
+COMMAND RFD900 REQ_TDM_RPT BIG_ENDIAN "RFD900 enter AT mode command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 35} %>
+  APPEND_PARAMETER CMD_STR 0 STRING "ATI6"
+  
+COMMAND RFD900 REQ_RSSI_RPT BIG_ENDIAN "RFD900 enter AT mode command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 36} %>
+  APPEND_PARAMETER CMD_STR 0 STRING "ATI7"
+  
+COMMAND RFD900 REBOOT BIG_ENDIAN "RFD900 enter AT mode command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 37} %>
+  APPEND_PARAMETER CMD_STR 0 STRING "ATIZ"
+
+COMMAND RFD900 ENABLE_TDM_RPT BIG_ENDIAN "RFD900 enter AT mode command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 38} %>
+  APPEND_PARAMETER CMD_STR 0 STRING "AT&T=TDM"
   
 COMMAND RFD900 ENABLE_RSSI_RPT BIG_ENDIAN "MAVLINK heartbeat command"
-  APPEND_PARAMETER CMD 0 STRING "AT&T=RSSI"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 39} %>
+  APPEND_PARAMETER CMD_STR 0 STRING "AT&T=RSSI"
 
-COMMAND RFD900 DISABLE_RSSI_RPT BIG_ENDIAN "MAVLINK heartbeat command"
-  APPEND_PARAMETER CMD 0 STRING "AT&T"
+COMMAND RFD900 DISABLE_RSSI_RPT BIG_ENDIAN "Disables the RSSI report output"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 40} %>
+  APPEND_PARAMETER CMD_STR 0 STRING "AT&T"
+  
+COMMAND RFD900 SET_NODEID BIG_ENDIAN "RFD900 enter AT mode command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 50} %>
+  APPEND_PARAMETER CMD_STR 48 STRING "ATS15="
+  APPEND_PARAMETER NODEID 0 STRING "0" "Base node ID is 0. One node must be acting as a base for a multipoint environment to work"
+
+COMMAND RFD900 SET_NODEDEST BIG_ENDIAN "RFD900 enter AT mode command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 51} %>
+  APPEND_PARAMETER CMD_STR 48 STRING "ATS16="
+  APPEND_PARAMETER NODEDEST 0 STRING "0" "Remote node ID to communicate	with.	Set	the	value	to 65535	to broadcast	to all	nodes. Cannot	be the same as NODEID."
+  
+COMMAND RFD900 SET_NODECNT BIG_ENDIAN "RFD900 enter AT mode command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 52} %>
+  APPEND_PARAMETER CMD_STR 48 STRING "ATS18="
+  APPEND_PARAMETER NOCECNT 0 STRING "0" "Total number of radios"
+
+COMMAND RFD900 SET_SERIALBAUD BIG_ENDIAN "RFD900 enter AT mode command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 52} %>
+  APPEND_PARAMETER CMD_STR 40 STRING "ATS1="
+  APPEND_PARAMETER BAUD 0 STRING "0" "Baud rate in one byte form (truncate to first 2 digits)"
+  
+COMMAND RFD900 SET_AIRBAUD BIG_ENDIAN "RFD900 enter AT mode command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 53} %>
+  APPEND_PARAMETER CMD_STR 40 STRING "ATS2="
+  APPEND_PARAMETER BAUD 0 STRING "0" "Baud rate in one byte form (truncate to first 2 digits)"
+  
+COMMAND RFD900 SET_NETID BIG_ENDIAN "RFD900 enter AT mode command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 53} %>
+  APPEND_PARAMETER CMD_STR 40 STRING "ATS3="
+  APPEND_PARAMETER NETID 0 STRING "0" "Network ID, must be same for all radios"
+  
+COMMAND RFD900 SET_TXPWR BIG_ENDIAN "RFD900 enter AT mode command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 53} %>
+  APPEND_PARAMETER CMD_STR 40 STRING "ATS4="
+  APPEND_PARAMETER TXPWR 0 STRING "0"  "0 to 30, transmit power in dBm"
