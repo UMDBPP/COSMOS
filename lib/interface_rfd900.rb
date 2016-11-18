@@ -1,6 +1,9 @@
 require 'cosmos' # always require cosmos
 require 'cosmos/interfaces/serial_interface' # original interface being extended
 require 'int_fcn.rb'
+require 'ccsds.rb'
+require 'xbee.rb'
+require 'rfd900.rb'
 
 module Cosmos
 class InterfaceRfd900 < SerialInterface
@@ -39,9 +42,44 @@ class InterfaceRfd900 < SerialInterface
       return rtn_pkt
     elsif(isRFD900RSSIStr(packet_data))
       puts "Found Radio RSSI msg!"
-      rtn_pkt = createRFD900RSSIPkt(packet_data)
-      return rtn_pkt
+      return createRFD900RSSIPkt(packet_data)
+    elsif(isRFD900Str(packet_data,"NODECNT"))
+      puts "Found Radio NodeCnt msg!"
+      return createRFD900NodeCntPkt(packet_data)
+    elsif(isRFD900Str(packet_data,"MAVLINK"))
+      puts "Found Radio Mavlink msg!" 
+      
+      
+    elsif(isRFD900Str(packet_data,"NODEID"))
+      puts "Found Radio NodeID msg!"
+      
+      
+    elsif(isRFD900Str(packet_data,"NETID"))
+      puts "Found Radio NetID msg!"
+
+    elsif(isRFD900Str(packet_data,"TXPWR"))
+      puts "Found Radio TXPwr msg!" 
+      
+    elsif(isRFD900Str(packet_data,"AIRRATE"))
+      puts "Found Radio AirRate msg!"  
+      
+    elsif(isRFD900Str(packet_data,"NODEDEST"))
+      puts "Found Radio NodeDest msg!" 
+      
+    elsif(isRFD900Str(packet_data,"BAUD"))
+      puts "Found Radio SerialBaud msg!" 
+
+    elsif(isRFD900Str(packet_data,"MIN_FREQ"))
+      puts "Found Radio MinFreq msg!" 
+      
+    elsif(isRFD900Str(packet_data,"MAX_FREQ"))
+      puts "Found Radio MaxFreq msg!" 
+      
+    elsif(isRFD900Str(packet_data,"NUM_CHAN"))
+      puts "Found Radio NumChannels msg!" 
+      
     else
+      puts "Unrecognized message: "
       return packet_data
     end
   end

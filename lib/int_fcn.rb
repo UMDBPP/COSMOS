@@ -1,69 +1,5 @@
 
 
-def update_ccsds_length(packet_data)
-
-    # update the packet length
-    # this is needed because the XB_FWDMSG and GND_FSWMSG commands are dynamic length
-    # NOTE: packet.length returns the size of the packet in the database, not the actual length of the packet
-    #   doesn't look like it can be used for dynamic length packets 
-    packet_data[4..5] = [packet_data.length-7].pack("n")
-
-    # return the data with the length field updated
-    return packet_data
-end
-
-def update_ccsds_checksum(packet_data)
-
-   # calculate the checksum
-    checksum = 0xFF
-    packet_data.each_byte {|x| checksum ^= x }
-    
-    # debug statement
-    #puts "checksum 0x#{checksum.to_s(16)}"
-    
-    # not sure why the pack is necessary for assigning into an element of the data array
-    packet_data[7] = [checksum].pack("C")
-
-    # return the data with the length field updated
-    return packet_data
-end
-
-def update_xbee_length(packet_data)
-
-    # update the packet length
-    packet_data[1..2] = [packet_data.length-3].pack("n")
-
-    # return the data with the length field updated
-    return packet_data
-end
-
-def update_xbee_checksum(packet_data)
-
-  # calculate the checksum
-  # initalize to zero
-  checksum = 0x00
-    
-  # add all bytes
-  packet_data[3..-1].each_byte {|x| checksum += x }
-    
-  # take only bottom 8 bits
-  checksum &= 0xFF
-    
-  # subtract from 0xFF
-  checksum = 0xFF - checksum
-    
-  # http://knowledge.digi.com/articles/Knowledge_Base_Article/Calculating-the-Checksum-of-an-API-Packet
-  # To calculate the check sum you add all bytes of the packet excluding the frame delimiter 7E and the length (the 2nd and 3rd bytes).
-  # Now take the result and keep only the lowest 8 bits (the two far right digits). Subtract from 0xFF and you get the checksum for this data packet.
-    
-  # debug statement
-  #p "checksum 0x#{checksum.to_s(16)}"
-    
-  # not sure why the pack is necessary for assigning into an element of the data array
-  packet_data << [checksum].pack("C")
-
-  return packet_data
-end
 
 def isPayloadPkt(packet_data, payload)
   require 'json'
@@ -89,72 +25,6 @@ def isPayloadPkt(packet_data, payload)
   return false
 end
 
-def isXbeePkt(packet_data)
-
-  # debugging statement
-  #p packet_data[0].unpack("C").first 
-  
-  if(packet_data[0].unpack("C").first == 126) # = 0x7E
-    return true
-  else
-    return false
-  end
-
-end
-
-def isRFD900StatStr(packet_data)
-
-  if(packet_data.include?("pkts") && packet_data.include?("txe") && packet_data.include?("rxe") && packet_data.include?("stx"))
-    return true
-  else
-    return false
-  end
-
-end
-
-def isRFD900RSSIStr(packet_data)
-
-  if(packet_data.include?("RSSI") && packet_data.include?("noise"))
-    return true
-  else
-    return false
-  end
-end
-
-def createRFD900StatPkt(packet_data)
-  regex_format = /\[(\d+)\] pkts: (\d+) txe=(\d+) rxe=(\d+) stx=(\d+) srx=(\d+) ecc=(\d+)\/(\d+) temp=(\d+) dco=(\d+)/
-  nodeid = ["%02x" % packet_data[regex_format,1].to_i].pack("H*")
-  pkts = ["%04x" % packet_data[regex_format,2].to_i].pack("H*")
-  txe = ["%04x" % packet_data[regex_format,3].to_i].pack("H*")
-  rxe = ["%04x" % packet_data[regex_format,4].to_i].pack("H*")
-  stx = ["%04x" % packet_data[regex_format,5].to_i].pack("H*")
-  srx = ["%04x" % packet_data[regex_format,6].to_i].pack("H*")
-  ecc1 = ["%04x" % packet_data[regex_format,7].to_i].pack("H*")
-  ecc2 = ["%04x" % packet_data[regex_format,8].to_i].pack("H*")
-  temp = ["%04x" % packet_data[regex_format,9].to_i].pack("H*")
-  dco = ["%04x" % packet_data[regex_format,10].to_i].pack("H*")
-  
-  # create the forward message command including the destination address
-  rtn_pkt = "\x08\x65\x00\x00\x00\x2D\x38\x6D\x58\x47\x00\x00".force_encoding('ASCII-8BIT') << nodeid << pkts << txe << rxe << stx << srx << ecc1 << ecc1 << temp << dco
-  return rtn_pkt
-  
-end
-
-def createRFD900RSSIPkt(packet_data)
-
-  regex_format = /\[(\d+)\] L\/R RSSI: (\d+)\/(\d+)  L\/R noise: (\d+)\/(\d+)/
-  nodeid = ["%02x" % packet_data[regex_format,1].to_i].pack("H*")
-  local_rssi = ["%04x" % packet_data[regex_format,2].to_i].pack("H*")
-  remote_rssi = ["%04x" % packet_data[regex_format,3].to_i].pack("H*")
-  local_noise = ["%04x" % packet_data[regex_format,4].to_i].pack("H*")
-  remote_noise = ["%04x" % packet_data[regex_format,5].to_i].pack("H*")
-  
-  # create the forward message command including the destination address
-  rtn_pkt = "\x08\x66\x00\x00\x00\x15\x38\x6D\x58\x47\x00\x00".force_encoding('ASCII-8BIT') << nodeid << local_rssi << remote_rssi << local_noise << remote_noise
-  p rtn_pkt
-  return rtn_pkt
-  
-end
 
 def prepend_fwdmsgcmd(packet_data)
   require 'json'
@@ -254,28 +124,5 @@ def prepend_xbeecmd(packet_data)
   return packet_data
 end
 
-def getCCSDSCmdPayload(packet_data)
 
-  return packet_data[8..-1]
-end
 
-def appendRFD900Term(data)
-
-  return data << "\x0D\x0A"
-end
-
-def get_CCSDSAPID(packet_data)
-
-  # extract the APID from the StreamID field
-  apid = ((packet_data[0].unpack("C").first * 256) + packet_data[1].unpack("C").first) & 2047
-
-  return apid
-end
-
-def get_CCSDSFcnCode(packet_data)
-
-  # extract the APID from the StreamID field
-  apid = packet_data[6].unpack("C").first & 0x7F
-
-  return apid
-end

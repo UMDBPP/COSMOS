@@ -1,7 +1,9 @@
 require 'cosmos' # always require cosmos
 require 'cosmos/interfaces/serial_interface' # original interface being extended
 require 'int_fcn.rb'
-
+require 'ccsds.rb'
+require 'xbee.rb'
+require 'rfd900.rb'
 
 module Cosmos
 class InterfaceCcsdsLink < SerialInterface

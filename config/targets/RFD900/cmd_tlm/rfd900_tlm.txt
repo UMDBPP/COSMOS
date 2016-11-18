@@ -57,3 +57,8 @@ TELEMETRY RFD900 RSSIPKT2 BIG_ENDIAN "RFD900 Enter AT Mode"
   APPEND_ITEM REMOTE_RSSI 16 UINT "Xbee sent byte counter"
   APPEND_ITEM LOCAL_NOISE 16 UINT "Xbee sent byte counter"
   APPEND_ITEM REMOTE_NOISE 16 UINT "Xbee sent byte counter"
+  
+TELEMETRY RFD900 NODECNTPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 103} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM NODECNT 8 UINT 2 "Xbee received byte counter"
