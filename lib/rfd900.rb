@@ -68,14 +68,25 @@ def createRFD900RSSIPkt(packet_data)
   
 end
 
-def createRFD900NodeCntPkt(packet_data)
 
-  regex_format = /\[(\d+)\] NODECNT (\d+)/
-  nodecnt = ["%02x" % packet_data[regex_format,1].to_i].pack("H*")
+def createRFD900Pkt(packet_data,apid,srch_str)
+
+  regex_format = /\[(\d+)\] S(\d+): #{srch_str}=(\d+)/
+  val = to_byte_array(packet_data[regex_format,3].to_i)
   
   # create the forward message command including the destination address
-  rtn_pkt = "\x08\x67\x00\x00\x00\x0D\x38\x6D\x58\x47\x00\x00".force_encoding('ASCII-8BIT') << nodecnt
+  rtn_pkt = [0x08, apid, 0x00, 0x00, 0x00, 0x0E, 0x38, 0x6D, 0x58, 0x47, 0x00, 0x00] + val
+  rtn_pkt = rtn_pkt.collect{|i| i.to_i.to_s(16).hex.chr}.join()
+
   p rtn_pkt
   return rtn_pkt
   
 end
+ def to_byte_array(num)
+    result = []
+    begin
+      result << (num & 0xff)
+      num >>= 8
+    end until (num == 0 || num == -1) && (result.last[7] == num[7])
+    result.reverse
+  end

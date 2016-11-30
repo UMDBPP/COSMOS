@@ -1,6 +1,6 @@
 USER_MODIFIED
 "lib/APIDs.json" 0xCE8A528C
-"lib/ccsds_rb.txt" 0x2C5F0865
+"lib/ccsds.rb" 0x2C5F0865
 "lib/example_background_task.rb" 0x01426696
 "lib/example_target.rb" 0xFBEF2AE3
 "lib/interface_ccsds.rb" 0xA696DF29
@@ -47,7 +47,7 @@ USER_MODIFIED
 "config/targets/COSMOS/target.txt" 0xB39D9281
 "config/targets/LINK/cmd_tlm/link_cmd.txt" 0x38ABD679
 "config/targets/LINK/cmd_tlm/link_tlm.txt" 0xC336DDA8
-"config/targets/LINK/screens/status.txt" 0x03C61E29
+"config/targets/LINK/screens/status.txt" 0xAF848C3E
 "config/targets/LINK/target.txt" 0xC78BA79E
 "config/targets/MARS1/cmd_tlm/mars1_cmd.txt" 0xD4668CB5
 "config/targets/MARS1/cmd_tlm/mars1_tlm.txt" 0x24D2D09B
@@ -60,7 +60,7 @@ USER_MODIFIED
 "config/targets/MARS2/screens/status.txt" 0x23DD05F5
 "config/targets/MARS2/target.txt" 0xCDE1291B
 "config/targets/RFD900/cmd_tlm/rfd900_cmd.txt" 0xC588F6B7
-"config/targets/RFD900/cmd_tlm/rfd900_tlm.txt" 0xFFAC1D10
+"config/targets/RFD900/cmd_tlm/rfd900_tlm.txt" 0xF8FF3C22
 "config/targets/RFD900/screens/status.txt" 0x3383CDEA
 "config/targets/RFD900/target.txt" 0x2FCCF4C0
 "config/targets/SCORCH/cmd_tlm/scorch_cmd.txt" 0x9212CF41

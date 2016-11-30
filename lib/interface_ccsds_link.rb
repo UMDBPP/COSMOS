@@ -65,17 +65,17 @@ class InterfaceCcsdsLink < SerialInterface
     p "Received: "
     p packet_data
     
-    # if(isRFD900StatStr(packet_data))
-      # puts "Found Radio HK msg!"
-      # rtn_pkt = createRFD900StatPkt(packet_data)
-      # return rtn_pkt
-    # elsif 
-      # puts "Found Radio RSSI msg!"
-      # rtn_pkt = createRFD900RSSIPkt(packet_data)
-      # return rtn_pkt
-    # else
-      # return packet_data
-    # end
+    if(isRFD900StatStr(packet_data))
+      puts "Found Radio HK msg!"
+      rtn_pkt = createRFD900StatPkt(packet_data)
+      return rtn_pkt
+    elsif 
+      puts "Found Radio RSSI msg!"
+      rtn_pkt = createRFD900RSSIPkt(packet_data)
+      return rtn_pkt
+    else
+      return packet_data
+    end
     return packet_data
   end
 

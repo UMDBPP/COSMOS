@@ -40,7 +40,7 @@ INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM1 COM1 57600   NONE   1    n
   TARGET CAMERA
   TARGET MARS1
   TARGET MARS2
-  TARGET RFD900
+  #TARGET RFD900
   DONT_CONNECT
   
 # RFD900_INT is designed to talk to payloads through the LINK message routing.
@@ -53,8 +53,8 @@ INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM1 COM1 57600   NONE   1    n
 
 #         interface name  file name              write read baud   parity stop timeouts stream      write_term read_term
 INTERFACE RFD900_INT      interface_rfd900.rb    COM1  COM1 57600  NONE   1    nil nil  TERMINATED  ''         0x0D0A
-  #TARGET RFD900
-  DONT_CONNECT
+  TARGET RFD900
+  #DONT_CONNECT
   
   
 # XBEE_INT is designed to talk directly to an Xbee unit.

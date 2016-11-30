@@ -16,6 +16,9 @@ TELEMETRY RFD900 RADIO_REPORT BIG_ENDIAN "RFD900 RSSI REPORT"
   
 TELEMETRY RFD900 OK BIG_ENDIAN "RFD900 Enter AT Mode"
   APPEND_ID_ITEM RESPONSE 0 STRING "[2] OK"
+ 
+TELEMETRY RFD900 CMDECHO BIG_ENDIAN "RFD900 Enter AT Mode"
+  APPEND_ID_ITEM RESPONSE 0 STRING "AT"
   
 TELEMETRY RFD900 STATPKT BIG_ENDIAN "RFD900 Enter AT Mode"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 101} %>
@@ -62,3 +65,98 @@ TELEMETRY RFD900 NODECNTPKT BIG_ENDIAN "RFD900 Node count packete"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 103} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM NODECNT 8 UINT "Xbee received byte counter"
+
+TELEMETRY RFD900 MAVLINKPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 104} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM MAVINK 8 UINT "Xbee received byte counter"
+  
+TELEMETRY RFD900 FORMATPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 105} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM FORMAT 8 UINT "Xbee received byte counter"
+  
+TELEMETRY RFD900 AIRSPEEDPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 106} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM AIRSPEED 8 UINT "Xbee received byte counter"
+
+TELEMETRY RFD900 SERIALSPEEDPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 107} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM SERIALSPEED 8 UINT "Xbee received byte counter"
+  
+TELEMETRY RFD900 TXPOWERPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 108} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM TXPOWER 8 UINT "Xbee received byte counter"
+  
+TELEMETRY RFD900 NETIDPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 109} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM NETID 8 UINT "Xbee received byte counter"
+  
+TELEMETRY RFD900 ECCPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 110} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM ECC 8 UINT "Xbee received byte counter"
+  
+TELEMETRY RFD900 OPPRESENDPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 111} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM OPPRESEND 8 UINT "Xbee received byte counter"
+  
+TELEMETRY RFD900 MINFREQPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 112} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM MINFREQ 24 UINT "Xbee received byte counter"
+  
+TELEMETRY RFD900 MAXFREQPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 113} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM MAXFREQ 24 UINT "Xbee received byte counter"
+  
+TELEMETRY RFD900 NUMCHANPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 114} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM NUMCHAN 8 UINT "Xbee received byte counter"
+  
+TELEMETRY RFD900 DUTYCYCPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 115} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM DUTYCYC 8 UINT "Xbee received byte counter"
+  
+TELEMETRY RFD900 LBT_RSSIPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 116} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM LBT_RSSI 8 UINT "Xbee received byte counter"
+  
+TELEMETRY RFD900 MANCHESTERPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 117} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM MANCHESTER 8 UINT "Xbee received byte counter"
+  
+TELEMETRY RFD900 RTSCTSPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 118} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM RTSCTS 8 UINT "Xbee received byte counter"
+  
+TELEMETRY RFD900 NODEIDPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 119} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM NODEID 8 UINT "Xbee received byte counter"
+  
+TELEMETRY RFD900 NODEDESTPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 120} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM NODEDEST 8 UINT "Xbee received byte counter"
+  
+TELEMETRY RFD900 SYNCANYPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 121} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM SYNCANY 8 UINT "Xbee received byte counter"
+  
+TELEMETRY RFD900 NODECOUNTPKT BIG_ENDIAN "RFD900 Node count packete"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 122} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM NODECOUNT 8 UINT "Xbee received byte counter"

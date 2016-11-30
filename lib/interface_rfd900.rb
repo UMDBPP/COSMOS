@@ -48,36 +48,62 @@ class InterfaceRfd900 < SerialInterface
       return createRFD900NodeCntPkt(packet_data)
     elsif(isRFD900Str(packet_data,"MAVLINK"))
       puts "Found Radio Mavlink msg!" 
-      
-      
-    elsif(isRFD900Str(packet_data,"NODEID"))
-      puts "Found Radio NodeID msg!"
-      
-      
+      return createRFD900Pkt(packet_data,104,'MAVLINK')
+      return createRFD900MavlinkPkt(packet_data) 
+    elsif(isRFD900Str(packet_data,"FORMAT"))
+      puts "Found Radio Format msg!" 
+      return createRFD900Pkt(packet_data,105,'FORMAT')
+    elsif(isRFD900Str(packet_data,"AIR_SPEED"))
+      puts "Found Radio AirSpeed msg!" 
+      return createRFD900Pkt(packet_data,106,'AIR_SPEED')
+    elsif(isRFD900Str(packet_data,"SERIAL_SPEED"))
+      puts "Found Radio SerialSpeed msg!" 
+      return createRFD900Pkt(packet_data,107,'SERIAL_SPEED')
+    elsif(isRFD900Str(packet_data,"TXPOWER"))
+      puts "Found Radio TxPower msg!" 
+      return createRFD900Pkt(packet_data,108,'TXPOWER')
     elsif(isRFD900Str(packet_data,"NETID"))
       puts "Found Radio NetID msg!"
-
-    elsif(isRFD900Str(packet_data,"TXPWR"))
-      puts "Found Radio TXPwr msg!" 
-      
-    elsif(isRFD900Str(packet_data,"AIRRATE"))
-      puts "Found Radio AirRate msg!"  
-      
-    elsif(isRFD900Str(packet_data,"NODEDEST"))
-      puts "Found Radio NodeDest msg!" 
-      
-    elsif(isRFD900Str(packet_data,"BAUD"))
-      puts "Found Radio SerialBaud msg!" 
-
+      return createRFD900Pkt(packet_data,109,'NETID')
+    elsif(isRFD900Str(packet_data,"ECC"))
+      puts "Found Radio ECC msg!" 
+      return createRFD900Pkt(packet_data,110,'ECC')
+    elsif(isRFD900Str(packet_data,"OPPRESEND"))
+      puts "Found Radio AirSpeed msg!" 
+      return createRFD900Pkt(packet_data,111,'OPPRESEND')
     elsif(isRFD900Str(packet_data,"MIN_FREQ"))
       puts "Found Radio MinFreq msg!" 
-      
+      return createRFD900Pkt(packet_data,112,'MIN_FREQ')
     elsif(isRFD900Str(packet_data,"MAX_FREQ"))
       puts "Found Radio MaxFreq msg!" 
-      
-    elsif(isRFD900Str(packet_data,"NUM_CHAN"))
-      puts "Found Radio NumChannels msg!" 
-      
+      return createRFD900Pkt(packet_data,113,'MAX_FREQ')
+    elsif(isRFD900Str(packet_data,"NUM_CHANNELS"))
+      puts "Found Radio NUM_CHANNELS msg!" 
+      return createRFD900Pkt(packet_data,114,'NUM_CHANNELS')
+    elsif(isRFD900Str(packet_data,"DUTY_CYCLE"))
+      puts "Found Radio DUTY_CYCLE msg!" 
+      return createRFD900Pkt(packet_data,115,'DUTY_CYCLE')
+    elsif(isRFD900Str(packet_data,"LBT_RSSI"))
+      puts "Found Radio LBT_RSSI msg!" 
+      return createRFD900Pkt(packet_data,116,'LBT_RSSI')
+    elsif(isRFD900Str(packet_data,"MANCHESTER"))
+      puts "Found Radio MANCHESTER msg!" 
+      return createRFD900Pkt(packet_data,117,'MANCHESTER')
+    elsif(isRFD900Str(packet_data,"RTSCTS"))
+      puts "Found Radio RTSCTS msg!" 
+      return createRFD900Pkt(packet_data,118,'RTSCTS')
+    elsif(isRFD900Str(packet_data,"NODEID"))
+      puts "Found Radio NODEID msg!" 
+      return createRFD900Pkt(packet_data,119,'NODEID')
+    elsif(isRFD900Str(packet_data,"NODEDESTINATION"))
+      puts "Found Radio NODEDESTINATION msg!" 
+      return createRFD900Pkt(packet_data,120,'NODEDESTINATION') 
+    elsif(isRFD900Str(packet_data,"SYNCANY"))
+      puts "Found Radio SYNCANY msg!" 
+      return createRFD900Pkt(packet_data,121,'SYNCANY') 
+    elsif(isRFD900Str(packet_data,"NODECOUNT"))
+      puts "Found Radio NODECOUNT msg!" 
+      return createRFD900Pkt(packet_data,122,'NODECOUNT') 
     else
       puts "Unrecognized message: "
       return packet_data
