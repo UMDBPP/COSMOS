@@ -1,8 +1,9 @@
 SCREEN AUTO AUTO 0.5
 TABBOOK
   TABITEM "Overview"
-    SECTIONHEADER "Nothing here yet"
-
+    BUTTON 'Request Update' 'cmd("LINK", "REQ_NAME", "DESTINATION" => 0)'
+    LABELVALUE LINK NAME_MSG NAME 
+      
   END
   TABITEM "Data/Cmd"
     SECTIONHEADER "Data/Cmd"
@@ -20,7 +21,7 @@ TABBOOK
     SECTIONHEADER "FilterTable"
 
       BUTTON 'Request Update' 'cmd("LINK", "REQ_FLTR", "DESTINATION" => 0)'
-      LABELVALUE LINK FLTRTBL APIDS WITH_UNITS 48
+      ARRAY LINK FLTRTBL APIDS 100 350 "%d" 1 FORMATTED
   END
   TABITEM "Env"
     SECTIONHEADER "Environment Status"

@@ -136,3 +136,8 @@ TELEMETRY LINK FILEPART_MSG BIG_ENDIAN "Link Time message"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 218} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM FILEPART 0 BLOCK "Contents"
+
+  TELEMETRY LINK NAME_MSG BIG_ENDIAN "Link Time message"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 219} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM NAME 64 STRING "Payload Name"

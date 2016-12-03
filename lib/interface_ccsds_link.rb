@@ -69,7 +69,7 @@ class InterfaceCcsdsLink < SerialInterface
       puts "Found Radio HK msg!"
       rtn_pkt = createRFD900StatPkt(packet_data)
       return rtn_pkt
-    elsif 
+    elsif(isRFD900RSSIStr(packet_data))
       puts "Found Radio RSSI msg!"
       rtn_pkt = createRFD900RSSIPkt(packet_data)
       return rtn_pkt

@@ -1,6 +1,13 @@
 SCREEN AUTO AUTO 0.5
 
 TABBOOK
+  TABITEM "Commands"
+    BUTTON 'Switch to AT' 'connect_interface("RFD900_INT"); cmd("RFD900", "ATMODE"); wait(1.2)'
+    BUTTON 'Switch to Data' 'cmd("RFD900", "NORMAL_MODE"); disconnect_interface("LINKCCSDS_INT"); connect_interface("LINKCCSDS_INT")'
+    BUTTON 'Enable RSSI RPT' 'connect_interface("RFD900_INT"); cmd("RFD900", "ATMODE"); wait(1.2); cmd("RFD900", "ENABLE_RSSI_RPT")'
+    BUTTON 'Disable RSSI RPT' 'cmd("RFD900", "DISABLE_RSSI_RPT")'
+    BUTTON 'Get One RSSI RPT' 'connect_interface("RFD900_INT"); cmd("RFD900", "ATMODE"); wait(1.2); cmd("RFD900", "REQ_RSSI_RPT"); wait(0.1); cmd("RFD900", "NORMAL_MODE"); disconnect_interface("LINKCCSDS_INT"); connect_interface("LINKCCSDS_INT")'
+  END
   TABITEM "RSSI"
     HORIZONTAL
       VERTICALBOX
@@ -42,6 +49,7 @@ TABBOOK
     LABELVALUE RFD900 STATPKT DCO
   END
   TABITEM "Settings"
+    BUTTON 'Disable RSSI RPT' 'cmd("RFD900", "REQ_SETTINGS")'
     LABELVALUE RFD900 NODECNTPKT NODECNT
     LABELVALUE RFD900 FORMATPKT FORMAT
     LABELVALUE RFD900 SERIALSPEEDPKT SERIALSPEED

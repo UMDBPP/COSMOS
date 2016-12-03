@@ -330,6 +330,19 @@ class CmdViaRadioTest < Cosmos::Test
 
   end
   
+  def test_16_req_name_radio
+    puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
+    Cosmos::Test.puts "This test verifies requirement that the ReqName command works source: radio"
+
+    # request telemetry to verify NoOp cmd
+    cmd("LINK", "REQ_NAME")
+    wait_check_packet("LINK", "NAME_MSG", 1, 5)
+    if(tlm_variable("LINK NAME_MSG NAME", :RAW) != "    LINK")
+      raise "Does not match!"
+    end
+
+  end
+  
   # Teardown the test case by doing other stuff
   #def teardown
   #  puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
