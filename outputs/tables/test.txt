@@ -1,0 +1,11 @@
+TABLE "TLM Monitoring" "Telemetry Monitoring Table" TWO_DIMENSIONAL BIG_ENDIAN 4
+  PARAMETER "Threshold" "Telemetry item threshold at which point persistance is incremented" UINT 32 HEX 0 4294967295 0
+  PARAMETER "Offset" "Offset into the telemetry packet to monitor" UINT 32 DEC 0 4294967295 0
+  PARAMETER "Data Size" "Amount of data to monitor (bytes)" UINT 32 STATE 0 3 0
+    STATE BITS 0
+    STATE BYTE 1
+    STATE WORD 2
+
+DEFAULT             # Defaults of 0, 0, 0(BITS) will be used
+DEFAULT 0x2         # Override Threshold default of 0
+DEFAULT 0x3 30 WORD # Note the use of STATE names

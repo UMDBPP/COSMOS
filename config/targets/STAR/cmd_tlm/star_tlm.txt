@@ -1,0 +1,42 @@
+TELEMETRY STAR TXTMSG BIG_ENDIAN "STAR Text Message Packet"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 120} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM MSG_STRING 0 STRING "Message"
+
+TELEMETRY STAR FILEERR BIG_ENDIAN "STAR FileLoad Error Packet"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 110} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM ERR_CODE 8 INT "Error Code"
+    STATE OPENFILE -1
+    STATE CMD_CHCKSUM -3
+    STATE SHORT_TIME -6
+    STATE SHORT_HEAD -7
+    STATE SHORT_PKT -8
+    STATE LONG_CMD -2
+  APPEND_ITEM FILE_POS 16 UINT "Position in file"
+  
+TELEMETRY STAR CMD_RESP BIG_ENDIAN "STAR Command Response Packet"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 130} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM FCN_CODE 8 INT "Error Code"
+    STATE NOOP 9
+    STATE LED 10
+    STATE BIAS 11
+    STATE SHAKE 12
+    STATE CUTOFF 13
+    STATE TLM 14
+    STATE QUEUE 15
+    STATE RESET_MET 16
+  APPEND_ITEM STATUS 8 UINT "Status of command execution"
+    STATE FAILURE 0
+    STATE SUCCESS 1
+    STATE BAD_FCNCODE 2
+    STATE BAD_APID 3
+    STATE NOT_CMD 4
+    STATE BAD_CHKSUM 5
+    
+TELEMETRY STAR STATUS BIG_ENDIAN "STAR STATUS Packet"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 140} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM STATUS 8 INT "STATUS Code"
+    STATE INITALIZED 1

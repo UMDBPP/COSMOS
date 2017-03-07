@@ -42,8 +42,38 @@ def get_CCSDSFcnCode(packet_data)
   return apid
 end
 
+def get_CCSDSTlmSec(packet_data)
+
+  # extract the APID from the StreamID field
+  bytes = Array.new
+
+  bytes[0] = packet_data[6].unpack("C").first
+  bytes[1] = packet_data[7].unpack("C").first
+  bytes[2] = packet_data[8].unpack("C").first
+  bytes[3] = packet_data[9].unpack("C").first
+
+  val =  bytes[3] + (bytes[2] << 8) + (bytes[1] << 16) + (bytes[0] << 24 )    
+  return val
+end
+
+def get_CCSDSTlmSubSec(packet_data)
+
+  bytes = Array.new
+
+  bytes[0] = packet_data[10].unpack("C").first
+  bytes[1] = packet_data[11].unpack("C").first
+
+  val =  bytes[1] + (bytes[0] << 8)   
+
+  return val
+end
+
 def getCCSDSCmdPayload(packet_data)
 
   return packet_data[8..-1]
 end
 
+def getCCSDSTlmPayload(packet_data)
+
+  return packet_data[12..-1]
+end

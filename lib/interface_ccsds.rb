@@ -17,13 +17,13 @@ class InterfaceCcsds < SerialInterface
     
     # update the packet checksum
     data = update_ccsds_checksum(data)
-    
+    puts data
     return data
   end
 
   def post_read_data(packet_data)
     #len = packet_data.length
-    
+    #
     # save the checksum from the packet
     #rx_checksum = packet_data[7] # Unpack as 16 bit unsigned big endian
     
@@ -40,7 +40,7 @@ class InterfaceCcsds < SerialInterface
     #  puts "Bad checksum detected. Calculated: 0x#{calc_checksum.to_s(16)} Received: 0x#{rx_checksum.to_s(16)}. Dropping packet."
     #  return "" # Also can return nil to break the connection and reconnect to the target
     #end
-    #puts packet_data.inspect
+    puts packet_data
     return packet_data
   end
 
