@@ -38,11 +38,14 @@ class CmdViaRadioTest < Cosmos::Test
   
   def test_01_reqhk_radio
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
-    Cosmos::Test.puts "This test verifies requirement that the REQ_HK command works source: radio"
+    Cosmos::Test.puts "This test verifies requirement that the REQ_HK command works when received from radio"
+    # we need this test first because many other tests need the data in the HK packet
+    # to verify their functionality
     
-    # issue a NoOp cmd
+    # request an HK packet
     cmd("LINK", "REQ_HK")
 
+    # wait until we receive the HK packet in response
     wait_check_packet("LINK", "HK_Pkt", 1, 5)
     
   end
@@ -50,16 +53,26 @@ class CmdViaRadioTest < Cosmos::Test
   def test_02_reboot_radio
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies that on startup the counters are zeroed."
+    # we do this test early in the sequence because rebooting means that we
+    # know the state of the software being tested for the rest of the sequence
         
     # reboot Link
     cmd_no_hazardous_check("LINK", "REBOOT")
+    
+    # wait for Link to reboot and reinitalize
     wait(5)
     
-    # request telemetry to verify NoOp cmd
+    # request telemetry to verify a reboot occured cmd
     # Note: No destination parameter is included intention to test the default
     cmd("LINK", "REQ_HK")
     
+    # wait to receive the packet
     wait_check_packet("LINK", "HK_Pkt", 1, 5)
+    
+    # check the values. If it didn't reboot as intentded then the CmdExeCtr
+    # and/or CmdRejCtr would be non-zero (because test 1 would've incremented)
+    # them. RADIORCVDBYTECTR is 9 because the HK_Pkt command used to initiate the
+    # sending of the HK packet we're examining is 9 bytes long
     check("LINK HK_Pkt CMDREJCTR == 0")
     check("LINK HK_Pkt CMDEXECTR == 0")
     check("LINK HK_Pkt RADIORCVDBYTECTR == 9")
@@ -72,9 +85,13 @@ class CmdViaRadioTest < Cosmos::Test
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the NoOp command results in a command execution and that the REQ_HK command returns HK telemetry source: radio"
     
-    # request telemetry to verify NoOp cmd
+    # request HK telemetry so that we know the initial state of the counters
     cmd("LINK", "REQ_HK")
+    
+    # wait for the packet
     wait_check_packet("LINK", "HK_Pkt", 1, 5)
+    
+    # record the initial values of each of the counters
     pre_cmd_rej = tlm_variable("LINK HK_Pkt CMDREJCTR", :CONVERTED)
     pre_cmd_exe = tlm_variable("LINK HK_Pkt CMDEXECTR", :CONVERTED)
     pre_cmd_rdio_rcvd = tlm_variable("LINK HK_Pkt RADIORCVDBYTECTR", :CONVERTED)
@@ -84,11 +101,17 @@ class CmdViaRadioTest < Cosmos::Test
     
     # issue a NoOp cmd
     cmd("LINK", "NOOP")
+    
+    # give it a bit of time to be executed
     wait(0.1)
 
-    # request telemetry to verify NoOp cmd
+    # request new HK telemetry to verify NoOp cmd was executed
     cmd("LINK", "REQ_HK")
+    
+    # wait for packet 
     wait_check_packet("LINK", "HK_Pkt", 1, 5)
+    
+    # record the values of each of the counters
     post_cmd_rej = tlm_variable("LINK HK_Pkt CMDREJCTR", :CONVERTED)
     post_cmd_exe = tlm_variable("LINK HK_Pkt CMDEXECTR", :CONVERTED)
     post_cmd_rdio_rcvd = tlm_variable("LINK HK_Pkt RADIORCVDBYTECTR", :CONVERTED)
@@ -104,7 +127,7 @@ class CmdViaRadioTest < Cosmos::Test
     if( post_cmd_exe != pre_cmd_exe + 2 )
       raise "CmdExeCtr incrememented incorrectly! Expected 2 but got #{post_cmd_exe.to_i-pre_cmd_exe.to_i}"
     end
-    # expect 18 bytes to have been received (2 commands)
+    # expect 18 bytes to have been received (the NoOp and REQ_HK)
     if( post_cmd_rdio_rcvd != pre_cmd_rdio_rcvd + 17 )
       raise "RadioRcvdByteCtr incrememented incorrectly! Expected 17 but got #{post_cmd_rdio_rcvd.to_i-pre_cmd_rdio_rcvd.to_i}"
     end
@@ -127,68 +150,94 @@ class CmdViaRadioTest < Cosmos::Test
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the REQ_ENV command works source: radio"
     
-    # issue a NoOp cmd
+    # request the ENV data
     cmd("LINK", "REQ_ENV")
     
+    # wait for the packet to be received
     wait_check_packet("LINK", "ENV_STAT", 1, 5)
 
+    # we can't really check any of the values in the packet because we
+    # don't know exactly what they will be. We could check them roughly,
+    # but there are limits on those telemetry points which will alert the 
+    # user if they have wierd values
+    
   end
   
   def test_05_reqfltr_radio
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the REQ_FLTR command works source: radio"
+    # we need to do this before we can verify the SetFltr command
+    # works
     
-    # issue a NoOp cmd
+    # request the filter table values
     cmd("LINK", "REQ_FLTR")
 
+    # wait for the packet to be received
     wait_check_packet("LINK", "FLTRTBL", 1, 5)
 
+    # we can't check the return values because we don't know what 
+    # they should be (it depends on what's currently loaded in the
+    # table). The values returned will be checked during the SetFltr
+    # test
   end
   
   def test_06_reqimu_radio
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the REQ_IMU command works source: radio"
     
-    # issue a NoOp cmd
+    # request IMU data
     cmd("LINK", "REQ_IMU")
     
+    # wait for the packet to be received
     wait_check_packet("LINK", "IMU_STAT", 1, 5)
-
+    
+    # we can't really check any of the values in the packet because we
+    # don't know exactly what they will be. We could check them roughly,
+    # but there are limits on those telemetry points which will alert the 
+    # user if they have wierd values
   end
   
   def test_07_reqinit_radio
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the REQ_INIT command works source: radio"
     
-    init_rcvd_cnt_pre = tlm_variable("LINK INIT_STAT RECEIVED_COUNT", :CONVERTED)
-
-    # issue a NoOp cmd
+    # request and init status packet
     cmd("LINK", "REQ_INIT")
     
+    # wait for the packet to be received
     wait_check_packet("LINK", "INIT_STAT", 1, 5)
+    
+    # we could check the returned values to make sure it initalized correctly.
+    # we don't currently because wether or not the hardware initialized is not
+    # really relevant to if the command is working
   end
   
   def test_08_reqpwr_radio
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the REQ_PWR command works source: radio"
     
-    pwr_rcvd_cnt_pre = tlm_variable("LINK PWR_STAT RECEIVED_COUNT", :CONVERTED)
-
-    # issue a NoOp cmd
+    # request power data
     cmd("LINK", "REQ_PWR")
 
+    # wait for the packet to be received
     wait_check_packet("LINK", "PWR_STAT", 1, 5)
   end
    
   def test_09_fwdmsg_radio
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the GND_FWDMSG command works source: radio"
+    # for this test we essentially do a loopback test... sending a packet to Link for
+    # it to forward to the ground
+    # FIXME: For completeness we should also have a test which sends a packet to an xbee
+    # to make sure the logic for that is working
         
     # send a message to be forwarded to the ground which looks like an HK packet 
     # (with fake values that we can easily verify)
     cmd("LINK", "FWD_MSG", "Payload" => "\x08\xD2\x00\x00\x00\x1D\x00\x00\x00\x17\x02\xD5\x00\x63\x00\x63\x00\x00\x00\x63\x00\x00\x00\x63\x00\x00\x00\x63\x00\x00\x00\x63\x00\x00\x00\x63")
 
+    # wait for the packet to be received
     wait_check_packet("LINK", "HK_Pkt", 1, 5)
+    
     # verify that we received the packet with the fake values
     check("LINK HK_Pkt CMDREJCTR == 99")
     check("LINK HK_Pkt CMDEXECTR == 99")
@@ -205,12 +254,13 @@ class CmdViaRadioTest < Cosmos::Test
     # request updated values
     cmd("LINK", "REQ_FLTR")
     
+    # wait to receive the packet
     wait_check_packet("LINK", "FLTRTBL", 1, 5)
     
-    # store values currently in table so that we can restore them
+    # store values currently in table so that we can restore them after
     fltr_vals = tlm_variable("LINK FLTRTBL APIDS", :CONVERTED)
     
-    # generate random values to use
+    # generate random values to upload to the table
     test_fltr_vals = 15.times.map{ Random.rand(100) }
     
     # upload the new values
@@ -219,20 +269,21 @@ class CmdViaRadioTest < Cosmos::Test
       wait(0.2)
     end
     
-    # request updated values
+    # request updated values be sent back to us
     cmd("LINK", "REQ_FLTR")
     
+    # wait for the response
     wait_check_packet("LINK", "FLTRTBL", 1, 5)
     
+    # extract the values we received into a local variable for checking
     onboard_fltr_vals = tlm_variable("LINK FLTRTBL APIDS", :CONVERTED)
-    # check that the values changed
-    # upload the new values
+
+    # loop through and make sure each value is what we sent
     for i in 0..14
       if(onboard_fltr_vals[i] != test_fltr_vals[i])
         raise "Onboard filter value at idx #{i.to_i} did not match expected"
       end
     end
-    #check("LINK FLTRTBL APIDS == [0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0]")
     
     # restore the original values
     for i in 0..14
@@ -240,7 +291,7 @@ class CmdViaRadioTest < Cosmos::Test
       wait(0.2)
     end
     
-    # request updated values
+    # request the restored values
     cmd("LINK", "REQ_FLTR")
     
     wait_check_packet("LINK", "FLTRTBL", 1, 5)
@@ -251,10 +302,15 @@ class CmdViaRadioTest < Cosmos::Test
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the SETFLTRTBLIDX command works source: radio"
           
+    # request the payload's time
     cmd("LINK", "REQ_TIME")
 
+    # wait for the response
     wait_check_packet("LINK", "TIME_MSG", 1, 5)
 
+    # we can't really check the value returned because we don't know 
+    # what the payload was set to. The returned value is checked as part
+    # of the SetTime test
   end
   
   def test_12_settime_radio
@@ -263,19 +319,25 @@ class CmdViaRadioTest < Cosmos::Test
 
     # request the current time    
     cmd("LINK", "REQ_TIME")
+    
+    # wait for the response
     wait_check_packet("LINK", "TIME_MSG", 1, 5)
     
-    # get the time returned
+    # get the time returned in a local variable
     time_pre = tlm_variable("LINK TIME_MSG TIME", :CONVERTED)
     
-    # set a time 100sec in the past
+    # set a time 100sec in the past of what it sent back
     cmd("LINK", "SET_TIME", "TIME" => time_pre.to_i - 100)
-    wait(0.2)
+    
+    # give it a little bit to be executed
+    wait(0.1)
     
     # request the new time
     cmd("LINK", "REQ_TIME")
     
+    # wait for the packet the be received
     wait_check_packet("LINK", "TIME_MSG", 1, 5)
+    
     # get the time returned
     time_post = tlm_variable("LINK TIME_MSG TIME", :CONVERTED)
     
@@ -283,6 +345,8 @@ class CmdViaRadioTest < Cosmos::Test
     if(time_post >= time_pre)
       raise "Pre: #{time_pre.to_i}, Post #{time_post.to_i}. Time not set correctly!"
     end
+    
+    # FIXME: should we restore the original value?
 
   end
   
@@ -291,9 +355,12 @@ class CmdViaRadioTest < Cosmos::Test
     Cosmos::Test.puts "This test verifies requirement that the SETFLTRTBLIDX command works source: radio"
       
     # note, this command doesn't always return a packet (if the file idx
-    # requested isn't actually a file)
+    # requested isn't actually a file on the SD card).
+    # FIXME: should we revamp this command so that we know if we don't get 
+    # a response back?
     cmd("LINK", "REQ_FILEINFO", "FILE_IDX" => 2)
     
+    # wait for the response to be received
     wait_check_packet("LINK", "FILEINFO_MSG", 1, 5)
 
   end
@@ -306,8 +373,8 @@ class CmdViaRadioTest < Cosmos::Test
     # requested isn't actually a file)
     cmd("LINK", "REQ_FILEPART", "FILE_IDX" => 2, "START_BYTE" => 0, "END_BYTE" => 10)
     
+    # wait for the response to be received
     wait_check_packet("LINK", "FILEPART_MSG", 1, 5)
-
 
   end
   
@@ -315,12 +382,21 @@ class CmdViaRadioTest < Cosmos::Test
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the RESET_CTR command works source: radio"
 
+    # send the Reset_Ctr command
     cmd("LINK", "RESET_CTR")
-    wait(0.2)
     
-    # request telemetry to verify NoOp cmd
+    # give it a bit to be executed
+    wait(0.1)
+    
+    # request telemetry to verify the counters were reset
     cmd("LINK", "REQ_HK")
+    
+    # wait for the packet to the received
     wait_check_packet("LINK", "HK_Pkt", 1, 5)
+    
+    # check the counter values... CMDEXECTR should be 1 because the 
+    # RESETCTR command was executed and RADIORCVDBYTECTR should be 9
+    # because of the HK_Pkt
     check("LINK HK_Pkt CMDREJCTR == 0")
     check("LINK HK_Pkt CMDEXECTR == 1")
     check("LINK HK_Pkt RADIORCVDBYTECTR == 9")
@@ -334,9 +410,13 @@ class CmdViaRadioTest < Cosmos::Test
     puts "Running #{Cosmos::Test.current_test_suite}:#{Cosmos::Test.current_test}:#{Cosmos::Test.current_test_case}"
     Cosmos::Test.puts "This test verifies requirement that the ReqName command works source: radio"
 
-    # request telemetry to verify NoOp cmd
+    # request the payload send its name
     cmd("LINK", "REQ_NAME")
+    
+    # wait for the packet to be received
     wait_check_packet("LINK", "NAME_MSG", 1, 5)
+    
+    # verify it says its link
     if(tlm_variable("LINK NAME_MSG NAME", :RAW) != "    LINK")
       raise "Does not match!"
     end
