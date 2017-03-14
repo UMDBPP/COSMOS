@@ -40,3 +40,15 @@ TELEMETRY STAR STATUS BIG_ENDIAN "STAR STATUS Packet"
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM STATUS 8 INT "STATUS Code"
     STATE INITALIZED 1
+
+TELEMETRY STAR FILEINFO BIG_ENDIAN "STAR FileInfo Packet"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 150} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM FILENAME 96 STRING "Filename"
+  APPEND_ITEM FILESIZE 32 UINT "File size (bytes)"
+  
+TELEMETRY STAR FILECHKSUM BIG_ENDIAN "STAR FileChecksum Packet"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 160} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM CHCKSUM 8 UINT "File checksum"
+    FORMAT_STRING "0x%0X"
