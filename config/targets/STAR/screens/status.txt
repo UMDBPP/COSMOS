@@ -1,82 +1,106 @@
 SCREEN AUTO AUTO 0.5
 TABBOOK
   TABITEM "Overview"
-    BUTTON 'Request Update' 'cmd("LINK", "REQ_NAME", "DESTINATION" => 0)'
-    LABELVALUE LINK NAME_MSG NAME 
+    
+    LABELVALUE STAR TXTMSG MSG_STRING RAW 50
       
   END
   TABITEM "SD"
     SECTIONHEADER "SD Card"
     
-      BUTTON 'Get All' 'require "get_star_files.rb"; get_star_files();'
+      BUTTON 'Get All' 'require "star_get_files.rb"; get_star_files();'
       HORIZONTAL
-        LABEL " "
-        LABEL "Filename "
-        LABEL "Size "
-        LABEL "Checksum "
+        LABEL " Filename Size Checksum "
       END
       HORIZONTAL
         LABEL "File0"
-        VALUE STAR_META FILES FILENAME1
-        VALUE STAR_META FILES FILESIZE1
-        VALUE STAR_META FILES FILECHKSUM1 FORMATTED
+        VALUE STAR_META FILEINFO FILENAME_0
+        VALUE STAR_META FILEINFO FILESIZE_0
+        VALUE STAR_META FILEINFO FILECHKSUM_0 FORMATTED
         BUTTON 'Delete File' 'cmd("STAR","DELFILE","FILEIDX" => 0)'
+        BUTTON 'Get Info' 'require "star_get_fileinfo.rb"; get_star_fileinfo(0);'
+        BUTTON 'Send File' 'cmd("STAR","SENDFILE","FILEIDX" => 0)'
       END
       HORIZONTAL
-        LABEL "File1"
-        VALUE STAR_META FILES FILENAME2
-        VALUE STAR_META FILES FILESIZE2
-        VALUE STAR_META FILES FILECHKSUM2 FORMATTED
+        LABEL "File0"
+        VALUE STAR_META FILEINFO FILENAME_1
+        VALUE STAR_META FILEINFO FILESIZE_1
+        VALUE STAR_META FILEINFO FILECHKSUM_1 FORMATTED
         BUTTON 'Delete File' 'cmd("STAR","DELFILE","FILEIDX" => 1)'
+        BUTTON 'Get Info' 'require "star_get_fileinfo.rb"; get_star_fileinfo(1);'
+        BUTTON 'Send File' 'cmd("STAR","SENDFILE","FILEIDX" => 1)'
       END
       HORIZONTAL
         LABEL "File2"
-        VALUE STAR_META FILES FILENAME3
-        VALUE STAR_META FILES FILESIZE3
-        VALUE STAR_META FILES FILECHKSUM3 FORMATTED
+        VALUE STAR_META FILEINFO FILENAME_2
+        VALUE STAR_META FILEINFO FILESIZE_2
+        VALUE STAR_META FILEINFO FILECHKSUM_2 FORMATTED
         BUTTON 'Delete File' 'cmd("STAR","DELFILE","FILEIDX" => 2)'
+        BUTTON 'Get Info' 'require "star_get_fileinfo.rb"; get_star_fileinfo(2);'
+        BUTTON 'Send File' 'cmd("STAR","SENDFILE","FILEIDX" => 2)'
       END
       HORIZONTAL
         LABEL "File3"
-        VALUE STAR_META FILES FILENAME4
-        VALUE STAR_META FILES FILESIZE4
-        VALUE STAR_META FILES FILECHKSUM4 FORMATTED
+        VALUE STAR_META FILEINFO FILENAME_3
+        VALUE STAR_META FILEINFO FILESIZE_3
+        VALUE STAR_META FILEINFO FILECHKSUM_3 FORMATTED
         BUTTON 'Delete File' 'cmd("STAR","DELFILE","FILEIDX" => 3)'
+        BUTTON 'Get Info' 'require "star_get_fileinfo.rb"; get_star_fileinfo(3);'
+        BUTTON 'Send File' 'cmd("STAR","SENDFILE","FILEIDX" => 3)'
       END
       HORIZONTAL
         LABEL "File4"
-        VALUE STAR_META FILES FILENAME5
-        VALUE STAR_META FILES FILESIZE5
-        VALUE STAR_META FILES FILECHKSUM5 FORMATTED
+        VALUE STAR_META FILEINFO FILENAME_4
+        VALUE STAR_META FILEINFO FILESIZE_4
+        VALUE STAR_META FILEINFO FILECHKSUM_4 FORMATTED
         BUTTON 'Delete File' 'cmd("STAR","DELFILE","FILEIDX" => 4)'
+        BUTTON 'Get Info' 'require "star_get_fileinfo.rb"; get_star_fileinfo(4);'
+        BUTTON 'Send File' 'cmd("STAR","SENDFILE","FILEIDX" => 4)'
       END
       HORIZONTAL
         LABEL "File5"
-        VALUE STAR_META FILES FILENAME6
-        VALUE STAR_META FILES FILESIZE6
-        VALUE STAR_META FILES FILECHKSUM6 FORMATTED
+        VALUE STAR_META FILEINFO FILENAME_5
+        VALUE STAR_META FILEINFO FILESIZE_5
+        VALUE STAR_META FILEINFO FILECHKSUM_5 FORMATTED
         BUTTON 'Delete File' 'cmd("STAR","DELFILE","FILEIDX" => 5)'
+        BUTTON 'Get Info' 'require "star_get_fileinfo.rb"; get_star_fileinfo(5);'
+        BUTTON 'Send File' 'cmd("STAR","SENDFILE","FILEIDX" => 5)'
       END
       HORIZONTAL
         LABEL "File6"
-        VALUE STAR_META FILES FILENAME7
-        VALUE STAR_META FILES FILESIZE7
-        VALUE STAR_META FILES FILECHKSUM7 FORMATTED
+        VALUE STAR_META FILEINFO FILENAME_6
+        VALUE STAR_META FILEINFO FILESIZE_6
+        VALUE STAR_META FILEINFO FILECHKSUM_6 FORMATTED
         BUTTON 'Delete File' 'cmd("STAR","DELFILE","FILEIDX" => 6)'
+        BUTTON 'Get Info' 'require "star_get_fileinfo.rb"; get_star_fileinfo(6);'
+        BUTTON 'Send File' 'cmd("STAR","SENDFILE","FILEIDX" => 6)'
       END
       HORIZONTAL
         LABEL "File7"
-        VALUE STAR_META FILES FILENAME8
-        VALUE STAR_META FILES FILESIZE8
-        VALUE STAR_META FILES FILECHKSUM8 FORMATTED
+        VALUE STAR_META FILEINFO FILENAME_7
+        VALUE STAR_META FILEINFO FILESIZE_7
+        VALUE STAR_META FILEINFO FILECHKSUM_7 FORMATTED
         BUTTON 'Delete File' 'cmd("STAR","DELFILE","FILEIDX" => 7)'
+        BUTTON 'Get Info' 'require "star_get_fileinfo.rb"; get_star_fileinfo(7);'
+        BUTTON 'Send File' 'cmd("STAR","SENDFILE","FILEIDX" => 7)'
       END
       HORIZONTAL
         LABEL "File8"
-        VALUE STAR_META FILES FILENAME9
-        VALUE STAR_META FILES FILESIZE9
-        VALUE STAR_META FILES FILECHKSUM9 FORMATTED
+        VALUE STAR_META FILEINFO FILENAME_8
+        VALUE STAR_META FILEINFO FILESIZE_8
+        VALUE STAR_META FILEINFO FILECHKSUM_8 FORMATTED
         BUTTON 'Delete File' 'cmd("STAR","DELFILE","FILEIDX" => 8)'
+        BUTTON 'Get Info' 'require "star_get_fileinfo.rb"; get_star_fileinfo(8);'
+        BUTTON 'Send File' 'cmd("STAR","SENDFILE","FILEIDX" => 8)'
+      END
+      HORIZONTAL
+        LABEL "File9"
+        VALUE STAR_META FILEINFO FILENAME_9
+        VALUE STAR_META FILEINFO FILESIZE_9
+        VALUE STAR_META FILEINFO FILECHKSUM_9 FORMATTED
+        BUTTON 'Delete File' 'cmd("STAR","DELFILE","FILEIDX" => 9)'
+        BUTTON 'Get Info' 'require "star_get_fileinfo.rb"; get_star_fileinfo(9);'
+        BUTTON 'Send File' 'cmd("STAR","SENDFILE","FILEIDX" => 9)'
       END
   END
  

@@ -13,16 +13,6 @@ INTERFACE COSMOS_INT cmd_tlm_server_interface.rb
   # RECONNECT_DELAY 15.0
   # LOG_RAW
   
-  
-# CCSDS_INT is a serial interface designed to talk directly to a payload's serial connection using CCSDS messages.
-# The interface will calculate the checksum and length of any packet sent through it and will overwrite 
-# those fields of the CCSDS header.
-
-#         interface_name  file_name          write read baud   parity stop timeouts stream len_loc len_len len_offset
-INTERFACE STARCCSDS_INT2  interface_ccsds_star.rb COM10  COM10 57600   NONE   1    nil nil  LENGTH 32      16      7
-  #TARGET STAR
-  DONT_CONNECT
-  
 # CCSDS_INT is a serial interface designed to talk directly to a payload's serial connection using CCSDS messages.
 # The interface will calculate the checksum and length of any packet sent through it and will overwrite 
 # those fields of the CCSDS header.
@@ -79,8 +69,8 @@ INTERFACE XBEE_INT  interface_ccsds_xbee.rb      COM6  COM6 9600   NONE   1    n
   #TARGET LINK  
   DONT_CONNECT
  
-INTERFACE_TARGET SIM_SCORCH cmd_tlm_server.txt # Use cmd_tlm_server.txt in target package 
-  DONT_CONNECT
+#INTERFACE_TARGET SIM_SCORCH cmd_tlm_server.txt # Use cmd_tlm_server.txt in target package 
+#  DONT_CONNECT
   
 ROUTER INST_ROUTER tcpip_server_interface.rb 2055 2055 10.0 nil LENGTH 32 16 7
   OPTION LISTEN_ADDRESS 127.0.0.1

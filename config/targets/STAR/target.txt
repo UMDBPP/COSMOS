@@ -1,5 +1,7 @@
-# Requires for limits responses and custom conversion classes
-#REQUIRE example_limits_response.rb
+# Requires file receiving processors
+REQUIRE star_beginfile_processor.rb
+REQUIRE star_endfile_processor.rb
+REQUIRE star_filedata_processor.rb
 
 # Ignored Parameters
 # IGNORE_PARAMETER parameter_name

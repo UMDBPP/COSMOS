@@ -49,18 +49,13 @@ COMMAND STAR SENDFILE BIG_ENDIAN "Commands STAR to send a file from the SD card 
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 19} %>
   APPEND_PARAMETER FILEIDX 8 UINT 0 10 0 "File Idx" 
-  HAZARDOUS
+  HAZARDOUS "This will cause STAR to freeze for several seconds while the file is sent"
   
 COMMAND STAR DELFILE BIG_ENDIAN "Commands STAR to delete a file from its SD card"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 20} %>
   APPEND_PARAMETER FILEIDX 8 UINT 0 10 0 "File Idx" 
-  HAZARDOUS
-
-COMMAND STAR FILECHKSUM BIG_ENDIAN "Commands STAR to return the checksum of a file on the SD"
-  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
-  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 21} %>
-  APPEND_PARAMETER FILEIDX 8 UINT 0 10 0 "File Idx" 
+  HAZARDOUS "This will permanently delete the file!"
   
 COMMAND STAR RCVFILE BIG_ENDIAN "Commands STAR to write the data from this message as a file to the SD"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
