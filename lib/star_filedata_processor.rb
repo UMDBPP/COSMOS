@@ -5,13 +5,20 @@ class StarFiledataProcessor < Cosmos::Processor
   end
 
   def call(packet, buffer)
+    
     puts "FileData Call method:"
-    puts packet
-    #if(File.file?(filename))
-    #  puts "File exists! Deleting"
-    #else
-    #  puts "File doesn't exist, read to write"
-    #end
+    filename = packet.read("FILENAME").strip
+    if(File.file?(filename))
+      # open and append to file
+      target = open(filename, 'a')
+    
+      # write the data to the file
+      target.write(packet.read("FILEDATA"))
+    
+      target.close
+    else
+      puts "File doesn't exist, failed to write"
+    end
     
   end
   
