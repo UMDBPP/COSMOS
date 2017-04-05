@@ -42,12 +42,13 @@ INTERFACE STARCCSDS_INT       interface_ccsds_star.rb COM11  COM11 57600   NONE 
 # proper payload. 
 
 #         interface name  file name              write read baud   parity stop timeouts stream len_loc len_len len_offset
-INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM1 COM1 57600   NONE   1    nil nil  LENGTH 32      16      7
+INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM4 COM4 57600   NONE   1    nil nil  LENGTH 32      16      7
   TARGET SCORCH
   TARGET LINK  
   TARGET CAMERA
   TARGET MARS1
   TARGET MARS2
+  TARGET HELIOS
   #TARGET RFD900
   DONT_CONNECT
   
@@ -73,7 +74,7 @@ INTERFACE RFD900_INT      interface_rfd900.rb    COM1  COM1 57600  NONE   1    n
 # with a Xbee header which will result in the message being sent to the proper address (as defined in APIDs.txt). 
 
 #         interface name  file name              write read baud   parity stop timeouts stream len_loc len_len len_offset
-INTERFACE XBEE_INT  interface_ccsds_xbee.rb      COM6  COM6 9600   NONE   1    nil nil  LENGTH 8       16      4
+INTERFACE XBEE_INT  interface_ccsds_xbee.rb      COM3  COM3 9600   NONE   1    nil nil  LENGTH 8       16      4
   TARGET XBEE
   #TARGET SCORCH
   #TARGET LINK  

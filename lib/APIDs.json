@@ -47,5 +47,12 @@
   "630":"Pwr Stat Msg",
   "640":"IMU Stat Msg",
   "650":"Arm Stat Msg"
+  },
+"HELIOS":{
+  "XBEE":"8",
+  "800":"Cmd",
+  "810":"HK Tlm Msg",
+  "850":"Conf Msg",
+  "890":"Err Msg"
   }
 }
