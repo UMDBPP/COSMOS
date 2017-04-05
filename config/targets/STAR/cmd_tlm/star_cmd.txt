@@ -35,3 +35,31 @@ COMMAND STAR QUEUE BIG_ENDIAN "STAR Command Queue command"
 COMMAND STAR RESET_MET BIG_ENDIAN "STAR RESET_MET command"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 16} %>
+  
+COMMAND STAR FILEINFO BIG_ENDIAN "STAR RESET_MET command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 17} %>
+  APPEND_PARAMETER FILEIDX 8 UINT 0 10 0 "File Idx" 
+
+COMMAND STAR REBOOT BIG_ENDIAN "STAR RESET_MET command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 18} %>
+  
+COMMAND STAR SENDFILE BIG_ENDIAN "Commands STAR to send a file from the SD card to the ground"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 19} %>
+  APPEND_PARAMETER FILEIDX 8 UINT 0 10 0 "File Idx" 
+  HAZARDOUS "This will cause STAR to freeze for several seconds while the file is sent"
+  
+COMMAND STAR DELFILE BIG_ENDIAN "Commands STAR to delete a file from its SD card"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 20} %>
+  APPEND_PARAMETER FILEIDX 8 UINT 0 10 0 "File Idx" 
+  HAZARDOUS "This will permanently delete the file!"
+  
+COMMAND STAR RCVFILE BIG_ENDIAN "Commands STAR to write the data from this message as a file to the SD"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 22} %>
+  APPEND_PARAMETER FILENAME 96 STRING "Name of file to write" 
+  APPEND_PARAMETER FILESIZE 16 UINT 0 65535 0 "Size of file to write" 
+  APPEND_PARAMETER FILEDATA 0 BLOCK "File Idx" 

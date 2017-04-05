@@ -40,3 +40,39 @@ TELEMETRY STAR STATUS BIG_ENDIAN "STAR STATUS Packet"
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM STATUS 8 INT "STATUS Code"
     STATE INITALIZED 1
+
+TELEMETRY STAR FILEINFO BIG_ENDIAN "STAR FileInfo Packet"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 150} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM FILENAME 96 STRING "Filename"
+  APPEND_ITEM FILESIZE 32 UINT "File size (bytes)"
+  APPEND_ITEM CHCKSUM 8 UINT "File checksum"
+    FORMAT_STRING "0x%0X"
+    
+TELEMETRY STAR START_FILE_SEND BIG_ENDIAN "Stores data from a file being received"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 170} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM FILENAME 96 STRING "Name of File"
+  APPEND_ITEM FILESIZE 32 UINT "Size of File"
+  APPEND_ITEM CHCKSUM 8 UINT "File checksum"
+    FORMAT_STRING "0x%0X"
+  PROCESSOR STAR_BEGINFILE_PROC star_beginfile_processor.rb FILENAME
+
+TELEMETRY STAR FILEDATA BIG_ENDIAN "Stores data from a file being received"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 171} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM FILENAME 96 STRING "Name of File"
+  APPEND_ARRAY_ITEM FILEDATA 8 UINT 0 "100bytes of filedata"
+  PROCESSOR STAR_FILEDATA_PROC star_filedata_processor.rb FILEDATA
+
+TELEMETRY STAR END_FILE_SEND BIG_ENDIAN "Stores data from a file being received"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 172} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM FILENAME 96 STRING "Name of File"
+  APPEND_ITEM FILESIZE 32 UINT "Size of File"
+  APPEND_ITEM CHCKSUM 8 UINT "File checksum"
+    FORMAT_STRING "0x%0X"
+  PROCESSOR STAR_ENDFILE_PROC star_endfile_processor.rb FILESIZE FILECHKSUM
+
+  
+  
