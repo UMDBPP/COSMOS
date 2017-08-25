@@ -17,11 +17,11 @@ INTERFACE COSMOS_INT cmd_tlm_server_interface.rb
 # The interface will calculate the checksum and length of any packet sent through it and will overwrite 
 # those fields of the CCSDS header.
 
-#         interface_name  file_name          write read baud   parity stop timeouts stream len_loc len_len len_offset
-INTERFACE STARCCSDS_INT       interface_ccsds_star.rb COM9  COM9 57600   NONE   1    nil nil  LENGTH 32      16      7
+#         interface_name      file_name               write read baud    parity stop timeouts stream len_loc len_len len_offset bytepercnt  endian      discard sync  max_len fill_len
+#INTERFACE STARCCSDS_INT       interface_ccsds_star.rb COM9  COM9 57600   NONE   1    nil nil  LENGTH 32      16      7          1           BIG_ENDIAN  0       nil   nil     true
   #TARGET SCORCH
   #TARGET LINK
-  TARGET STAR
+#  TARGET STAR
   
 # LINKCCSDS_INT is designed to talk to payloads through the LINK message routing.
 # This iterface performs the same actions as the CCSDS_INT for the outgoing packets. 
@@ -31,8 +31,8 @@ INTERFACE STARCCSDS_INT       interface_ccsds_star.rb COM9  COM9 57600   NONE   
 # and a destination xbee address (as defined in APIDs.txt) so that LINK will forward the message to the 
 # proper payload. 
 
-#         interface name  file name              write read baud   parity stop timeouts stream len_loc len_len len_offset
-INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM1 COM1 57600   NONE   1    nil nil  LENGTH 32      16      7
+#         interface name  file name              write read baud   parity stop timeouts stream len_loc len_len len_offset  bytepercnt  endian      discard sync  max_len fill_len
+INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM1 COM1 57600   NONE   1    nil nil  LENGTH 32      16      7            1           BIG_ENDIAN  0       nil   nil     true
   TARGET SCORCH
   TARGET LINK  
   TARGET CAMERA
@@ -62,8 +62,8 @@ INTERFACE RFD900_INT      interface_rfd900.rb    COM1  COM1 57600  NONE   1    n
 # The interface will also wrap any non-XBee message sent through it (as identified by the lack of start bytes)
 # with a Xbee header which will result in the message being sent to the proper address (as defined in APIDs.txt). 
 
-#         interface name  file name              write read baud   parity stop timeouts stream len_loc len_len len_offset
-INTERFACE XBEE_INT  interface_ccsds_xbee.rb      COM6  COM6 9600   NONE   1    nil nil  LENGTH 8       16      4
+#         interface name  file name              write read baud   parity stop timeouts stream len_loc len_len len_offset  bytepercnt  endian      discard sync  max_len fill_len
+INTERFACE XBEE_INT  interface_ccsds_xbee.rb      COM6  COM6 9600   NONE   1    nil nil  LENGTH 8       16      4           1           BIG_ENDIAN  0       nil   nil     true
   TARGET XBEE
   #TARGET SCORCH
   #TARGET LINK  

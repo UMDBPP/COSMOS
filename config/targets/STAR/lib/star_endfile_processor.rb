@@ -1,5 +1,5 @@
 class StarEndfileProcessor < Cosmos::Processor
-  def initialize(filesize, filechecksum)
+  def initialize()
     puts "This is the endfile processor"
     
   end
@@ -8,7 +8,7 @@ class StarEndfileProcessor < Cosmos::Processor
     puts "Endfile Call method:"
     puts packet
     
-    filename = packet.read("FILENAME").strip
+    filename = Dir.pwd << '/' << packet.read("FILENAME").strip
     expected_chksum = packet.read("CHCKSUM")
     calc_chksum = 0xFF
     
