@@ -1,10 +1,18 @@
 USER_MODIFIED
+<<<<<<< HEAD
 "lib/APIDs.json" 0xCE8A528C
+=======
+"lib/APIDs.json" 0x5DFE9258
+>>>>>>> 0770daea528b9cc23d84ba542fdb7a93f129a5ed
 "lib/ccsds.rb" 0x7C30BF29
 "lib/example_background_task.rb" 0x01426696
 "lib/example_target.rb" 0xFBEF2AE3
 "lib/interface_ccsds.rb" 0x70450951
+<<<<<<< HEAD
 "lib/interface_ccsds_link.rb" 0x1DE6DE75
+=======
+"lib/interface_ccsds_link.rb" 0x4E42DC4A
+>>>>>>> 0770daea528b9cc23d84ba542fdb7a93f129a5ed
 "lib/interface_ccsds_star.rb" 0x1E387613
 "lib/interface_ccsds_xbee.rb" 0x8CE2B196
 "lib/interface_rfd900.rb" 0x6CA30A7B
@@ -34,7 +42,11 @@ USER_MODIFIED
 "config/data/tada.wav" 0x1ABCFFD1
 "config/data/vswitchoff.gif" 0xFAE436C9
 "config/data/vswitchon.gif" 0xD747AC45
+<<<<<<< HEAD
 "config/system/system.txt" 0xBF3A52B2
+=======
+"config/system/system.txt" 0x0AC54436
+>>>>>>> 0770daea528b9cc23d84ba542fdb7a93f129a5ed
 "config/targets/CAMERA/cmd_tlm/camera_cmd.txt" 0xE83BA328
 "config/targets/CAMERA/cmd_tlm/camera_tlm.txt" 0x8B33F3D1
 "config/targets/CAMERA/screens/env.txt" 0xD8A74D83
@@ -51,6 +63,9 @@ USER_MODIFIED
 "config/targets/COSMOS/screens/limits_change.txt" 0xE8C47C54
 "config/targets/COSMOS/screens/version.txt" 0x393D4F72
 "config/targets/COSMOS/target.txt" 0xB39D9281
+"config/targets/HELIOS/cmd_tlm/helios_cmd.txt" 0x2B6846DD
+"config/targets/HELIOS/cmd_tlm/helios_tlm.txt" 0xA7E800C4
+"config/targets/HELIOS/target.txt" 0x3EE6E037
 "config/targets/LINK/cmd_tlm/link_cmd.txt" 0x7354CED8
 "config/targets/LINK/cmd_tlm/link_tlm.txt" 0x173D9442
 "config/targets/LINK/screens/status.txt" 0x83C4EDE3
@@ -79,17 +94,29 @@ USER_MODIFIED
 "config/targets/SIM_SCORCH/lib/example_limits_response.rb" 0xB4A746B1
 "config/targets/SIM_SCORCH/lib/sim_scorch.rb" 0x092CF7A8
 "config/targets/SIM_SCORCH/target.txt" 0xB290AF49
+<<<<<<< HEAD
 "config/targets/STAR/cmd_tlm/star_cmd.txt" 0x01C8D9FC
 "config/targets/STAR/cmd_tlm/star_tlm.txt" 0x00507717
 "config/targets/STAR/screens/status.txt" 0xB9C72A50
 "config/targets/STAR/target.txt" 0xC6452E17
 "config/targets/STAR_META/cmd_tlm/star_meta_tlm.txt" 0x2DDE1932
+=======
+"config/targets/STAR/cmd_tlm/star_cmd.txt" 0x339AD63C
+"config/targets/STAR/cmd_tlm/star_tlm.txt" 0xB82DDD3A
+"config/targets/STAR/target.txt" 0x6460A8E0
+"config/targets/STAR_CMDSEQ/cmd_tlm/star_cmdseq_cmd.txt" 0xC11FA928
+"config/targets/STAR_CMDSEQ/target.txt" 0xB2AC842D
+>>>>>>> 0770daea528b9cc23d84ba542fdb7a93f129a5ed
 "config/targets/SYSTEM/cmd_tlm/limits_groups.txt" 0x5990760A
 "config/targets/SYSTEM/cmd_tlm/override.txt" 0xA3C6D634
 "config/targets/XBEE/cmd_tlm/xbee_cmd.txt" 0xD2EED8C4
 "config/targets/XBEE/cmd_tlm/xbee_tlm.txt" 0x264E8A42
 "config/targets/XBEE/target.txt" 0x249E0895
+<<<<<<< HEAD
 "config/tools/cmd_tlm_server/cmd_tlm_server.txt" 0x632D4DB7
+=======
+"config/tools/cmd_tlm_server/cmd_tlm_server.txt" 0xCC8731C9
+>>>>>>> 0770daea528b9cc23d84ba542fdb7a93f129a5ed
 "config/tools/data_viewer/data_viewer.txt" 0xCAC3B017
 "config/tools/handbook_creator/default_toc.xsl" 0x4122A040
 "config/tools/handbook_creator/handbook_creator.txt" 0xAA806C94

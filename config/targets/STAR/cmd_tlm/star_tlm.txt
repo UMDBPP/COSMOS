@@ -56,14 +56,22 @@ TELEMETRY STAR START_FILE_SEND BIG_ENDIAN "Stores data from a file being receive
   APPEND_ITEM FILESIZE 32 UINT "Size of File"
   APPEND_ITEM CHCKSUM 8 UINT "File checksum"
     FORMAT_STRING "0x%0X"
+<<<<<<< HEAD
   PROCESSOR STAR_BEGINFILE_PROC star_beginfile_processor.rb
+=======
+  
+>>>>>>> 0770daea528b9cc23d84ba542fdb7a93f129a5ed
 
 TELEMETRY STAR FILEDATA BIG_ENDIAN "Stores data from a file being received"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 171} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM FILENAME 96 STRING "Name of File"
   APPEND_ARRAY_ITEM FILEDATA 8 UINT 0 "100bytes of filedata"
+<<<<<<< HEAD
   PROCESSOR STAR_FILEDATA_PROC star_filedata_processor.rb
+=======
+
+>>>>>>> 0770daea528b9cc23d84ba542fdb7a93f129a5ed
 
 TELEMETRY STAR END_FILE_SEND BIG_ENDIAN "Stores data from a file being received"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 172} %>
@@ -72,7 +80,11 @@ TELEMETRY STAR END_FILE_SEND BIG_ENDIAN "Stores data from a file being received"
   APPEND_ITEM FILESIZE 32 UINT "Size of File"
   APPEND_ITEM CHCKSUM 8 UINT "File checksum"
     FORMAT_STRING "0x%0X"
+<<<<<<< HEAD
   PROCESSOR STAR_ENDFILE_PROC star_endfile_processor.rb
+=======
+ 
+>>>>>>> 0770daea528b9cc23d84ba542fdb7a93f129a5ed
 
   
   

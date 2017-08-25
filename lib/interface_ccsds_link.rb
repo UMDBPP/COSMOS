@@ -31,7 +31,7 @@ class InterfaceCcsdsLink < SerialInterface
       # if the packet is not a link message, prepend a LINK command to foward
       # the message to the appropriate payload
       if(!isPayloadPkt(data,'LINK'))
-        puts "Found non-link packet!"
+        puts "Found non-link packet, forwarding to intended payload!"
         
         # update the packet length for the LINK forward command
         data = update_ccsds_length(data)
