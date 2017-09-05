@@ -6,6 +6,13 @@ NUM_COLUMNS 5 # This is the default
 TOOL "Command and Telemetry Server" "LAUNCH CmdTlmServer" "cts.png" --config cmd_tlm_server.txt
 TOOL "Replay" "LAUNCH Replay" "replay.png"
 TOOL "Limits Monitor" "LAUNCH LimitsMonitor" "limits_monitor.png"
+MULTITOOL_START "Simulated Targets" NULL
+  TOOL "LAUNCH_TERMINAL ExampleTarget"
+    DONT_CAPTURE_IO # Without this you get an "Unexpected Output" dialog
+  TOOL "LAUNCH_TERMINAL ScpiTarget"
+    DONT_CAPTURE_IO # Without this you get an "Unexpected Output" dialog
+MULTITOOL_END
+# Example of another multitool button
 MULTITOOL_START "COSMOS"
   TOOL "LAUNCH CmdTlmServer -x 827 -y 2 -w 756 -t 475 -c cmd_tlm_server.txt"
   DELAY 5
@@ -19,14 +26,9 @@ DIVIDER
 LABEL "Commanding and Scripting"
 
 TOOL "Command Sender" "LAUNCH CmdSender" "cmd_sender.png"
+TOOL "Command Sequence" "LAUNCH CmdSequence" "cmd_sequence.png"
 TOOL "Script Runner" "LAUNCH ScriptRunner" "script_runner.png"
 TOOL "Test Runner" "LAUNCH TestRunner" "test_runner.png"
-MULTITOOL_START "Simulated Targets" NULL
-  TOOL "LAUNCH_TERMINAL ExampleTarget"
-    DONT_CAPTURE_IO # Without this you get an "Unexpected Output" dialog
-  TOOL "LAUNCH_TERMINAL ScpiTarget"
-    DONT_CAPTURE_IO # Without this you get an "Unexpected Output" dialog
-MULTITOOL_END
 
 DIVIDER
 LABEL Telemetry
@@ -39,6 +41,7 @@ TOOL "Data Viewer" "LAUNCH DataViewer" "data_viewer.png"
 DIVIDER
 LABEL Utilities
 
+TOOL "Config Editor" "LAUNCH ConfigEditor" "config_editor.png"
 TOOL "Telemetry Extractor" "LAUNCH TlmExtractor" "tlm_extractor.png"
 TOOL "Command Extractor" "LAUNCH CmdExtractor" "cmd_extractor.png"
 TOOL "Handbook Creator" "LAUNCH HandbookCreator" "handbook_creator.png"

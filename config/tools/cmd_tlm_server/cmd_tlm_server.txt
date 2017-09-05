@@ -33,14 +33,33 @@ INTERFACE COSMOS_INT cmd_tlm_server_interface.rb
 
 #         interface name  file name              write read baud   parity stop timeouts stream len_loc len_len len_offset  bytepercnt  endian      discard sync  max_len fill_len
 INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM4 COM4 57600   NONE   1    nil nil  LENGTH 32      16      7            1           BIG_ENDIAN  0       nil   nil     true
-  TARGET SCORCH
-  TARGET LINK  
-  TARGET CAMERA
-  TARGET MARS1
-  TARGET MARS2
-  TARGET HELIOS
+  #TARGET SCORCH
+  #TARGET LINK  
+  #TARGET CAMERA
+  #TARGET MARS1
+  #TARGET MARS2
+  #TARGET HELIOS
   #TARGET RFD900
   DONT_CONNECT
+
+#         interface name  file name              write read baud   parity stop timeouts stream len_loc len_len len_offset  bytepercnt  endian      discard sync  max_len fill_len
+INTERFACE CFS_INT  interface_ccsds.rb /dev/ttyS3 /dev/ttyS3 115200   NONE   1    nil nil  LENGTH 32      16      7            1           BIG_ENDIAN  0       nil   nil     true 
+  TARGET CFE_ES
+  TARGET CFE_EVS
+  TARGET CFE_SB
+  TARGET CFE_TBL
+  TARGET CFE_TIME
+  TARGET CFS_CS
+  TARGET CFS_DS
+  TARGET CFS_FM
+  TARGET CFS_HK
+  TARGET CFS_HS
+  TARGET CFS_LC
+  TARGET CFS_MD
+  TARGET CFS_MM
+  TARGET CFS_SC
+  TARGET CFS_SCH
+  TARGET CFS_TO
   
 # RFD900_INT is designed to talk to payloads through the LINK message routing.
 # This iterface performs the same actions as the CCSDS_INT for the outgoing packets. 
@@ -52,7 +71,7 @@ INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM4 COM4 57600   NONE   1    n
 
 #         interface name  file name              write read baud   parity stop timeouts stream      write_term read_term
 INTERFACE RFD900_INT      interface_rfd900.rb    COM1  COM1 57600  NONE   1    nil nil  TERMINATED  ''         0x0D0A
-  TARGET RFD900
+  #TARGET RFD900
   DONT_CONNECT
   
   
@@ -65,7 +84,7 @@ INTERFACE RFD900_INT      interface_rfd900.rb    COM1  COM1 57600  NONE   1    n
 
 #         interface name  file name              write read baud   parity stop timeouts stream len_loc len_len len_offset  bytepercnt  endian      discard sync  max_len fill_len
 INTERFACE XBEE_INT  interface_ccsds_xbee.rb      COM3  COM3 9600   NONE   1    nil nil  LENGTH 8       16      4           1           BIG_ENDIAN  0       nil   nil     true
-  TARGET XBEE
+  #TARGET XBEE
   #TARGET SCORCH
   #TARGET LINK  
   DONT_CONNECT

@@ -1,5 +1,5 @@
 #!/bin/bash -l
-TOOLNAME=OpenGLBuilder
+TOOLNAME=CmdSequence
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 rm $DIR/$TOOLNAME
 if hash rbenv 2>/dev/null; then
