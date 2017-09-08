@@ -1,12 +1,13 @@
 require 'cosmos' # always require cosmos
-require 'cosmos/interfaces'
+require 'cosmos/interfaces/protocols/protocol' # original interface being extended
+
 #require 'json'
     
 module COSMOS
   class LinkProtocol < Protocol
 
-    def initialize(allow_empty_data )
-      super(allow_empty_data)
+    def initialize()
+      super()
     
       # read json definition file needed for the processing functions
       file = File.read(File.join(File.dirname(__FILE__),'APIDs.json'))
