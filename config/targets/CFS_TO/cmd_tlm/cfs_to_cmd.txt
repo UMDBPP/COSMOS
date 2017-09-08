@@ -1,4 +1,4 @@
-COMMAND CFS_TO Noop BIG_ENDIAN ""
+COMMAND CFS_TO NOOP BIG_ENDIAN ""
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x80} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 0} %>
 
@@ -6,7 +6,7 @@ COMMAND CFS_TO RESET_COUNTERS BIG_ENDIAN ""
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x80} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 1} %>
 
-COMMAND CFS_TO AddPkt BIG_ENDIAN ""
+COMMAND CFS_TO ADD_PKT BIG_ENDIAN ""
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x80} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 2} %>
   APPEND_PARAMETER STREAM_ID 16 UINT MIN_UINT16 MAX_UINT16 0 "Stream ID of packet to add."
@@ -14,16 +14,16 @@ COMMAND CFS_TO AddPkt BIG_ENDIAN ""
   APPEND_PARAMETER Flags 16 UINT MIN_UINT16 MAX_UINT16 0 "Stream ID of packet to add."
   APPEND_PARAMETER BufLimit 8 UINT MIN_UINT8 MAX_UINT8 0 "Stream ID of packet to add."
 
-COMMAND CFS_TO Send_DataTypes BIG_ENDIAN ""
+COMMAND CFS_TO SEND_DATATYPES BIG_ENDIAN ""
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x80} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 3} %>
 
-COMMAND CFS_TO RemovePkt BIG_ENDIAN ""
+COMMAND CFS_TO REMOVE_PKT BIG_ENDIAN ""
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x80} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 4} %>
   APPEND_PARAMETER STREAM_ID 16 UINT MIN_UINT16 MAX_UINT16 0 "Stream ID of packet to remove."
 
-COMMAND CFS_TO RemoveAllPkt BIG_ENDIAN ""
+COMMAND CFS_TO REMOVE_ALL_PKT BIG_ENDIAN ""
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x80} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 5} %>
 

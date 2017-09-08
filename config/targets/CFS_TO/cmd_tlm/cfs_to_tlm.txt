@@ -1,4 +1,4 @@
-TELEMETRY CFS_TO CFE_TO_HKPACKET BIG_ENDIAN "Telemetry Output Housekeeping Packet"
+TELEMETRY CFS_TO HKPACKET BIG_ENDIAN "Telemetry Output Housekeeping Packet"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 0x80} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM ERRCOUNTER 8 UINT "The TO Application Command Error Counter."

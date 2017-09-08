@@ -2,7 +2,7 @@ COMMAND BMP280 NOOP BIG_ENDIAN "This command performs no other function than to 
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x82} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 0x00} %>
 
-COMMAND BMP280 RESET_COUNTERS BIG_ENDIAN "=."
+COMMAND BMP280 RESET_COUNTERS BIG_ENDIAN "This command resets the following counters within the BMP280 housekeeping telemetry: Command Execution Counter, Command Error Counter "
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x82} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 12} %>
 

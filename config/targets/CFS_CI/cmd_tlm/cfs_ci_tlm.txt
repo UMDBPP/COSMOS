@@ -3,10 +3,10 @@ TELEMETRY CFS_CI HKPACKET BIG_ENDIAN "Command Ingest Housekeeping Packet"
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM ERRCOUNTER 8 UINT "The CI Application Command Error Counter."
   APPEND_ITEM CMDCOUNTER 8 UINT "The CI Application Command Counter."
-  APPEND_ITEM ChkSumEnabled 8 UINT "Checksum of cFE Core Code."
+  APPEND_ITEM ChkSumEnabled 8 UINT "Flag indicating if CI currently validates checksums on received packets."
     STATE ENABLED 1
     STATE DISABLED 0
-  APPEND_ITEM SocketConnected 8 UINT "Checksum of cFE Core Code."
+  APPEND_ITEM SerialConnected 8 UINT "Flag indicating if serial port is currently connected."
     STATE CONNECTED 1
     STATE DISCONNECTED 0
   APPEND_ITEM FDPdusDropped 8 UINT "Checksum of cFE Core Code."
@@ -14,8 +14,8 @@ TELEMETRY CFS_CI HKPACKET BIG_ENDIAN "Command Ingest Housekeeping Packet"
   APPEND_ITEM FINPdusDropped 8 UINT "Checksum of cFE Core Code."
   APPEND_ITEM ACKPdusDropped 8 UINT "Checksum of cFE Core Code."
   APPEND_ITEM MDPdusDropped 8 UINT "Checksum of cFE Core Code."
-  APPEND_ITEM spare1 8 UINT ""
-  APPEND_ITEM spare2 16 UINT ""
+  APPEND_ITEM SPARE1 8 UINT "Packet padding added by the compiler. Should always be zero."
+  APPEND_ITEM SPARE2 16 UINT "Packet padding added by the compiler. Should always be zero."
   APPEND_ITEM IngestPackets 32 UINT "Checksum of cFE Core Code."
   APPEND_ITEM IngestErrors 32 UINT "Checksum of cFE Core Code."
   APPEND_ITEM PDUsCaptured 32 UINT "Checksum of cFE Core Code."

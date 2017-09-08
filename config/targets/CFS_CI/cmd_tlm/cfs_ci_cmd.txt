@@ -1,7 +1,7 @@
-COMMAND CFS_CI Noop BIG_ENDIAN ""
+COMMAND CFS_CI NOOP BIG_ENDIAN "This command performs no other function than to increment the command execution counter. The command may be used to verify general aliveness of the Command Ingest task."
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x84} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 0} %>
 
-COMMAND CFS_CI RESET_COUNTERS BIG_ENDIAN ""
+COMMAND CFS_CI RESET_COUNTERS BIG_ENDIAN This command resets the following counters within the Command Ingest housekeeping telemetry: Command Execution Counter, Command Error Counter 
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x84} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 1} %>

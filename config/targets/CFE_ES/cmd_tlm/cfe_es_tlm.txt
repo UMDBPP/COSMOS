@@ -1,4 +1,4 @@
-TELEMETRY CFS_ES CFE_ES_HKPACKET BIG_ENDIAN "Executive Services Housekeeping Packet"
+TELEMETRY CFE_ES HKPACKET BIG_ENDIAN "Executive Services Housekeeping Packet"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 0x00} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
   APPEND_ITEM CMDCOUNTER 8 UINT "The ES Application Command Counter."
@@ -40,7 +40,7 @@ TELEMETRY CFS_ES CFE_ES_HKPACKET BIG_ENDIAN "Executive Services Housekeeping Pac
   APPEND_ITEM HEAPBLOCKSFREE 32 UINT "Number of free blocks remaining in the OS heap."
   APPEND_ITEM HEAPMAXBLOCKSIZE 32 UINT "Number of bytes in the largest free block."
 
-TELEMETRY CFS_ES CFE_ES_ONEAPPTLM BIG_ENDIAN "Single Application Information Packet"
+TELEMETRY CFE_ES ONEAPPTLM BIG_ENDIAN "Single Application Information Packet"
   APPEND_ID_ITEM CCSDS_STREAMID 16 UINT 0x080B "CCSDS Packet Identification"
   APPEND_ITEM CCSDS_SEQUENCE 16 UINT "CCSDS Packet Sequence Control"
   APPEND_ITEM CCSDS_LENGTH 16 UINT "CCSDS Packet Data Length"
@@ -68,7 +68,7 @@ TELEMETRY CFS_ES CFE_ES_ONEAPPTLM BIG_ENDIAN "Single Application Information Pac
   APPEND_ITEM APPINFO_MAINTASKNAME 160 STRING "The Application's Main Task ID. (Parent: For more information, see CFE_ES_AppInfo_t.)"
   APPEND_ITEM APPINFO_NUMOFCHILDTASKS 32 UINT "Number of Child tasks for an App. (Parent: For more information, see CFE_ES_AppInfo_t.)"
 
-TELEMETRY CFS_ES CFE_ES_POOLSTATSTLM BIG_ENDIAN "Memory Pool Statistics Packet"
+TELEMETRY CFE_ES POOLSTATSTLM BIG_ENDIAN "Memory Pool Statistics Packet"
   APPEND_ID_ITEM CCSDS_STREAMID 16 UINT 0x0810 "CCSDS Packet Identification"
   APPEND_ITEM CCSDS_SEQUENCE 16 UINT "CCSDS Packet Sequence Control"
   APPEND_ITEM CCSDS_LENGTH 16 UINT "CCSDS Packet Data Length"
@@ -81,7 +81,7 @@ TELEMETRY CFS_ES CFE_ES_POOLSTATSTLM BIG_ENDIAN "Memory Pool Statistics Packet"
   APPEND_ITEM POOLSTATS_NUMFREEBYTES 32 UINT "Number of bytes never allocated to a block. (Parent: For more info, see CFE_ES_MemPoolStats_t.)"
   APPEND_ARRAY_ITEM POOLSTATS_BLOCKSTATS 96 UINT 1632 "Contains stats on each block size. (Parent: For more info, see CFE_ES_MemPoolStats_t.)"
 
-TELEMETRY CFS CFE_ES_SHELLPACKET BIG_ENDIAN "OS Shell Output Packet"
+TELEMETRY CFE_ES SHELLPACKET BIG_ENDIAN "OS Shell Output Packet"
   APPEND_ID_ITEM CCSDS_STREAMID 16 UINT 0x080F "CCSDS Packet Identification"
   APPEND_ITEM CCSDS_SEQUENCE 16 UINT "CCSDS Packet Sequence Control"
   APPEND_ITEM CCSDS_LENGTH 16 UINT "CCSDS Packet Data Length"
