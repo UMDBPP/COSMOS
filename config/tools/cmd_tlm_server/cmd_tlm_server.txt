@@ -12,41 +12,15 @@ INTERFACE COSMOS_INT cmd_tlm_server_interface.rb
   # DONT_RECONNECT
   # RECONNECT_DELAY 15.0
   # LOG_RAW
-  
-# LINKCCSDS_INT is designed to talk to payloads through the LINK message routing.
-
-#         interface name  file name              write read baud   parity stop timeouts 
-INTERFACE LINKCCSDS_INT  serial_interface.rb COM4 COM4 57600   NONE   1    nil nil 
-# Length protocol will fill the packet's length field
-# Length Arguments: len_loc, len_len, len_offset, bytepercnt, endian, discard sync, max_len, fill_len
-  PROTOCOL READ_WRITE length_protocol  32      16      7            1           BIG_ENDIAN  0       nil   nil     true
-# CCSDS protocol fills the command's checksum  
-# CCSDS Arguments: crc_byte_offset
-  PROTOCOL WRITE ccsds_protocol 7  # fill out the CCSDS packet being sent
-# Link protocol wraps the command in a command to link to forward the packet
-# Link Arguments: N/A
-  PROTOCOL WRITE link_protocol     # wrap it in a link packets
-# CCSDS protocol fills the Link command's checksum
-# CCSDS Arguments: crc_byte_offset
-  PROTOCOL WRITE ccsds_protocol 7   # fill out the link CCSDS header
-  #TARGET SCORCH
-  #TARGET LINK  
-  #TARGET CAMERA
-  #TARGET MARS1
-  #TARGET MARS2
-  #TARGET HELIOS
-  #TARGET RFD900
-  DONT_CONNECT
 
 #         interface name  file name              write read baud   parity stop timeouts
 INTERFACE CFS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 9600   NONE   1    nil nil  
-#  PROTOCOL WRITE crc_protocol TRUE TRUE TRUE TRUE
 # Length protocol will fill the packet's length field
 # Length Arguments: len_loc, len_len, len_offset, bytepercnt, endian, discard sync, max_len, fill_len
-  PROTOCOL READ_WRITE length_protocol  32      16      7            1           BIG_ENDIAN  0       nil   nil 
+  PROTOCOL READ_WRITE length_protocol.rb  32      16      7            1           BIG_ENDIAN  0       nil   nil 
 # CCSDS protocol fills the Link command's checksum
-# CCSDS Arguments: N/A
-  PROTOCOL WRITE ccsds_protocol    # fill out the link CCSDS header
+# CCSDS Arguments: crc_byte_offset
+  PROTOCOL WRITE ccsds_protocol.rb  7
   TARGET CFE_ES
   TARGET CFE_EVS
   TARGET CFE_SB
@@ -64,6 +38,31 @@ INTERFACE CFS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 9600   NONE   1    
   TARGET CFS_SCH
   TARGET CFS_TO
   
+# LINKCCSDS_INT is designed to talk to payloads through the LINK message routing.
+
+#         interface name  file name              write read baud   parity stop timeouts 
+INTERFACE LINKCCSDS_INT  serial_interface.rb COM4 COM4 57600   NONE   1    nil nil 
+# Length protocol will fill the packet's length field
+# Length Arguments: len_loc, len_len, len_offset, bytepercnt, endian, discard sync, max_len, fill_len
+  PROTOCOL READ_WRITE length_protocol  32      16      7            1           BIG_ENDIAN  0       nil   nil     true
+# CCSDS protocol fills the command's checksum  
+# CCSDS Arguments: crc_byte_offset
+  PROTOCOL WRITE ccsds_protocol 7  # fill out the CCSDS packet being sent
+# Link protocol wraps the command in a command to link to forward the packet
+# Link Arguments: N/A
+  #PROTOCOL WRITE link_protocol     # wrap it in a link packets
+# CCSDS protocol fills the Link command's checksum
+# CCSDS Arguments: crc_byte_offset
+  PROTOCOL WRITE ccsds_protocol 7   # fill out the link CCSDS header
+  #TARGET SCORCH
+  #TARGET LINK  
+  #TARGET CAMERA
+  #TARGET MARS1
+  #TARGET MARS2
+  #TARGET HELIOS
+  #TARGET RFD900
+  DONT_CONNECT
+  
 # RFD900_INT is designed to talk to payloads through the LINK message routing.
 # This iterface performs the same actions as the CCSDS_INT for the outgoing packets. 
 #
@@ -73,7 +72,9 @@ INTERFACE CFS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 9600   NONE   1    
 # proper payload. 
 
 #         interface name  file name              write read baud   parity stop timeouts stream      write_term read_term
-INTERFACE RFD900_INT      interface_rfd900.rb    COM1  COM1 57600  NONE   1    nil nil  TERMINATED  ''         0x0D0A
+INTERFACE RFD900_INT      serial_interface.rb    COM1  COM1 57600  NONE   1    nil nil  
+  PROTOCOL READ_WRITE terminated_protocol  0x0000 0x0D0A true  0 nil false
+  PROTOCOL READ_WRITE rfd900_protocol 
   #TARGET RFD900
   DONT_CONNECT
   

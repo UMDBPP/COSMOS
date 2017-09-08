@@ -8,7 +8,7 @@ module Cosmos
       super()
     end
     
-	  def write_data(data)
+    def write_data(data)
 	  
       # only operate on packets destined for Link
       if(isPayloadPkt(data, 'RFD900'))
@@ -28,9 +28,9 @@ module Cosmos
       end      
 		  
       return data
-	  end
+    end
 
-	  def read_data(packet_data)
+    def read_data(packet_data)
 
       p "Received: "
       p packet_data

@@ -1,28 +1,31 @@
+# encoding: ascii-8bit
 
-require 'cosmos' # always require cosmos
-require 'Cosmos::USERPATH/cosmos/interfaces/protocols/protocol'
+require 'cosmos'
+require 'cosmos/interfaces/protocols/protocol'
 
-module COSMOS
+
+module Cosmos
   # Protocol which fills the checksum field of a CCSDS packet with an
   # 8 bit CRC
   class CcsdsProtocol < Protocol
   # @param crc_byte_offset [Integer] The byte offset of the crc field
-  
+
     def initialize(crc_byte_offset = 0)
       super()
-      
-      # Save length field attributes
       @crc_byte_offset = Integer(crc_byte_offset)
     end
-    
+
+    # Called to perform modifications on write data before making it into a packet
+    #
+    # @param data [String] Raw packet data
+    # @return [String] Packet data with filled checksum
     def write_data(data)
-      put "this is a test" 
+      #put "this is a test" 
 
       # update the packet checksum
       data = update_ccsds_checksum(data)
 
-      return data
-
+      return super(data)
     end
 
     def update_ccsds_checksum(packet_data)
@@ -82,12 +85,5 @@ module COSMOS
 
     return val
     end
-
-    
-
   end
-
 end
-
-
-
