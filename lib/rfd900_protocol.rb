@@ -1,10 +1,17 @@
 require 'cosmos' # always require cosmos
-require 'cosmos/interfaces/protocols/protocol' # original interface being extended
+require 'cosmos/interfaces/serial_interface' # original interface being extended
+require 'int_fcn.rb'
+require 'ccsds.rb'
+require 'xbee.rb'
+require 'rfd900.rb'
 
 module Cosmos
-class Rfd900Protocol < Protocol
-  def write_data(data)
-        
+class InterfaceRfd900 < SerialInterface
+  def pre_write_packet(packet)
+  
+    # packet.buffer appears to be a string and is hard to manipulate
+    data = packet.buffer
+      
     if(isPayloadPkt(data, 'RFD900'))
       puts "Found RFD900 packet!"
       # if its an enter AT mode command, don't append CR+NL

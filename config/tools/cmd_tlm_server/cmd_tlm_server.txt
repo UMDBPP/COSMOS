@@ -13,16 +13,6 @@ INTERFACE COSMOS_INT cmd_tlm_server_interface.rb
   # RECONNECT_DELAY 15.0
   # LOG_RAW
   
-# CCSDS_INT is a serial interface designed to talk directly to a payload's serial connection using CCSDS messages.
-# The interface will calculate the checksum and length of any packet sent through it and will overwrite 
-# those fields of the CCSDS header.
-
-#         interface_name      file_name               write read baud    parity stop timeouts stream len_loc len_len len_offset bytepercnt  endian      discard sync  max_len fill_len
-#INTERFACE STARCCSDS_INT       interface_ccsds_star.rb COM9  COM9 57600   NONE   1    nil nil  LENGTH 32      16      7          1           BIG_ENDIAN  0       nil   nil     true
-  #TARGET SCORCH
-  #TARGET LINK
-#  TARGET STAR
-  
 # LINKCCSDS_INT is designed to talk to payloads through the LINK message routing.
 # This iterface performs the same actions as the CCSDS_INT for the outgoing packets. 
 #
@@ -32,7 +22,10 @@ INTERFACE COSMOS_INT cmd_tlm_server_interface.rb
 # proper payload. 
 
 #         interface name  file name              write read baud   parity stop timeouts stream len_loc len_len len_offset  bytepercnt  endian      discard sync  max_len fill_len
-INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM4 COM4 57600   NONE   1    nil nil  LENGTH 32      16      7            1           BIG_ENDIAN  0       nil   nil     true
+INTERFACE LINKCCSDS_INT  serial_interface.rb COM4 COM4 57600   NONE   1    nil nil  LENGTH 32      16      7            1           BIG_ENDIAN  0       nil   nil     true
+  PROTOCOL WRITE ccsds_protocol   # fill out the CCSDS packet being sent
+  PROTOCOL WRITE link_protocol     # wrap it in a link packets
+  PROTOCOL WRITE ccsds_protocol    # fill out the link CCSDS header
   #TARGET SCORCH
   #TARGET LINK  
   #TARGET CAMERA
@@ -43,7 +36,9 @@ INTERFACE LINKCCSDS_INT  interface_ccsds_link.rb COM4 COM4 57600   NONE   1    n
   DONT_CONNECT
 
 #         interface name  file name              write read baud   parity stop timeouts stream len_loc len_len len_offset  bytepercnt  endian      discard sync  max_len fill_len
-INTERFACE CFS_INT  interface_ccsds.rb /dev/ttyS3 /dev/ttyS3 115200   NONE   1    nil nil  LENGTH 32      16      7            1           BIG_ENDIAN  0       nil   nil     true 
+INTERFACE CFS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 9600   NONE   1    nil nil  LENGTH 32      16      7            1           BIG_ENDIAN  0       nil   nil     true 
+#  PROTOCOL WRITE crc TRUE TRUE TRUE TRUE
+  PROTOCOL WRITE ccsds_protocol.rb
   TARGET CFE_ES
   TARGET CFE_EVS
   TARGET CFE_SB
