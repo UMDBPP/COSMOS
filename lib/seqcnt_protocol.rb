@@ -38,7 +38,7 @@ module Cosmos
       seqcnt = seqcnt % 16383
     
       # debug statement
-      puts "seqcnt 0x#{seqcnt.to_s(16)}"
+      #puts "seqcnt 0x#{seqcnt.to_s(16)}"
 
       # get the bytes in that field and convert them back to an integer
       existing_val = packet_data[@seqcnt_byte_offset].unpack("C").last * 256 + packet_data[@seqcnt_byte_offset+1].unpack("C").last

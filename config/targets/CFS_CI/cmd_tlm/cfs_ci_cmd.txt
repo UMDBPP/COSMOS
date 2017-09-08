@@ -1,0 +1,7 @@
+COMMAND CFS_CI Noop BIG_ENDIAN ""
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x84} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 0} %>
+
+COMMAND CFS_CI RESET_COUNTERS BIG_ENDIAN ""
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x84} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 1} %>

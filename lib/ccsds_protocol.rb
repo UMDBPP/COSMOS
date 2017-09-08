@@ -35,7 +35,7 @@ module Cosmos
       packet_data.each_byte {|x| checksum ^= x }
     
       # debug statement
-      puts "checksum 0x#{checksum.to_s(16)}"
+      #puts "checksum 0x#{checksum.to_s(16)}"
     
       # not sure why the pack is necessary for assigning into an element of the data array
       packet_data[@crc_byte_offset] = [checksum].pack("C")

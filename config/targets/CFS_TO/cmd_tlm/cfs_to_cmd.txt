@@ -1,0 +1,36 @@
+COMMAND CFS_TO Noop BIG_ENDIAN ""
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x80} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 0} %>
+
+COMMAND CFS_TO RESET_COUNTERS BIG_ENDIAN ""
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x80} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 1} %>
+
+COMMAND CFS_TO AddPkt BIG_ENDIAN ""
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x80} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 2} %>
+  APPEND_PARAMETER STREAM_ID 16 UINT MIN_UINT16 MAX_UINT16 0 "Stream ID of packet to add."
+  APPEND_PARAMETER PktSize 16 UINT MIN_UINT16 MAX_UINT16 0 "Size of packet to add."
+  APPEND_PARAMETER Flags 16 UINT MIN_UINT16 MAX_UINT16 0 "Stream ID of packet to add."
+  APPEND_PARAMETER BufLimit 8 UINT MIN_UINT8 MAX_UINT8 0 "Stream ID of packet to add."
+
+COMMAND CFS_TO Send_DataTypes BIG_ENDIAN ""
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x80} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 3} %>
+
+COMMAND CFS_TO RemovePkt BIG_ENDIAN ""
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x80} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 4} %>
+  APPEND_PARAMETER STREAM_ID 16 UINT MIN_UINT16 MAX_UINT16 0 "Stream ID of packet to remove."
+
+COMMAND CFS_TO RemoveAllPkt BIG_ENDIAN ""
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x80} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 5} %>
+
+COMMAND CFS_TO ENABLE_TLM BIG_ENDIAN "This command enables TO to start outputting telemetry to the specified IP address."
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x80} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 06} %>
+
+COMMAND CFS_TO DISABLE_TLM BIG_ENDIAN "This command enables TO to stop outputting telemetry."
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 0x80} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 07} %>
