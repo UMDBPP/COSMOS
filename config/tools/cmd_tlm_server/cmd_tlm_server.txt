@@ -13,13 +13,13 @@ INTERFACE COSMOS_INT cmd_tlm_server_interface.rb
   # RECONNECT_DELAY 15.0
   # LOG_RAW
 
-#         interface name  file name              write read baud   parity stop timeouts
+#         int_name file_name           write       read      baud   parity stop timeouts
 INTERFACE CFS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 9600   NONE   1    nil nil  
-# Length protocol will fill the packet's length field
-# Length Arguments: len_loc, len_len, len_offset, bytepercnt, endian, discard sync, max_len, fill_len
-  PROTOCOL READ_WRITE length_protocol.rb  32      16      7            1           BIG_ENDIAN  0       nil   nil 
+# Length protocol will identify packets based on length and fill the packet's length field
+# Length Arguments:                       len_loc, len_len, len_offset, bytepercnt, endian, discard sync, sync,    max_len, fill_len
+  PROTOCOL READ_WRITE length_protocol.rb  32        16      7            1       BIG_ENDIAN  0            nil       nil     true 
 # CCSDS protocol fills the Link command's checksum
-# CCSDS Arguments: crc_byte_offset
+# CCSDS Arguments:                  crc_byte_offset
   PROTOCOL WRITE ccsds_protocol.rb  7
   TARGET CFE_ES
   TARGET CFE_EVS
@@ -40,20 +40,20 @@ INTERFACE CFS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 9600   NONE   1    
   
 # LINKCCSDS_INT is designed to talk to payloads through the LINK message routing.
 
-#         interface name  file name              write read baud   parity stop timeouts 
+#         int_name       file_name           write read baud   parity stop timeouts
 INTERFACE LINKCCSDS_INT  serial_interface.rb COM4 COM4 57600   NONE   1    nil nil 
 # Length protocol will fill the packet's length field
-# Length Arguments: len_loc, len_len, len_offset, bytepercnt, endian, discard sync, max_len, fill_len
-  PROTOCOL READ_WRITE length_protocol  32      16      7            1           BIG_ENDIAN  0       nil   nil     true
+# Length Arguments:                       len_loc, len_len, len_offset, bytepercnt, endian, discard sync, sync,    max_len, fill_len
+  PROTOCOL READ_WRITE length_protocol.rb  32        16      7            1       BIG_ENDIAN  0            nil       nil     true 
 # CCSDS protocol fills the command's checksum  
-# CCSDS Arguments: crc_byte_offset
-  PROTOCOL WRITE ccsds_protocol 7  # fill out the CCSDS packet being sent
+# CCSDS Arguments:                  crc_byte_offset
+  PROTOCOL WRITE ccsds_protocol.rb  7 
 # Link protocol wraps the command in a command to link to forward the packet
 # Link Arguments: N/A
   #PROTOCOL WRITE link_protocol     # wrap it in a link packets
 # CCSDS protocol fills the Link command's checksum
-# CCSDS Arguments: crc_byte_offset
-  PROTOCOL WRITE ccsds_protocol 7   # fill out the link CCSDS header
+# CCSDS Arguments:                  crc_byte_offset
+  PROTOCOL WRITE ccsds_protocol.rb  7   
   #TARGET SCORCH
   #TARGET LINK  
   #TARGET CAMERA
@@ -89,8 +89,8 @@ INTERFACE RFD900_INT      serial_interface.rb    COM1  COM1 57600  NONE   1    n
 #         interface name  file name              write read baud   parity stop timeouts
 INTERFACE XBEE_INT  serial_interface.rb      COM3  COM3 9600   NONE   1    nil nil  
 # Length protocol will fill the packet's length field
-# Length Arguments: len_loc, len_len, len_offset, bytepercnt, endian, discard sync, max_len, fill_len
-  PROTOCOL READ_WRITE length_protocol  8       16      4           1           BIG_ENDIAN  0       nil   nil     true
+# Length Arguments:                       len_loc, len_len, len_offset, bytepercnt, endian, discard sync, sync,    max_len, fill_len
+  PROTOCOL READ_WRITE length_protocol.rb  32        16      7            1       BIG_ENDIAN  0            nil       nil     true 
 # CCSDS protocol fills the command's checksum  
 # CCSDS Arguments: N/A
   PROTOCOL WRITE ccsds_protocol  
