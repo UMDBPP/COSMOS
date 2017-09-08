@@ -20,7 +20,10 @@ INTERFACE CFS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 9600   NONE   1    
   PROTOCOL READ_WRITE length_protocol.rb  32        16      7            1       BIG_ENDIAN  0            nil       nil     true 
 # CCSDS protocol fills the Link command's checksum
 # CCSDS Arguments:                  crc_byte_offset
-  PROTOCOL WRITE ccsds_protocol.rb  7
+  PROTOCOL WRITE ccsds_protocol.rb  6
+# SeqCnt protocol fills the Link command's sequence counter
+# SeqCnt Arguments:                  seqcnt_byte_offset
+  PROTOCOL WRITE seqcnt_protocol.rb  2                   
   TARGET CFE_ES
   TARGET CFE_EVS
   TARGET CFE_SB
