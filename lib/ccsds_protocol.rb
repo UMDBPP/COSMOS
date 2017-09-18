@@ -22,8 +22,11 @@ module Cosmos
     def write_data(data)
       #put "this is a test" 
 
-      # update the packet checksum
-      data = update_ccsds_checksum(data)
+      # only fill the checksum if its a command
+      if (get_CCSDSPktType(data))
+        # update the packet checksum
+        data = update_ccsds_checksum(data)
+      end
 
       return super(data)
     end
@@ -56,6 +59,14 @@ module Cosmos
 
       # extract the APID from the StreamID field
       apid = packet_data[6].unpack("C").first & 0x7F
+
+      return apid
+    end
+    
+    def get_CCSDSPktType(packet_data)
+
+      # extract the APID from the StreamID field
+      apid = packet_data[0].unpack("C").first & 0x10 >> 4
 
       return apid
     end
