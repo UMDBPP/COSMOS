@@ -8,6 +8,6 @@ TELEMETRY BMP280 HKPACKET BIG_ENDIAN "BMP Housekeeping Packet"
 TELEMETRY BMP280 TLMPACKET BIG_ENDIAN "BMP Housekeeping Packet"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 0x84} %>
   <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
-  APPEND_ITEM TEMPERATURE 8 FLOAT "BMP280 temperature measured."
-  APPEND_ITEM ALTITUDE 8 FLOAT "BMP280 temperature measured."
-  APPEND_ITEM PRESSURE 8 FLOAT "BMP280 temperature measured."
+  APPEND_ITEM TEMPERATURE 32 FLOAT "BMP280 temperature measured."
+  APPEND_ITEM ALTITUDE 32 FLOAT "BMP280 temperature measured."
+  APPEND_ITEM PRESSURE 32 FLOAT "BMP280 temperature measured."
