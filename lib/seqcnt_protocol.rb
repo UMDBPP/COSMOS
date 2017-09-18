@@ -7,51 +7,43 @@ require 'cosmos/interfaces/protocols/protocol'
 module Cosmos
   # Protocol which fills the sequence counter field of a CCSDS packet
   class SeqcntProtocol < Protocol
-  # @param seqcnt_byte_offset [Integer] The byte offset of the sequence counter field
+  # @param field_name [String] The name of the packet field to fill
 
-    def initialize(seqcnt_byte_offset = 0)
+    def initialize(field_name = "CCSDSSEQCNT")
       super()
-      @seqcnt_byte_offset = Integer(seqcnt_byte_offset)
-      @seqcnt_max_val
+      @field_name = field_name
     end
 
-    # Called to perform modifications on write data before making it into a packet
+
+    # Called to perform modifications on the packet before writing the data
+    #
+    # @param data [Packet] Packet object
+    # @return [Packet] Packet object with filled sequence counter
+    def write_packet(packet)
+
+      field_bit_size = packet.get_item(@field_name).bit_size
+
+      # if the value is too large for the field, it will error, so automatically
+      # wrap the value
+      seqcnt = @interface.write_count % ( 2 ** field_bit_size -1) 
+
+      # write the value into the packet
+      packet.write(@field_name, seqcnt)
+
+      return super(packet)
+    end
+
+    # Called to perform modifications on data before it is written to the interface
+    # Does nothing but calls the superclass method
     #
     # @param data [String] Raw packet data
     # @return [String] Packet data with filled checksum
     def write_data(data)
-      #put "this is a test" 
-
-      # update the packet checksum
-      data = update_ccsds_seqcnt(data)
 
       return super(data)
     end
 
-    def update_ccsds_seqcnt(packet_data)
 
-     # calculate the checksum
-      seqcnt = @interface.write_count
-
-      # ensure that the value doesn't overrun the 14 bits allocated to it
-      # this will result in teh sequence counter wrapping
-      seqcnt = seqcnt % 16383
-    
-      # debug statement
-      #puts "seqcnt 0x#{seqcnt.to_s(16)}"
-
-      # get the bytes in that field and convert them back to an integer
-      existing_val = packet_data[@seqcnt_byte_offset].unpack("C").last * 256 + packet_data[@seqcnt_byte_offset+1].unpack("C").last
-
-      # or the values together
-      new_val = existing_val | seqcnt
-
-      packet_data[@seqcnt_byte_offset] = [(new_val & 0xFF00) >> 8].pack("C")
-      packet_data[@seqcnt_byte_offset+1] =  [new_val & 0x00FF].pack("C")
-    
-      # return the data with the length field updated
-      return packet_data
-    end
 
   end
 end
