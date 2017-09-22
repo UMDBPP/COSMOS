@@ -13,6 +13,7 @@ TELEMETRY CFS CFE_EVS_PACKET LITTLE_ENDIAN "Event Message Telemetry Packet"
   APPEND_ITEM MESSAGE 976 STRING "Event message string."
   APPEND_ITEM SPARE1 8 UINT "Structure padding."
   APPEND_ITEM SPARE2 8 UINT "Structure padding."
+  PROCESSOR ECHO_EVENT pkt_field_echo_processor.rb "MESSAGE"
 
 TELEMETRY CFS CFE_EVS_TLMPKT BIG_ENDIAN "Event Services Housekeeping Telemetry Packet"
   APPEND_ID_ITEM CCSDS_STREAMID 16 UINT 0x0801 "CCSDS Packet Identification"
