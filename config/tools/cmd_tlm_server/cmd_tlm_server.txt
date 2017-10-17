@@ -24,24 +24,24 @@ INTERFACE CFS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 115200 NONE   1    
 # SeqCnt protocol fills the Link command's sequence counter
 # SeqCnt Arguments:                  seqcnt_field_name
   PROTOCOL WRITE seqcnt_protocol.rb "CCSDSSEQCNT"                   
-  TARGET CFE_ES
-  TARGET CFE_EVS
-  TARGET CFE_SB
-  TARGET CFE_TBL
-  TARGET CFE_TIME
-  TARGET CFS_CS
-  TARGET CFS_DS
-  TARGET CFS_FM
-  TARGET CFS_HK
-  TARGET CFS_HS
-  TARGET CFS_LC
-  TARGET CFS_MD
-  TARGET CFS_MM
-  TARGET CFS_SC
-  TARGET CFS_SCH
-  TARGET CFS_TO
-  TARGET CFS_CI
-  TARGET BMP280
+  #TARGET CFE_ES
+  #TARGET CFE_EVS
+  #TARGET CFE_SB
+  #TARGET CFE_TBL
+  #TARGET CFE_TIME
+  #TARGET CFS_CS
+  #TARGET CFS_DS
+  #TARGET CFS_FM
+  #TARGET CFS_HK
+  #TARGET CFS_HS
+  #TARGET CFS_LC
+  #TARGET CFS_MD
+  #TARGET CFS_MM
+  #TARGET CFS_SC
+  #TARGET CFS_SCH
+  #TARGET CFS_TO
+  #TARGET CFS_CI
+  #TARGET BMP280
 
 # LINKCCSDS_INT is designed to talk to payloads through the LINK message routing.
 
@@ -57,8 +57,8 @@ INTERFACE LINKCCSDS_INT  serial_interface.rb COM4 COM4 57600   NONE   1    nil n
 # CCSDS Arguments:                  crc_field_name
   PROTOCOL WRITE ccsds_protocol.rb "CHECKSUM" 
 # Link protocol wraps the command in a command to link to forward the packet
-# Link Arguments: N/A
-  #PROTOCOL WRITE link_protocol     # wrap it in a link packets
+# Link Arguments:                 apidFileName
+  PROTOCOL WRITE link_protocol.rb "APIDs.json"
 # SeqCnt protocol fills the Link command's sequence counter
 # SeqCnt Arguments:                  seqcnt_field_name
   PROTOCOL WRITE seqcnt_protocol.rb "CCSDSSEQCNT"  
