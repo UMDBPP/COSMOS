@@ -1,16 +1,16 @@
-require 'cosmos' # always require cosmos
-require 'cosmos/interfaces/protocols/protocol' # original interface being extended
-
-#require 'json'
+require 'cosmos'
+require 'cosmos/interfaces/protocols/protocol'
     
-module COSMOS
+module Cosmos
+  # Protocol which prepends a LINK command to forward the message if the
+  # command is not destined for LINK
   class LinkProtocol < Protocol
-
-    def initialize()
+  # @param checksum_field_name [String] The name of the field which should be filled with the checksum
+    def initialize(apidFileName = "APIDs.json")
       super()
     
       # read json definition file needed for the processing functions
-      file = File.read(File.join(File.dirname(__FILE__),'APIDs.json'))
+      file = File.read(File.join(File.dirname(__FILE__),apidFileName))
       # parse the json
       @net = JSON.parse(file)
     end
@@ -28,6 +28,7 @@ module COSMOS
       
       return data
     end
+
     def isPayloadPkt(packet_data, payload)
   
       # get the APID from the packet
@@ -80,13 +81,21 @@ module COSMOS
             found_addr = true
             break
           end
-        end
+        end # @net[key].each
         # if this payload is the owner of the packet, record the xbee address of that payload
         if(found_addr)
           addr = net[key]['XBEE']
           break
-        end
-      end
+        end 
+      end # @net.each
+    end
+
+    def get_CCSDSAPID(packet_data)
+
+      # extract the APID from the StreamID field
+      apid = ((packet_data[0].unpack("C").first * 256) + packet_data[1].unpack("C").first) & 2047
+
+      return apid
     end
     
   end
