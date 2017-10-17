@@ -19,11 +19,11 @@ INTERFACE CFS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 115200 NONE   1    
 # Length Arguments:                       len_loc, len_len, len_offset, bytepercnt, endian, discard sync, sync,    max_len, fill_len
   PROTOCOL READ_WRITE length_protocol.rb  32        16      7            1       BIG_ENDIAN  0            nil      nil      true 
 # CCSDS protocol fills the Link command's checksum
-# CCSDS Arguments:                  crc_byte_offset
-  PROTOCOL WRITE ccsds_protocol.rb  6
+# CCSDS Arguments:                  crc_field_name
+  PROTOCOL WRITE ccsds_protocol.rb "CHECKSUM"
 # SeqCnt protocol fills the Link command's sequence counter
-# SeqCnt Arguments:                  seqcnt_byte_offset
-  PROTOCOL WRITE seqcnt_protocol.rb  2                   
+# SeqCnt Arguments:                  seqcnt_field_name
+  PROTOCOL WRITE seqcnt_protocol.rb "CCSDSSEQCNT"                   
   TARGET CFE_ES
   TARGET CFE_EVS
   TARGET CFE_SB
@@ -50,15 +50,21 @@ INTERFACE LINKCCSDS_INT  serial_interface.rb COM4 COM4 57600   NONE   1    nil n
 # Length protocol will fill the packet's length field
 # Length Arguments:                       len_loc, len_len, len_offset, bytepercnt, endian, discard sync, sync,    max_len, fill_len
   PROTOCOL READ_WRITE length_protocol.rb  32        16      7            1       BIG_ENDIAN  0            nil       nil     true 
+# SeqCnt protocol fills the Link command's sequence counter
+# SeqCnt Arguments:                  seqcnt_field_name
+  PROTOCOL WRITE seqcnt_protocol.rb "CCSDSSEQCNT"  
 # CCSDS protocol fills the command's checksum  
-# CCSDS Arguments:                  crc_byte_offset
-  PROTOCOL WRITE ccsds_protocol.rb  7 
+# CCSDS Arguments:                  crc_field_name
+  PROTOCOL WRITE ccsds_protocol.rb "CHECKSUM" 
 # Link protocol wraps the command in a command to link to forward the packet
 # Link Arguments: N/A
   #PROTOCOL WRITE link_protocol     # wrap it in a link packets
+# SeqCnt protocol fills the Link command's sequence counter
+# SeqCnt Arguments:                  seqcnt_field_name
+  PROTOCOL WRITE seqcnt_protocol.rb "CCSDSSEQCNT"  
 # CCSDS protocol fills the Link command's checksum
-# CCSDS Arguments:                  crc_byte_offset
-  PROTOCOL WRITE ccsds_protocol.rb  7   
+# CCSDS Arguments:                  crc_field_name
+  PROTOCOL WRITE ccsds_protocol.rb "CHECKSUM" 
   #TARGET SCORCH
   #TARGET LINK  
   #TARGET CAMERA
