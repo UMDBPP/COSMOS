@@ -52,7 +52,21 @@ module COSMOS
       apid = get_CCSDSAPID(packet_data)
   
       # need to figure out which address to send have LINK forward the packet to
+      addr = getAddrFromApid(apid)
   
+      # encode that address as a hex string
+      addr_str= ["%02x" % addr.to_i()].pack("H*")
+  
+      # create the forward message command including the destination address
+      str = "\x10\xC8\xC0\x00\x00\x04\x28\x00".force_encoding('ASCII-8BIT') << addr_str
+  
+      # prepend the LINK XB_FwdMsg command to the command to be sent
+      packet_data.prepend(str )
+    
+      return packet_data
+    end
+    
+    def getAddrFromApid(apid)
       # initalize variables
       found_addr = false
       addr = 0
@@ -73,18 +87,7 @@ module COSMOS
           break
         end
       end
-  
-      # encode that address as a hex string
-      addr_str= ["%02x" % addr.to_i()].pack("H*")
-  
-      # create the forward message command including the destination address
-      str = "\x10\xC8\xC0\x00\x00\x04\x28\x00".force_encoding('ASCII-8BIT') << addr_str
-  
-      # prepend the LINK XB_FwdMsg command to the command to be sent
-      packet_data.prepend(str )
-    
-      return packet_data
     end
-
+    
   end
 end

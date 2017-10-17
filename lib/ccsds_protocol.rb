@@ -19,7 +19,7 @@ module Cosmos
     # Called to perform modifications on the packet before writing the data
     #
     # @param data [Packet] Packet object
-    # @return [Packet] Packet object with filled sequence counter
+    # @return [Packet] Packet object with filled checksum
     def write_packet(packet)
 
       # calculate checksum
