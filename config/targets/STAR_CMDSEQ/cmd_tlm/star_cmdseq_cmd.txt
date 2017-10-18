@@ -1,0 +1,45 @@
+COMMAND STAR NOOP BIG_ENDIAN "STAR NOOP"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 9} %>
+  APPEND_PARAMETER TIME 32 UINT 0 65535 0 "Millis at which to execute command" 
+
+COMMAND STAR LED BIG_ENDIAN "STAR LED Command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 10} %>  
+  APPEND_PARAMETER BRIGHTNESS 8 UINT 0 255 0 "Brightness to set LED" 
+  APPEND_PARAMETER TIME 32 UINT 0 65535 0 "Millis at which to execute command" 
+
+COMMAND STAR BIAS BIG_ENDIAN "STAR Bias command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 11} %>
+  APPEND_PARAMETER ENABLE 8 UINT 0 1 0 "Bias enable flag" 
+  APPEND_PARAMETER TIME 32 UINT 0 65535 0 "Millis at which to execute command" 
+
+COMMAND STAR SHAKE BIG_ENDIAN "STAR Shake command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 12} %>  
+  APPEND_PARAMETER SPEED 8 UINT 0 255 0 "Motor speed" 
+  APPEND_PARAMETER TIME 32 UINT 0 65535 0 "Millis at which to execute command" 
+  
+COMMAND STAR CUTOFF BIG_ENDIAN "STAR Cutoff command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 13} %>
+  APPEND_PARAMETER ENABLE 8 UINT 0 1 0 "Cutoff enable flag" 
+  APPEND_PARAMETER TIME 32 UINT 0 65535 0 "Millis at which to execute command" 
+  
+COMMAND STAR TLM BIG_ENDIAN "STAR TLM Request command (Not yet implemented)"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 14} %>
+  APPEND_PARAMETER PKT_REQ 8 UINT 0 255 0 "Requested packet " 
+  APPEND_PARAMETER TIME 32 UINT 0 65535 0 "Millis at which to execute command" 
+  
+COMMAND STAR QUEUE BIG_ENDIAN "STAR Command Queue command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 15} %>
+  APPEND_PARAMETER ENABLE 8 UINT 0 1 0 "Queue enable flag" 
+  APPEND_PARAMETER TIME 32 UINT 0 65535 0 "Millis at which to execute command" 
+  
+COMMAND STAR RESET_MET BIG_ENDIAN "STAR RESET_MET command"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_cmd.txt", locals: {apid: 100} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_cmd.txt", locals: {fcncode: 16} %>
+  APPEND_PARAMETER TIME 32 UINT 0 65535 0 "Millis at which to execute command" 
