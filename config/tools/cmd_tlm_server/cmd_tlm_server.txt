@@ -50,13 +50,13 @@ INTERFACE LINKCCSDS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 57600   NONE 
 
 # CCSDS protocol fills the Link command's checksum
 # CCSDS Arguments:                  crc_field_name
-  PROTOCOL WRITE ccsds_protocol.rb "CHECKSUM" 
+  PROTOCOL WRITE ccsds_protocol.rb 7
 # SeqCnt protocol fills the Link command's sequence counter
 # SeqCnt Arguments:                  seqcnt_field_name
-#  PROTOCOL WRITE seqcnt_protocol.rb "CCSDSSEQCNT"  
+  PROTOCOL WRITE seqcnt_protocol.rb 4 
 # Link protocol wraps the command in a command to link to forward the packet
 # Link Arguments:                 apidFileName
-#  PROTOCOL WRITE link_protocol.rb "APIDs.json"
+  PROTOCOL WRITE link_protocol.rb "APIDs.json"
 # Length protocol will fill the packet's length field
 # CCSDS protocol fills the command's checksum  
 # CCSDS Arguments:                  crc_field_name
@@ -67,7 +67,6 @@ INTERFACE LINKCCSDS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 57600   NONE 
 # Length Arguments:                       len_loc, len_len, len_offset, bytepercnt, endian, discard sync, sync,    max_len, fill_len
   PROTOCOL READ_WRITE length_protocol.rb  32        16      7            1       BIG_ENDIAN  0            nil       nil     true 
 
-
   #TARGET SCORCH
   TARGET LINK  
   #TARGET CAMERA
@@ -75,7 +74,7 @@ INTERFACE LINKCCSDS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 57600   NONE 
   TARGET MARS2
   TARGET HELIOS
   #TARGET RFD900
-  DONT_CONNECT
+  #DONT_CONNECT
   
 # RFD900_INT is designed to talk to payloads through the LINK message routing.
 # This iterface performs the same actions as the CCSDS_INT for the outgoing packets. 

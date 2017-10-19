@@ -16,8 +16,8 @@ module Cosmos
     end
 
     def write_data(data)
-      # Note: should be !isPayloadPkt, changed for testing only
-      if(isPayloadPkt(data,'LINK'))
+
+      if(!isPayloadPkt(data,'LINK'))
         puts "Found non-link packet, forwarding to intended payload!"
         
         # prepend the link command to forward the data if its not a link command
@@ -52,10 +52,10 @@ module Cosmos
     
       # get the APID from the packet
       apid = get_CCSDSAPID(packet_data)
-  
+  puts apid
       # need to figure out which address to send have LINK forward the packet to
       addr = getAddrFromApid(apid)
-  
+  puts addr
       # encode that address as a hex string
       addr_str= ["%02x" % addr.to_i()].pack("H*")
   
@@ -89,6 +89,7 @@ module Cosmos
           break
         end 
       end # @net.each
+      return addr
     end
 
     def get_CCSDSAPID(packet_data)

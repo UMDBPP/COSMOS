@@ -19,10 +19,14 @@ module Cosmos
       # operate on the packet, using the string as the name of the field to write.
       # If they pass in an integer, then they're indicating that we should operate
       # on the raw data and the integer is the byte location to write to
-      @operateOnPacket = write_loc.is_a?(String)
+      @operateOnPacket = is_integer?(write_loc)
       
       # assign to a class property so that its accessible in the methods
-      @write_loc = write_loc
+      if(@operateOnPacket)
+        @write_loc = write_loc
+      else
+        @write_loc = write_loc.to_i()
+      end
       
     end
 
@@ -57,16 +61,17 @@ module Cosmos
         # need to zero the field in case
         #  its not zero, which would affect the checksum, 0 ^ X = X so zero doesn't affect checksum
         #  the checksum has already been set, which would result in zero checksum, X ^ X = 0
-        packet.buffer[@write_loc] = [0].pack('U')
+        data[@write_loc] = [0].pack('U').force_encoding('ASCII-8BIT')
         
         # write the checksum back into the packet
-        data[@write_loc] = [calcChecksum(packet.buffer)].pack('U')
+        data[@write_loc] = [calcChecksum(data)].pack('U').force_encoding('ASCII-8BIT')
         
       end
       
       return super(data)
     end
     
+    # calculates an 8bit XOR checksum of a byte array
     def calcChecksum(data)
     
       # calculate checksum
@@ -74,6 +79,11 @@ module Cosmos
       data.each_byte {|x| checksum ^= x }
       
       return checksum
+    end
+
+    # Returns a boolean indicating if the argument is an string containing and integer
+    def is_integer?(str)
+      str.to_i.to_s != str
     end
   end
 end
