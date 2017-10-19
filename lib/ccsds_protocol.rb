@@ -22,6 +22,11 @@ module Cosmos
     # @return [Packet] Packet object with filled checksum
     def write_packet(packet)
 
+      # need to zero the field in case
+      #  its not zero, which would affect the checksum, 0 ^ X = X so zero doesn't affect checksum
+      #  the checksum has already been set, which would result in zero checksum, X ^ X = 0
+      packet.write(@checksum_field_name, 0)
+
       # calculate checksum
       checksum = 0xFF
       packet.buffer.each_byte {|x| checksum ^= x }
