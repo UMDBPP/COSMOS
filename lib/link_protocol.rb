@@ -16,6 +16,7 @@ module Cosmos
     end
 
     def write_data(data)
+      # Note: should be !isPayloadPkt, changed for testing only
       if(isPayloadPkt(data,'LINK'))
         puts "Found non-link packet, forwarding to intended payload!"
         

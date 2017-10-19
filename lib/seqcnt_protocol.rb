@@ -7,7 +7,9 @@ require 'cosmos/interfaces/protocols/protocol'
 module Cosmos
   # Protocol which fills the sequence counter field of a CCSDS packet
   class SeqcntProtocol < Protocol
-  # @param field_name [String] The name of the packet field to fill
+  # @param write_loc [String] The name of the packet field to fill (default)
+  # -OR-
+  # @param write_loc [Int] Byte index in the packet of lower byte of sequence counter
 
     def initialize(write_loc = "CCSDSSEQCNT")
       super()
@@ -17,6 +19,8 @@ module Cosmos
       # If they pass in an integer, then they're indicating that we should operate
       # on the raw data and the integer is the byte location to write to
       @operateOnPacket = write_loc.is_a?(String)
+      
+      # assign to a class property so that its accessible in the methods
       @write_loc = write_loc
     end
 
@@ -42,7 +46,6 @@ module Cosmos
     end
 
     # Called to perform modifications on data before it is written to the interface
-    # Does nothing but calls the superclass method
     #
     # @param data [String] Raw packet data
     # @return [String] Packet data
@@ -52,13 +55,20 @@ module Cosmos
         # if the value is too large for the field, it will error, so automatically
         # wrap the value
         seqcnt = @interface.write_count % 16383 
+        # Note that unlike the packet version, this is not dynamically sized because
+        # we don't have access to the size of the field from this method. Update 
+        # this if the packet format changes
+        
+        # write the lower byte back into the packet
+        data[@write_loc] = [seqcnt & 0x00FF].pack('U')
+        # write the upper byte back into the packet
+        data[@write_loc-1] = [(seqcnt & 0x3F00) >> 8].pack('U')
+        # Note: This will probably wipe out the sequence flag value because its writing
+        # over the whole index, need to fix
 
       end
 
       return super(data)
     end
-
-
-
   end
 end
