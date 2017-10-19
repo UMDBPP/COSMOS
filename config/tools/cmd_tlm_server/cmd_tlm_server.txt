@@ -46,14 +46,14 @@ INTERFACE CFS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 115200 NONE   1    
 # LINKCCSDS_INT is designed to talk to payloads through the LINK message routing.
 
 #         int_name       file_name           write read baud   parity stop timeouts
-INTERFACE LINKCCSDS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 57600   NONE   1    nil nil 
+INTERFACE LINKCCSDS_INT  serial_interface.rb COM5 COM5 57600   NONE   1    nil nil 
 
 # CCSDS protocol fills the Link command's checksum
 # CCSDS Arguments:                  crc_field_name
   PROTOCOL WRITE ccsds_protocol.rb 7
 # SeqCnt protocol fills the Link command's sequence counter
 # SeqCnt Arguments:                  seqcnt_field_name
-  PROTOCOL WRITE seqcnt_protocol.rb 4 
+  PROTOCOL WRITE seqcnt_protocol.rb 3 
 # Link protocol wraps the command in a command to link to forward the packet
 # Link Arguments:                 apidFileName
   PROTOCOL WRITE link_protocol.rb "APIDs.json"
