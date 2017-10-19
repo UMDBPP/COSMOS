@@ -16,7 +16,7 @@ module Cosmos
     end
 
     def write_data(data)
-      if(!isPayloadPkt(data,'LINK'))
+      if(isPayloadPkt(data,'LINK'))
         puts "Found non-link packet, forwarding to intended payload!"
         
         # prepend the link command to forward the data if its not a link command
@@ -84,7 +84,7 @@ module Cosmos
         end # @net[key].each
         # if this payload is the owner of the packet, record the xbee address of that payload
         if(found_addr)
-          addr = net[key]['XBEE']
+          addr = @net[key]['XBEE']
           break
         end 
       end # @net.each
