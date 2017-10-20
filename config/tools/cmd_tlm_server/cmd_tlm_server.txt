@@ -48,21 +48,18 @@ INTERFACE CFS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 115200 NONE   1    
 #         int_name       file_name           write read baud   parity stop timeouts
 INTERFACE LINKCCSDS_INT  serial_interface.rb COM5 COM5 57600   NONE   1    nil nil 
 
-# CCSDS protocol fills the Link command's checksum
-# CCSDS Arguments:                  crc_field_name
-  PROTOCOL WRITE ccsds_protocol.rb 7
+
+# XOR checksum protocol fills the Link command's checksum
+  PROTOCOL WRITE xor_checksum_protocol_raw.rb
 # SeqCnt protocol fills the Link command's sequence counter
-# SeqCnt Arguments:
   PROTOCOL WRITE seqcnt_protocol_raw.rb
-# Link protocol wraps the command in a command to link to forward the packet
+# Link protocol wraps the command in a Link command to forward the packet
 # Link Arguments:                 apidFileName
   PROTOCOL WRITE link_protocol.rb "APIDs.json"
 # Length protocol will fill the packet's length field
-# CCSDS protocol fills the command's checksum  
-# CCSDS Arguments:                  crc_field_name
-  PROTOCOL WRITE ccsds_protocol.rb "CHECKSUM" 
+# XOR checksum protocol fills the forwarded command's checksum  
+  PROTOCOL WRITE xor_checksum_protocol.rb
 # SeqCnt protocol fills the forwarded command's sequence counter
-# SeqCnt Arguments:                  seqcnt_field_name
   PROTOCOL WRITE seqcnt_protocol.rb
 # Length Arguments:                       len_loc, len_len, len_offset, bytepercnt, endian, discard sync, sync,    max_len, fill_len
   PROTOCOL READ_WRITE length_protocol.rb  32        16      7            1       BIG_ENDIAN  0            nil       nil     true 
