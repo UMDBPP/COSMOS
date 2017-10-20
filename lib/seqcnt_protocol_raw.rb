@@ -24,7 +24,7 @@ module Cosmos
   # @param endianness [String] The endianness of the length field. Must be either BIG_ENDIAN or LITTLE_ENDIAN. (Default: BIG_ENDIAN)
 
     def initialize(
-      seqcnt_bit_offset = 19, 
+      seqcnt_bit_offset = 18, 
       seqcnt_bit_size = 14, 
       apid_bit_offset = 6, 
       apid_bit_size = 11,
@@ -69,7 +69,7 @@ module Cosmos
     
       # if the key does not yet exist in the hash (ie, this is the first time 
       #   this packet has been sent), add an entry to the hash
-      if(@sent_seqcnts.key?(apid))
+      if(!@sent_seqcnts.key?(apid))
         @sent_seqcnts[apid] = 0
       
       # otherwise, increment the key that already exists

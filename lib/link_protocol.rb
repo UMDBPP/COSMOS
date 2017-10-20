@@ -1,6 +1,7 @@
 require 'cosmos'
 require 'cosmos/interfaces/protocols/protocol'
-    
+require 'ccsds_cmd_pkt.rb'
+
 module Cosmos
   # Protocol which prepends a LINK command to forward the message if the
   # command is not destined for LINK
@@ -13,6 +14,19 @@ module Cosmos
       file = File.read(File.join(File.dirname(__FILE__),apidFileName))
       # parse the json
       @net = JSON.parse(file)
+
+     # initalize a Link Fwd_Msg packet
+     pkt = CcsdsCmdPacket.new("Test", "TMP")
+     pkt.write('CCSDSTYPE',1)
+     pkt.write('CCSDSAPID',200)
+     pkt.write('CCSDSSEQCNT',1)
+     pkt.write('CcsdsLength',1)
+     pkt.write('CcsdsShf',1)
+     pkt.write('FcnCode',40)
+     pkt.write('Checksum',0)
+
+    @pkt = pkt
+
     end
 
     def write_data(data)
@@ -52,15 +66,17 @@ module Cosmos
     
       # get the APID from the packet
       apid = get_CCSDSAPID(packet_data)
-  puts apid
+
       # need to figure out which address to send have LINK forward the packet to
       addr = getAddrFromApid(apid)
-  puts addr
+
       # encode that address as a hex string
       addr_str= ["%02x" % addr.to_i()].pack("H*")
-  
+      
+      # packet_data.length + @pkt.buffer.length
+
       # create the forward message command including the destination address
-      str = "\x10\xC8\xC0\x00\x00\x04\x28\x00".force_encoding('ASCII-8BIT') << addr_str
+      str = @pkt.buffer << addr_str
   
       # prepend the LINK XB_FwdMsg command to the command to be sent
       packet_data.prepend(str )

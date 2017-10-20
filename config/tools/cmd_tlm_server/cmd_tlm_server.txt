@@ -65,6 +65,7 @@ INTERFACE LINKCCSDS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 57600   NONE 
 # Length Arguments:                       len_loc, len_len, len_offset, bytepercnt, endian, discard sync, sync,    max_len, fill_len
   PROTOCOL READ_WRITE length_protocol.rb  32        16      7            1       BIG_ENDIAN  0            nil       nil     true 
 
+
   #TARGET SCORCH
   TARGET LINK  
   #TARGET CAMERA

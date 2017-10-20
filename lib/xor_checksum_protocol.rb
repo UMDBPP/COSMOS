@@ -37,5 +37,14 @@ module Cosmos
       return packet
     end
 
+    # calculates an 8bit XOR checksum of a byte array
+    def calcChecksum(data)
+     
+      # calculate checksum
+      checksum = 0xFF
+      data.each_byte {|x| checksum ^= x }
+       
+      return checksum
+    end
   end
 end
