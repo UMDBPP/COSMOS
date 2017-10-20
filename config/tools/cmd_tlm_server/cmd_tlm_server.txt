@@ -52,8 +52,8 @@ INTERFACE LINKCCSDS_INT  serial_interface.rb COM5 COM5 57600   NONE   1    nil n
 # CCSDS Arguments:                  crc_field_name
   PROTOCOL WRITE ccsds_protocol.rb 7
 # SeqCnt protocol fills the Link command's sequence counter
-# SeqCnt Arguments:                  seqcnt_field_name
-  PROTOCOL WRITE seqcnt_protocol.rb 3 
+# SeqCnt Arguments:
+  PROTOCOL WRITE seqcnt_protocol_raw.rb
 # Link protocol wraps the command in a command to link to forward the packet
 # Link Arguments:                 apidFileName
   PROTOCOL WRITE link_protocol.rb "APIDs.json"
@@ -61,9 +61,9 @@ INTERFACE LINKCCSDS_INT  serial_interface.rb COM5 COM5 57600   NONE   1    nil n
 # CCSDS protocol fills the command's checksum  
 # CCSDS Arguments:                  crc_field_name
   PROTOCOL WRITE ccsds_protocol.rb "CHECKSUM" 
-# SeqCnt protocol fills the Link command's sequence counter
+# SeqCnt protocol fills the forwarded command's sequence counter
 # SeqCnt Arguments:                  seqcnt_field_name
-  PROTOCOL WRITE seqcnt_protocol.rb "CCSDSSEQCNT" 
+  PROTOCOL WRITE seqcnt_protocol.rb
 # Length Arguments:                       len_loc, len_len, len_offset, bytepercnt, endian, discard sync, sync,    max_len, fill_len
   PROTOCOL READ_WRITE length_protocol.rb  32        16      7            1       BIG_ENDIAN  0            nil       nil     true 
 
