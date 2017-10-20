@@ -48,9 +48,10 @@ INTERFACE CFS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 115200 NONE   1    
 #         int_name       file_name           write read baud   parity stop timeouts
 INTERFACE LINKCCSDS_INT  serial_interface.rb COM5 COM5 57600   NONE   1    nil nil 
 
-
 # XOR checksum protocol fills the Link command's checksum
   PROTOCOL WRITE xor_checksum_protocol_raw.rb
+# Length raw protocol fills the Link command's length
+  PROTOCOL WRITE length_protocol_raw.rb 32        16      7            1       BIG_ENDIAN
 # SeqCnt protocol fills the Link command's sequence counter
   PROTOCOL WRITE seqcnt_protocol_raw.rb
 # Link protocol wraps the command in a Link command to forward the packet
