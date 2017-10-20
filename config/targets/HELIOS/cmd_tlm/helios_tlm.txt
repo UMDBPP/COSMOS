@@ -17,16 +17,16 @@ TELEMETRY HELIOS TLM_PKT BIG_ENDIAN "Helios All Data"
 	UNITS Meter m
 	FORMAT_STRING "%0.6f"
   APPEND_ITEM Lat_Deg 8 UINT "Latitude Degrees"
-    Units Degrees
+    Units Degrees C
 	FORMAT_STRING "%0.6f"
   APPEND_ITEM Lat_Min 32 FLOAT "Latitude Decimal Minutes"
-    Units Minutes
+    Units Minutes min
 	FORMAT_STRING "%0.6f"
   APPEND_ITEM Lon_Deg 8 UINT "Longitude Degrees"
-    Units Degrees
+    Units Degrees C
 	FORMAT_STRING "%0.6f"
   APPEND_ITEM Lon_Min 32 FLOAT "Longitude Decimal Minutes"
-    Units Minutes
+    Units Minutes min
 	FORMAT_STRING "%0.6f"
   APPEND_ITEM AscVelocity 32 FLOAT "Last Ascent Velocity"
 	UNITS MeterPerSecond m/s

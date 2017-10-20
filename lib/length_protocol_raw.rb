@@ -15,7 +15,7 @@ require 'cosmos/config/config_parser'
 module Cosmos
   # Protocol which delineates packets using a length field at a fixed
   # location in each packet.
-  class LengthProtocol < Protocol
+  class LengthProtocolRaw < Protocol
     # @param length_bit_offset [Integer] The bit offset of the length field
     # @param length_bit_size [Integer] The size in bits of the length field
     # @param length_value_offset [Integer] The offset to apply to the length
@@ -34,7 +34,7 @@ module Cosmos
       length_bit_size = 16,
       length_value_offset = 0,
       length_bytes_per_count = 1,
-      length_endianness = 'BIG_ENDIAN',
+      length_endianness = 'BIG_ENDIAN'
     )
 
       # Save length field attributes

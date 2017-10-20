@@ -20,7 +20,7 @@ INTERFACE CFS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 115200 NONE   1    
   PROTOCOL READ_WRITE length_protocol.rb  32        16      7            1       BIG_ENDIAN  0            nil      nil      true 
 # CCSDS protocol fills the Link command's checksum
 # CCSDS Arguments:                  crc_field_name
-  PROTOCOL WRITE ccsds_protocol.rb "CHECKSUM"
+  PROTOCOL WRITE xor_checksum_protocol.rb "CHECKSUM"
 # SeqCnt protocol fills the Link command's sequence counter
 # SeqCnt Arguments:                  seqcnt_field_name
   PROTOCOL WRITE seqcnt_protocol.rb "CCSDSSEQCNT"                   
@@ -46,7 +46,7 @@ INTERFACE CFS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 115200 NONE   1    
 # LINKCCSDS_INT is designed to talk to payloads through the LINK message routing.
 
 #         int_name       file_name           write read baud   parity stop timeouts
-INTERFACE LINKCCSDS_INT  serial_interface.rb COM5 COM5 57600   NONE   1    nil nil 
+INTERFACE LINKCCSDS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 57600   NONE   1    nil nil 
 
 # XOR checksum protocol fills the Link command's checksum
   PROTOCOL WRITE xor_checksum_protocol_raw.rb
@@ -104,7 +104,7 @@ INTERFACE XBEE_INT  serial_interface.rb      COM3  COM3 9600   NONE   1    nil n
   PROTOCOL READ_WRITE length_protocol.rb  32        16      7            1       BIG_ENDIAN  0            nil       nil     true 
 # CCSDS protocol fills the command's checksum  
 # CCSDS Arguments: N/A
-  PROTOCOL WRITE ccsds_protocol  
+  PROTOCOL WRITE xor_checksum_protocol  
 # Xbee protocol wraps the packet in an Xbee header
 # Xbee Arguments: N/A
   PROTOCOL WRITE xbee_protocol 
