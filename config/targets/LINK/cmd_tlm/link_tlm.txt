@@ -114,7 +114,6 @@ TELEMETRY LINK INIT_STAT BIG_ENDIAN "LINK INIT Status Msg"
   APPEND_ITEM SD_DETECT 8 UINT "SD card detect flag"
     STATE NOT_DETECT 0
     STATE DETECT 1
-    LIMITS DEFAULT 1 ENABLED 1 1 2 3
     
 TELEMETRY LINK FLTRTBL BIG_ENDIAN "Link Filter Table"
   <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 215} %>

@@ -1,7 +1,7 @@
 # encoding: ascii-8bit
 
 require 'cosmos'
-require 'cosmos/interfaces/interfaces/interface'
+require 'cosmos/interfaces/interface'
 require 'net/http'
 require 'uri'
 
@@ -49,7 +49,7 @@ module Cosmos
     # @param code [code] The HTTP status code to handle
     # @return [okFlag] True if code was ok, false if code indicates error
     def handleHTTPStatus(code)
-      case response.code
+      case code
       when 200 # Ok
         # request succeeded
         # return the data for processing by the protocol
@@ -61,10 +61,10 @@ module Cosmos
         puts "Server rejected authentication!"
         return false
       else 
-        puts "Unhandled HTTP status: #{response.code}"
+        puts "Unhandled HTTP status: #{code}"
         return false
-      end # case response.code
-    end handleHTTPStatus()
+      end # case code
+    end # handleHTTPStatus()
     
     # Retrieves the data packet from the interface.
     # @return [data] Data read from the interface, or nil if read failed
@@ -90,10 +90,12 @@ module Cosmos
         puts response.body
       end
       
-      if(handleHTTPStatus(code))
+      if(handleHTTPStatus(response.code))
+	# response is good, return it for the protocol to process
         return response.body
       else
-        return nil
+	# COSMOS interprets nil as a failure, so just return an empty string that the protocol wont process
+        return ''
       end
 
     end # read_interface()
@@ -122,8 +124,8 @@ module Cosmos
         puts response.body
       end
       
-      handleHTTPStatus(code)
-    end
+      handleHTTPStatus(response.code)
+    end # write_interface()
     
   end # class HttpProtocol
 end # module Cosmos

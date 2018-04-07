@@ -1,19 +1,21 @@
 USER_MODIFIED
-"lib/xor_checksum_protocol.rb" 0x54250D18
+"lib/http_interface.rb" 0xA30CBF01
+"lib/xor_checksum_protocol.rb" 0x8EA3EA4E
 "lib/user_version.rb" 0x8F282EE9
 "lib/APIDs.json" 0x5DFE9258
 "lib/length_protocol_raw.rb" 0x2C720B26
 "lib/ccsds.rb" 0x00000000
 "lib/scpi_target.rb" 0x227D06B7
+"lib/ccsds_cmd_pkt.rb" 0x3F4F5887
 "lib/example_target.rb" 0xFBEF2AE3
 "lib/xbee_protocol.rb" 0x7A45F824
 "lib/rfd900_protocol.rb" 0x1FE179A0
-"lib/seqcnt_protocol_raw.rb" 0xD64D7572
-"lib/seqcnt_protocol.rb" 0x73509EB6
+"lib/seqcnt_protocol_raw.rb" 0xB312A161
+"lib/seqcnt_protocol.rb" 0xACB8436A
 "lib/xor_checksum_protocol_raw.rb" 0xE47AC6E1
 "lib/example_background_task.rb" 0x01426696
 "lib/pkt_field_echo_processor.rb" 0xAFD930B0
-"lib/link_protocol.rb" 0x6E96C7C0
+"lib/link_protocol.rb" 0x1B063A11
 "config/tools/tlm_grapher/README.txt" 0x93B2C07E
 "config/tools/tlm_grapher/cam_env_plots.txt" 0xBF1E8CD9
 "config/tools/tlm_grapher/radio_signal.txt" 0xC8F8A071
@@ -56,7 +58,7 @@ USER_MODIFIED
 "config/tools/table_manager/TLMMonitoringTable_def.txt" 0xBD70F0A7
 "config/tools/tlm_viewer/tlm_viewer.txt" 0xC31BDD0D
 "config/tools/test_runner/test_runner.txt" 0x4979640F
-"config/tools/cmd_tlm_server/cmd_tlm_server.txt" 0x060C68EE
+"config/tools/cmd_tlm_server/cmd_tlm_server.txt" 0xD0853A9D
 "config/data/vswitchoff.gif" 0xFAE436C9
 "config/data/hswitchon.gif" 0x79C96937
 "config/data/groundon.gif" 0x97D9A501
@@ -73,7 +75,7 @@ USER_MODIFIED
 "config/data/meta_init.txt" 0xFF5B7C60
 "config/data/tada.wav" 0x1ABCFFD1
 "config/data/hselecton.gif" 0xA824E4FC
-"config/system/system.txt" 0xFEA95394
+"config/system/system.txt" 0xACCF9569
 "config/targets/STAR/screens/status.txt" 0xB9C72A50
 "config/targets/STAR/target.txt" 0xC6452E17
 "config/targets/STAR/cmd_tlm/star_tlm.txt" 0x678942B6
@@ -129,7 +131,7 @@ USER_MODIFIED
 "config/targets/MARS2/cmd_tlm/mars2_tlm.txt" 0x92E0F797
 "config/targets/LINK/screens/status.txt" 0x83C4EDE3
 "config/targets/LINK/target.txt" 0xC78BA79E
-"config/targets/LINK/cmd_tlm/link_tlm.txt" 0x173D9442
+"config/targets/LINK/cmd_tlm/link_tlm.txt" 0x9ADAF4CD
 "config/targets/LINK/cmd_tlm/link_cmd.txt" 0x7354CED8
 "config/targets/MARS1/screens/status.txt" 0xCAC46839
 "config/targets/MARS1/screens/env.txt" 0xD8A74D83
