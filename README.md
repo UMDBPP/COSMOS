@@ -3,6 +3,16 @@
 The COSMOS ground system is an open-source spacecraft ground system created by Ball Aerospace. This repo contains
 the configuration for a ground station to send commands to and interpret telemetry from UMD BPP payloads.
 
+## Where to look
+
+COSMOS is configured mainly through config files. Here are the one's you'll commonly need:
+
+* [config/targets/](config/targets/) - Definitions of each payload's 
+* [config/system/system.txt](config/system/system.txt) - Top-level COSMOS configuration (add payload here)
+* [/config/tools/cmd_tlm_server/cmd_tlm_server.txt](/config/tools/cmd_tlm_server/cmd_tlm_server.txt) - Interface/communication configurations
+
+COSMOS's interfaces and protocols are also extensible through the implementation of ruby classes. Those are stored [lib/](lib/).
+
 ## Installing COSMOS on Windows
 1. Download and install [Ruby 2.2.5 32-bit](http://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.2.5.exe). Make sure "Add Ruby executables to your PATH" is checked.
 
@@ -36,4 +46,6 @@ Warning: Untested
 2. Clone this repo using git
 
 3. Run `ruby Launcher` from the repo to start cosmos
+
+
 
