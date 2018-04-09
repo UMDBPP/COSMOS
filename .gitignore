@@ -2,3 +2,5 @@ Outputs/logs/
 Outputs/saved_config/
 Outputs/tmp/
 Outputs/handbooks/
+Gemfile.lock
+.idea/*

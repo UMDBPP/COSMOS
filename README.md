@@ -3,31 +3,38 @@
 The COSMOS ground system is an open-source spacecraft ground system created by Ball Aerospace. This repo contains
 the configuration for a ground station to send commands to and interpret telemetry from UMD BPP payloads.
 
-## Installing COSMOS on Windows
-1. Download and install [Ruby 2.2.5 32-bit](http://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.2.5.exe). Make sure "Add Ruby executables to your PATH" is checked.
+## Commonly Used Files
 
-2. Download and run [32-bit Devkit for Ruby 2.0 and Above](http://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe) and extract to its own folder. 
+COSMOS is configured mainly through config files. Here are the one's you'll commonly need:
 
-3. Open the command line and move to the folder you just extracted the Devkit to (in Windows, Shift + RightClick -> "Open command window here") and run the following commands:
+* ```[config/targets/](config/targets/)``` - Definitions of each payload's 
+* ```[config/system/system.txt](config/system/system.txt)``` - Top-level COSMOS configuration (add payload here)
+* ```[/config/tools/cmd_tlm_server/cmd_tlm_server.txt](/config/tools/cmd_tlm_server/cmd_tlm_server.txt)``` - Interface/communication configurations
 
-        ruby dk.rb init
-        
-        ruby dk.rb install
-        
-4. Download [RubyGems, the Ruby package manager](https://rubygems.org/rubygems/rubygems-2.6.8.zip) and extract the ZIP archive to its own folder. After extracting, open a command line windows in the extracted folder and run:
+COSMOS's interfaces and protocols are also extensible through the implementation of ruby classes. Those are stored ```[lib/](lib/)```.
 
-        ruby setup.rb
+## Installation
 
-5. Install COSMOS, as well as its dependencies:
+### Installing COSMOS on Windows
+
+1. Download and install [Ruby+Devkit 2.4.4-1 (x64)](https://github.com/oneclick/rubyinstaller2/releases/download/rubyinstaller-2.4.4-1/rubyinstaller-devkit-2.4.4-1-x64.exe). Press ```ENTER``` when prompted.
+
+2. Open the Windows Command Prompt as an Administrator (on Windows 10, ```Windows key + X -> A```).
+
+3. Install COSMOS, as well as its dependencies, by running the following command:
 
         gem install cosmos
 
-6. Clone this repository using Git to get the configuration for our payloads. For help using Git, read [this guide](http://zrb.io/git/).
+Respond to the following prompt with ```y```.
+        
+        Overwrite the executable? [yN]  y
 
-7. Start COSMOS by opening your local clone of this repository and running "launcher.bat".
+4. Clone this repository using Git to get the configuration for our payloads.
+
+5. Start COSMOS by opening your local clone of this repository and running ```launcher.bat```.
 
 
-## Installing COSMOS on Ubuntu
+### Installing COSMOS on Ubuntu
 
 Warning: Untested
 
@@ -36,4 +43,6 @@ Warning: Untested
 2. Clone this repo using git
 
 3. Run `ruby Launcher` from the repo to start cosmos
+
+
 
