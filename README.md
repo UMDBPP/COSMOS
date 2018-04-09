@@ -3,9 +3,7 @@
 The COSMOS ground system is an open-source spacecraft ground system created by Ball Aerospace. This repo contains
 the configuration for a ground station to send commands to and interpret telemetry from UMD BPP payloads.
 
-## Commonly Used Files
-
-COSMOS is configured mainly through config files. Here are the one's you'll commonly need:
+COSMOS is configured mainly through config files. Here are the ones you'll commonly need:
 
 * ```[config/targets/](config/targets/)``` - Definitions of each payload's 
 * ```[config/system/system.txt](config/system/system.txt)``` - Top-level COSMOS configuration (add payload here)
