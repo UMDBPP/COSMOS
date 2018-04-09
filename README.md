@@ -9,7 +9,7 @@ COSMOS is configured mainly through config files. Here are the ones you'll commo
 * [config/system/system.txt](config/system/system.txt) - Top-level COSMOS configuration (add payload here)
 * [config/tools/cmd_tlm_server/cmd_tlm_server.txt](config/tools/cmd_tlm_server/cmd_tlm_server.txt) - Interface/communication configurations
 
-COSMOS's interfaces and protocols are also extensible through the implementation of ruby classes. Those are stored [lib/](lib/).
+COSMOS's interfaces and protocols are also extensible through the implementation of ruby classes. Those are stored in [lib/](lib/).
 
 ## Installation
 
@@ -24,7 +24,7 @@ COSMOS's interfaces and protocols are also extensible through the implementation
         gem install cosmos
 
 Respond to the following prompt with ```y```.
-        
+
         Overwrite the executable? [yN]  y
 
 4. Clone this repository using Git to get the configuration for our payloads.
