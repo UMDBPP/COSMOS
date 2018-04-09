@@ -5,11 +5,11 @@ the configuration for a ground station to send commands to and interpret telemet
 
 COSMOS is configured mainly through config files. Here are the ones you'll commonly need:
 
-* ```[config/targets/](config/targets/)``` - Definitions of each payload's 
-* ```[config/system/system.txt](config/system/system.txt)``` - Top-level COSMOS configuration (add payload here)
-* ```[/config/tools/cmd_tlm_server/cmd_tlm_server.txt](/config/tools/cmd_tlm_server/cmd_tlm_server.txt)``` - Interface/communication configurations
+* [config/targets/](config/targets/) - Definitions of each payload's 
+* [config/system/system.txt](config/system/system.txt) - Top-level COSMOS configuration (add payload here)
+* [config/tools/cmd_tlm_server/cmd_tlm_server.txt](config/tools/cmd_tlm_server/cmd_tlm_server.txt) - Interface/communication configurations
 
-COSMOS's interfaces and protocols are also extensible through the implementation of ruby classes. Those are stored ```[lib/](lib/)```.
+COSMOS's interfaces and protocols are also extensible through the implementation of ruby classes. Those are stored [lib/](lib/).
 
 ## Installation
 
