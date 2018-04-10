@@ -75,17 +75,19 @@ module Cosmos
       # create an HTTP request
       uri = URI(@baseURL)
 
-      # open connection with ::start
-      Net::HTTP.start(uri.host, uri.port) do |http|
-        request = Net::HTTP::Get.new uri
-
-        response = http.request request # Net:HTTPResponse object
+      if (@testFlag)
+        response = nil
+      else
+        # open connection with ::start
+        Net::HTTP.start(uri.host, uri.port) do |http|
+          request = Net::HTTP::Get.new uri
+          response = http.request request # Net:HTTPResponse object
+        end
       end
 
       # handle response
       if (@testFlag)
-        # print body of response
-        puts response.body
+        puts 'testing HTTP read_interface()'
       elsif (handleHTTPStatus(response.code))
         # response is good, return it for the protocol to process
         return response.body
@@ -103,8 +105,8 @@ module Cosmos
       # create an HTTP request
       uri = URI(@baseURL)
 
-      imei = 'test'
-      momsn = 'test'
+      imei = 'test' # IMEI of RockBlock hardware
+      momsn = 'test' # message sequence number
       transmit_time = 'test'
       iridium_latitude = 'test'
       iridium_longitude = 'test'
@@ -128,6 +130,7 @@ module Cosmos
       if (@testFlag)
         # print hash of request headers instead of sending over HTTP
         puts request.to_hash
+        response = nil
       else
         # open connection with ::start
         response = Net::HTTP.start(uri.hostname, uri.port) do |http|
