@@ -14,7 +14,7 @@ INTERFACE COSMOS_INT cmd_tlm_server_interface.rb
   # LOG_RAW
 
 
-INTERFACE BITS_Int  http_interface.rb "http://google.com" "123" true
+INTERFACE BITS_Int  http_interface.rb "http://bits-server.lukerenegar.com/" "80" true
   PROTOCOL READ_WRITE burst_protocol.rb    
 
 #         int_name file_name           write       read      baud   parity stop timeouts
