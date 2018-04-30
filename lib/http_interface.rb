@@ -55,7 +55,6 @@ module Cosmos
         return true
       when 204
         puts "HTTP Error: No Content"
-        # return no data
         return false
       when 401
         puts "HTTP Error: Server rejected authentication."
@@ -68,53 +67,12 @@ module Cosmos
 
     # handleHTTPStatus()
 
-    # Handle Iridium status code
-    # @param code [code] The status code to handle
-    # @return [okFlag] True if code was ok, false if code indicates error
-    def handleIridiumStatus(code)
-      case code
-      when 'OK'
-        puts "Iridium transfer successful"
-        return true
-      when '10'
-        puts "Iridium Error: Invalid login credentials"
-        return false
-      when '11'
-        puts "Iridium Error: No RockBLOCK with this IMEI found on your account"
-        return false
-      when '12'
-        puts "Iridium Error: RockBLOCK has no line rental"
-        return false
-      when '13'
-        puts "Iridium Error: Your account has insufficient credit"
-        return false
-      when '14'
-        puts "Iridium Error: Could not decode hex data"
-        return false
-      when '15'
-        puts "Iridium Error: Data too long"
-        return false
-      when '16'
-        puts "Iridum Error: No data"
-        return false
-      when '99'
-        puts "Iridum Error: System Error"
-        return false
-      else
-        puts "Unhandled HTTP status: #{code}"
-        return false
-      end # case code
-    end
-
-    # handleIridiumStatus()
-
     # Retrieves the data packet from the interface using HTTP GET.
     # @return [data] Data read from the interface, or nil if read failed
     def read_interface()
       uri = URI(@baseURL)
 
       if (@testFlag)
-        puts 'testing HTTP read_interface()'
         return 'testing HTTP read_interface()'
       else
         response = RestClient.get(uri)
@@ -128,37 +86,14 @@ module Cosmos
           return ''
         end
       end
-
-      # handle response
     end
 
     # read_interface()
 
     # Method to write data on the interface using HTTP POST.
-    # @param data [data] The data to send out the interface
+    # @param data [data] Dictionary of data to send out the interface
     def write_interface(data)
       uri = URI(@baseURL)
-
-      # TODO retrieve parameters from data
-
-      imei = 'test' # IMEI of RockBlock hardware
-      momsn = 'test' # message sequence number
-      transmit_time = 'test'
-      iridium_latitude = 'test'
-      iridium_longitude = 'test'
-      iridium_cep = 'test' # in km
-      data = 'test'
-
-      # populate POST form
-      form_data = {
-          imei: imei,
-          momsn: momsn,
-          transmit_time: transmit_time,
-          iridium_latitude: iridium_latitude,
-          iridium_longitude: iridium_longitude,
-          iridium_cep: iridium_cep,
-          data: data
-      }
 
       # debug output
       if (@testFlag)
@@ -169,11 +104,8 @@ module Cosmos
 
         # handle response
         if (handleHTTPStatus(response.code))
-          # handle Iridium code
-          if (handleIridiumStatus(response.body.split(',')[0]))
-            # print body of response
-            puts response.body
-          end
+          # print body of response
+          puts response.body
         end
       end
     end
