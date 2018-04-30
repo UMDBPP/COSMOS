@@ -14,8 +14,8 @@ INTERFACE COSMOS_INT cmd_tlm_server_interface.rb
   # LOG_RAW
 
 
-INTERFACE BITS_Int  http_interface.rb "http://bits-server.lukerenegar.com/" "secret!" true
-  PROTOCOL READ_WRITE burst_protocol.rb
+#INTERFACE BITS_Int  http_interface.rb "http://bits-server.lukerenegar.com/" "secret!" true
+#  PROTOCOL READ_WRITE burst_protocol.rb
 
 #         int_name file_name           write       read      baud   parity stop timeouts
 INTERFACE CFS_INT  serial_interface.rb /dev/ttyS3 /dev/ttyS3 115200 NONE   1    nil nil  
