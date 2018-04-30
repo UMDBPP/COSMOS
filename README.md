@@ -43,4 +43,12 @@ Warning: Untested
 3. Run `ruby Launcher` from the repo to start cosmos
 
 
+## Development
 
+If you would like to change configuration or add an interface, please open a new branch first, and then merge your branch into `master` when you are finished. 
+
+**Please do not make development changes to the `master` branch until your feature is tested and ready.**    
+
+### Adding Gems
+
+To use an external gem, add `gem 'your_gem'` to the Gemfile, and then run `bundle install` in the COSMOS directory.
