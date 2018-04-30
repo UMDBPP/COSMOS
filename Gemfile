@@ -8,3 +8,5 @@ if ENV['COSMOS_DEVEL']
 else
   gem 'cosmos'
 end
+
+gem 'rest-client'

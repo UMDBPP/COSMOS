@@ -108,6 +108,43 @@ module Cosmos
 
     # handleIridiumStatus()
 
+    # Native HTTP POST
+    # @param uri [uri] URI of connection
+    # @param data [data] Data to post
+    # @return [response] HTTP Response object
+    def http_post_request(uri, data)
+      request = Net::HTTP::Post.new(uri)
+      request.set_form_data(uri,
+                            'imei' => data['imei'],
+                            'momsn' => data['momsn'],
+                            'transmit_time' => data['transmit_time'],
+                            'iridium_latitude' => data['iridium_latitude'],
+                            'iridium_longitude' => data['iridium_longitude'],
+                            'iridium_cep' => data['iridium_cep'],
+                            'data' => data['data']
+      )
+
+      return Net::HTTP.start(uri.hostname, uri.port) do |http|
+        http.request(request)
+      end
+    end
+
+    # http_post_request()
+
+    # Handle Iridium status code
+    # @param uri [uri] URI of connection
+    # @param query [query] Query string
+    # @return [response] HTTP Response object
+    def http_get_request(uri, query)
+      # TODO add query string to GET request
+      Net::HTTP.start(uri.host, uri.port) do |http|
+        request = Net::HTTP::Get.new uri
+        return http.request request # Net:HTTPResponse object
+      end
+    end
+
+    # http_get_request()
+
     # Retrieves the data packet from the interface using HTTP GET.
     # @return [data] Data read from the interface, or nil if read failed
     def read_interface()
@@ -115,6 +152,7 @@ module Cosmos
 
       if (@testFlag)
         puts 'testing HTTP read_interface()'
+        return 'testing HTTP read_interface()'
       else
         response = RestClient.get(uri)
 
@@ -164,7 +202,7 @@ module Cosmos
         # print hash of request headers instead of sending over HTTP
         puts 'testing HTTP write_interface()'
       else
-        response = RestClient.post(uri)
+        response = RestClient.post(uri, form_data)
 
         # handle response
         if (handleHTTPStatus(response.code))
