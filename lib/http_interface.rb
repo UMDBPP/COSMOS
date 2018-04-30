@@ -2,8 +2,7 @@
 
 require 'cosmos'
 require 'cosmos/interfaces/interface'
-require 'net/http'
-require 'uri'
+require 'rest-client'
 
 module Cosmos
   # Interface to communicate via HTTP requests
@@ -46,20 +45,20 @@ module Cosmos
 
     # disconnect()
 
-    # Retrieves the data packet from the interface.
-    # @param code [code] The HTTP status code to handle
+    # Handles HTTP status code
+    # @param code [code] The status code to handle
     # @return [okFlag] True if code was ok, false if code indicates error
     def handleHTTPStatus(code)
       case code
-      when Net::HTTPSuccess, Net::HTTPRedirection # 200 Ok
-        # request succeeded
-        # return the data for processing by the protocol
+      when 200 # Ok
+        puts "HTTP request successful"
         return true
-      when 204 # No Content
+      when 204
+        puts "HTTP Error: No Content"
         # return no data
         return false
-      when 401 # Unauthorized
-        puts "Server rejected authentication!"
+      when 401
+        puts "HTTP Error: Server rejected authentication."
         return false
       else
         puts "Unhandled HTTP status: #{code}"
@@ -69,32 +68,67 @@ module Cosmos
 
     # handleHTTPStatus()
 
+    # Handle Iridium status code
+    # @param code [code] The status code to handle
+    # @return [okFlag] True if code was ok, false if code indicates error
+    def handleIridiumStatus(code)
+      case code
+      when 'OK'
+        puts "Iridium transfer successful"
+        return true
+      when '10'
+        puts "Iridium Error: Invalid login credentials"
+        return false
+      when '11'
+        puts "Iridium Error: No RockBLOCK with this IMEI found on your account"
+        return false
+      when '12'
+        puts "Iridium Error: RockBLOCK has no line rental"
+        return false
+      when '13'
+        puts "Iridium Error: Your account has insufficient credit"
+        return false
+      when '14'
+        puts "Iridium Error: Could not decode hex data"
+        return false
+      when '15'
+        puts "Iridium Error: Data too long"
+        return false
+      when '16'
+        puts "Iridum Error: No data"
+        return false
+      when '99'
+        puts "Iridum Error: System Error"
+        return false
+      else
+        puts "Unhandled HTTP status: #{code}"
+        return false
+      end # case code
+    end
+
+    # handleIridiumStatus()
+
     # Retrieves the data packet from the interface using HTTP GET.
     # @return [data] Data read from the interface, or nil if read failed
     def read_interface()
-      # create an HTTP request
       uri = URI(@baseURL)
 
       if (@testFlag)
-        response = nil
+        puts 'testing HTTP read_interface()'
       else
-        # open connection with ::start
-        Net::HTTP.start(uri.host, uri.port) do |http|
-          request = Net::HTTP::Get.new uri
-          response = http.request request # Net:HTTPResponse object
+        response = RestClient.get(uri)
+
+        # handle response
+        if (handleHTTPStatus(response.code))
+          # response is good, return it for the protocol to process
+          return response.body
+        else
+          # COSMOS interprets nil as a failure, so just return an empty string that the protocol wont process
+          return ''
         end
       end
 
       # handle response
-      if (@testFlag)
-        puts 'testing HTTP read_interface()'
-      elsif (handleHTTPStatus(response.code))
-        # response is good, return it for the protocol to process
-        return response.body
-      else
-        # COSMOS interprets nil as a failure, so just return an empty string that the protocol wont process
-        return ''
-      end
     end
 
     # read_interface()
@@ -102,8 +136,9 @@ module Cosmos
     # Method to write data on the interface using HTTP POST.
     # @param data [data] The data to send out the interface
     def write_interface(data)
-      # create an HTTP request
       uri = URI(@baseURL)
+
+      # TODO retrieve parameters from data
 
       imei = 'test' # IMEI of RockBlock hardware
       momsn = 'test' # message sequence number
@@ -113,37 +148,32 @@ module Cosmos
       iridium_cep = 'test' # in km
       data = 'test'
 
-      # instantiate new Post form
-      request = Net::HTTP::Post.new(uri)
-
       # populate POST form
-      request.set_form_data(uri, 'imei' => imei,
-                            'momsn' => momsn,
-                            'transmit_time' => transmit_time,
-                            'iridium_latitude' => iridium_latitude,
-                            'iridium_longitude' => iridium_longitude,
-                            'iridium_cep' => iridium_cep,
-                            'data' => data
-      )
+      form_data = {
+          imei: imei,
+          momsn: momsn,
+          transmit_time: transmit_time,
+          iridium_latitude: iridium_latitude,
+          iridium_longitude: iridium_longitude,
+          iridium_cep: iridium_cep,
+          data: data
+      }
 
       # debug output
       if (@testFlag)
         # print hash of request headers instead of sending over HTTP
-        puts request.to_hash
-        response = nil
+        puts 'testing HTTP write_interface()'
       else
-        # open connection with ::start
-        response = Net::HTTP.start(uri.hostname, uri.port) do |http|
-          http.request(request)
-        end
-      end
+        response = RestClient.post(uri)
 
-      # handle response
-      if (@testFlag)
-        # print body of response
-        puts response.body
-      else
-        handleHTTPStatus(response.code)
+        # handle response
+        if (handleHTTPStatus(response.code))
+          # handle Iridium code
+          if (handleIridiumStatus(response.body.split(',')[0]))
+            # print body of response
+            puts response.body
+          end
+        end
       end
     end
     # write_interface()
