@@ -51,16 +51,16 @@ module Cosmos
     def handleHTTPStatus(code)
       case code
       when 200 # Ok
-        puts "HTTP request successful"
+        Logger.info "HTTP request successful"
         return true
       when 204
-        puts "HTTP Error: No Content"
+        Logger.error "HTTP Error: No Content"
         return false
       when 401
-        puts "HTTP Error: Server rejected authentication."
+        Logger.error "HTTP Error: Server rejected authentication."
         return false
       else
-        puts "Unhandled HTTP status: #{code}"
+        Logger.error "Unhandled HTTP status: #{code}"
         return false
       end # case code
     end
@@ -73,19 +73,20 @@ module Cosmos
       uri = URI(@baseURL)
 
       if (@testFlag)
-        return 'testing HTTP read_interface()'
+        Logger.info('testing HTTP read_interface()')
       else
         response = RestClient.get(uri)
 
         # handle response
         if (handleHTTPStatus(response.code))
           # response is good, return it for the protocol to process
-          return response.body
+          Logger.info response.body
         else
           # COSMOS interprets nil as a failure, so just return an empty string that the protocol wont process
-          return ''
         end
       end
+
+      return ''
     end
 
     # read_interface()
@@ -97,15 +98,15 @@ module Cosmos
 
       # debug output
       if (@testFlag)
-        # print hash of request headers instead of sending over HTTP
-        puts 'testing HTTP write_interface()'
+        # print test info
+        Logger.info 'testing HTTP write_interface()'
       else
-        response = RestClient.post(uri, form_data)
+        response = RestClient.post(uri, data)
 
         # handle response
         if (handleHTTPStatus(response.code))
           # print body of response
-          puts response.body
+          Logger.info response.body
         end
       end
     end
