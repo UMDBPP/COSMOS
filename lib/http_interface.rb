@@ -42,7 +42,7 @@ module Cosmos
 
     def disconnect()
       # HTTP doesnt use a static connection, so there's really nothing to do then call the disconnect method of the Interface class:
-      super()
+      super
     end
 
     # disconnect()
@@ -96,7 +96,6 @@ module Cosmos
     def write_interface(data)
       # debug output
       if (@testFlag)
-        # print test info
         Logger.info 'testing HTTP write_interface()'
       else
         response = RestClient.post(@baseURL, data)
