@@ -18,7 +18,9 @@ module Cosmos
       # store the arguments as class members for later use
       @baseURL = baseURL
       @secretKey = secretKey
-      @testFlag = testFlag
+
+      # explicitly convert string to boolean
+      @testFlag = (testFlag == "true")
     end
 
     # initialize()
