@@ -72,12 +72,10 @@ module Cosmos
     # Retrieves the data packet from the interface using HTTP GET.
     # @return [data] Data read from the interface, or nil if read failed
     def read_interface()
-      uri = URI(@baseURL)
-
       if (@testFlag)
         Logger.info('testing HTTP read_interface()')
       else
-        response = RestClient.get(uri)
+        response = RestClient.get(@baseURL)
 
         # handle response
         if (handleHTTPStatus(response.code))
@@ -96,14 +94,12 @@ module Cosmos
     # Method to write data on the interface using HTTP POST.
     # @param data [data] Dictionary of data to send out the interface
     def write_interface(data)
-      uri = URI(@baseURL)
-
       # debug output
       if (@testFlag)
         # print test info
         Logger.info 'testing HTTP write_interface()'
       else
-        response = RestClient.post(uri, data)
+        response = RestClient.post(@baseURL, data)
 
         # handle response
         if (handleHTTPStatus(response.code))
