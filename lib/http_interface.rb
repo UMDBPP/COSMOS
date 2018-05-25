@@ -11,37 +11,40 @@ module Cosmos
     # Initializes the interface
     # @param baseURL [baseURL] the url to send the request to
     # @param secretKey [secretKey] Authetication token to send to server
+    # @param readSecondInterval [readSecondInterval] Interval in seconds between calling read_interface()
     # @param testFlag [testFlag] Flag indicating testing mode, true for fake data and additional verbosity
-    def initialize(baseURL, secretKey, testFlag = false)
+    def initialize(baseURL, secretKey, readSecondInterval = 1, testFlag = false)
       super()
 
       # store the arguments as class members for later use
       @baseURL = baseURL
       @secretKey = secretKey
+      @testFlag = (testFlag == "true") # explicitly convert string to boolean
+      @readSecondInterval = readSecondInterval.to_i
 
-      # explicitly convert string to boolean
-      @testFlag = (testFlag == "true")
+      # create read time field for second interval
+      @previous_read_time = Time.now.to_i
     end
 
     # initialize()
 
     # Called connect to the interface
     def connect()
-      # HTTP doesnt use a static connection, so there's really nothing to do then call the connect method of the Interface class:
+      # HTTP doesn't use a static connection, so there's really nothing to do other then call the connect method of the super
       super()
     end
 
     # connect()
 
     def connected?()
-      # since HTTP doesnt use connections, always return true
+      # since HTTP doesn't use connections, always return true
       return true
     end
 
     # connected?()
 
     def disconnect()
-      # HTTP doesnt use a static connection, so there's really nothing to do then call the disconnect method of the Interface class:
+      # HTTP doesn't use a static connection, so there's really nothing to do other than call the disconnect method of the super
       super
     end
 
@@ -72,20 +75,25 @@ module Cosmos
     # Retrieves the data packet from the interface using HTTP GET.
     # @return [data] Data read from the interface, or nil if read failed
     def read_interface()
-      if (@testFlag)
-        Logger.info('testing HTTP read_interface()')
-      else
-        response = RestClient.get(@baseURL)
+      # enforce desired read second interval
+      if (Time.now.to_i - @previous_read_time >= @readSecondInterval)
+        @previous_read_time = Time.now.to_i
 
-        # handle response
-        if (handleHTTPStatus(response.code))
-          # response is good, return it for the protocol to process
-          Logger.info response.body
+        if (@testFlag)
+          Logger.info('testing HTTP read_interface()')
         else
-          # COSMOS interprets nil as a failure, so just return an empty string that the protocol wont process
+          response = RestClient.get(@baseURL)
+
+          # handle response
+          if (handleHTTPStatus(response.code))
+            # response is good, return it for the protocol to process
+            Logger.info(response.body)
+            #return response.body
+          end
         end
       end
 
+      # COSMOS interprets nil as a clean disconnect, so just return an empty string that the protocol wont process
       return ''
     end
 
