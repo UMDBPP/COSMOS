@@ -14,7 +14,7 @@ INTERFACE COSMOS_INT cmd_tlm_server_interface.rb
   # LOG_RAW
 
 
-INTERFACE BITS_Int  http_interface.rb "http://ptsv2.com/t/ixulg-1526650990/post" "secret!" false
+INTERFACE BITS_Int  http_interface.rb "http://ptsv2.com/t/1jmr0-1526685641/post" "secret!" 5 false
   PROTOCOL READ_WRITE burst_protocol.rb
 
 #         int_name file_name           write       read      baud   parity stop timeouts
