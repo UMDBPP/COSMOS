@@ -1,0 +1,142 @@
+TELEMETRY BITS HK_Pkt BIG_ENDIAN DISABLED "HK Packet"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 210} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM CmdExeCtr 16 UINT "Commands executed counter"
+  APPEND_ITEM CmdRejCtr 16 UINT "Commands rejected counter"
+  APPEND_ITEM RadioRcvdByteCtr 32 UINT "Radio received byte counter"
+  APPEND_ITEM XbeeRcvdByteCtr 32 UINT "Xbee received byte counter"
+  APPEND_ITEM RadioSentByteCtr 32 UINT "Radio sent byte counter"
+  APPEND_ITEM XbeeSentByteCtr 32 UINT "Xbee sent byte counter"
+  APPEND_ITEM RunTime 32 UINT "Xbee sent byte counter"
+    UNITS Seconds sec
+
+TELEMETRY BITS ENV_STAT BIG_ENDIAN DISABLED "Environmental Status Msg"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 211} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM BME_PRESSURE 32 FLOAT "BME Pressure"
+    UNITS hectaPascal hPA
+    FORMAT_STRING "%0.6f"
+  APPEND_ITEM BME_TEMPERATURE 32 FLOAT "BME Temperature"
+    UNITS Celcius degC
+    FORMAT_STRING "%0.6f"
+    LIMITS DEFAULT 1 ENABLED -40.0 -20.0 40.0 50.0 0.0 35.0
+  APPEND_ITEM BME_HUMIDITY 32 FLOAT "BME Humidty"
+    UNITS Percent %
+    FORMAT_STRING "%0.6f"
+  APPEND_ITEM SSC_PRESSURE 32 FLOAT "SSC Pressure"
+    UNITS PoundsPerSqInch PSI
+    FORMAT_STRING "%0.6f"
+  APPEND_ITEM SSC_TEMPERATURE 32 FLOAT "SSC Temperature"
+    UNITS Celcius degC
+    FORMAT_STRING "%0.6f"
+    LIMITS DEFAULT 1 ENABLED -40.0 -20.0 40.0 50.0 0.0 35.0
+  APPEND_ITEM BNO_TEMPERATURE 32 FLOAT "BNO Temperature"
+    UNITS Celcius degC
+    FORMAT_STRING "%0.6f"
+    LIMITS DEFAULT 1 ENABLED -40.0 -20.0 40.0 50.0 0.0 35.0
+  APPEND_ITEM MCP_TEMPERATURE 32 FLOAT "MCP Temperature"
+    UNITS Celcius degC
+    FORMAT_STRING "%0.6f"
+    LIMITS DEFAULT 1 ENABLED -40.0 -20.0 40.0 50.0 0.0 35.0
+
+TELEMETRY LINK PWR_STAT BIG_ENDIAN DISABLED "LINK Power Status Msg"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 212} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM BATTERY_VOLT 32 FLOAT "Battery Voltage"
+    UNITS Volt V
+    FORMAT_STRING "%0.6f"
+  APPEND_ITEM CURRENT_CONSUMPTION 32 FLOAT "CURRENT_CONSUMPTION"
+    UNITS Amp A
+    FORMAT_STRING "%0.6f"
+
+TELEMETRY LINK IMU_STAT BIG_ENDIAN DISABLED "LINK IMU Status Msg"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 213} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM SYSTEM_CAL 8 UINT "System Cal"
+    LIMITS DEFAULT 1 ENABLED -1 2 10 10 3 10
+  APPEND_ITEM ACCEL_CAL 8 UINT "Accel Cal"
+    LIMITS DEFAULT 1 ENABLED -1 2 10 10 3 10
+  APPEND_ITEM GYRO_CAL 8 UINT "Gyro Cal"
+    LIMITS DEFAULT 1 ENABLED -1 2 10 10 3 10
+  APPEND_ITEM MAG_CAL 8 UINT "Mag Cal"
+    LIMITS DEFAULT 1 ENABLED -1 2 10 10 3 10
+  APPEND_ITEM ACCEL_X 32 FLOAT "Acceleration X"
+    UNITS Meter/Sec m/s
+    FORMAT_STRING "%0.6f"
+  APPEND_ITEM ACCEL_Y 32 FLOAT "Acceleration Y"
+    UNITS Meter/Sec m/s
+    FORMAT_STRING "%0.6f"
+  APPEND_ITEM ACCEL_Z 32 FLOAT "Acceleration Z"
+    UNITS Meter/Sec m/s
+    FORMAT_STRING "%0.6f"
+  APPEND_ITEM GYRO_X 32 FLOAT "Gryo X"
+    UNITS Radian/Sec rad/s
+    FORMAT_STRING "%0.6f"
+  APPEND_ITEM GYRO_Y 32 FLOAT "Gryo Y"
+    UNITS Radian/Sec rad/s
+    FORMAT_STRING "%0.6f"
+  APPEND_ITEM GYRO_Z 32 FLOAT "Gryo Z"
+    UNITS Radian/Sec rad/s
+    FORMAT_STRING "%0.6f"
+  APPEND_ITEM MAG_X 32 FLOAT "Magnetometer X"
+    UNITS microTesla uT
+    FORMAT_STRING "%0.6f"
+  APPEND_ITEM MAG_Y 32 FLOAT "Magnetometer Y"
+    UNITS microTesla uT
+    FORMAT_STRING "%0.6f"
+  APPEND_ITEM MAG_Z 32 FLOAT "Magnetometer Z"
+    UNITS microTesla uT
+    FORMAT_STRING "%0.6f"
+
+TELEMETRY LINK INIT_STAT BIG_ENDIAN DISABLED "LINK INIT Status Msg"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 214} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM XBEE_STATUS 8 UINT "Xbee status flag"
+  LIMITS DEFAULT 1 ENABLED -1 -1 2 255
+  APPEND_ITEM RTC_RUNNING 8 UINT "RTC running flag"
+    STATE NOT_RUNNING 0
+    STATE RUNNING 1
+  APPEND_ITEM RTC_START 8 UINT "RTC start flag"
+    STATE NOT_STARTED 0
+    STATE STARTED 1
+  APPEND_ITEM BNO_INIT 8 UINT "BNO init flag"
+    STATE ERROR 0
+    STATE GOOD 1
+  APPEND_ITEM MCP_INIT 8 UINT "MCP init flag"
+    STATE ERROR 0
+    STATE GOOD 1
+  APPEND_ITEM BME_INIT 8 UINT "BME init flag"
+    STATE ERROR 0
+    STATE GOOD 1
+  APPEND_ITEM SSC_INIT 8 UINT "SSC init flag"
+    STATE ERROR 0
+    STATE GOOD 1
+  APPEND_ITEM SD_DETECT 8 UINT "SD card detect flag"
+    STATE NOT_DETECT 0
+    STATE DETECT 1
+
+TELEMETRY BITS FLTRTBL BIG_ENDIAN DISABLED "Filter Table"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 215} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ARRAY_ITEM APIDS 16 UINT 240 "Array APIDs in filter table"
+  
+TELEMETRY BITS TIME_MSG BIG_ENDIAN DISABLED "Time message"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 216} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM TIME 32 UINT "Current time"
+  
+TELEMETRY BITS FILEINFO_MSG BIG_ENDIAN DISABLED "File Info"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 217} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM FILENAME 104 STRING "Filename"
+  APPEND_ITEM FILESIZE 32 UINT "Filesize"
+  
+TELEMETRY BITS FILEPART_MSG BIG_ENDIAN DISABLED "File Contents"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 218} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM FILEPART 0 BLOCK "Contents"
+
+  TELEMETRY BITS NAME_MSG BIG_ENDIAN DISABLED "Payload Name"
+  <%= render "../../COMMON/cmd_tlm/_ccsds_pri_hdr_tlm.txt", locals: {apid: 219} %>
+  <%= render "../../COMMON/cmd_tlm/_ccsds_sec_hdr_tlm.txt" %>
+  APPEND_ITEM NAME 64 STRING "Payload Name"
