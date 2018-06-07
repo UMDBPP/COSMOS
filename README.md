@@ -34,13 +34,9 @@ Respond to the following prompt with ```y```.
 
 ### Installing COSMOS on Ubuntu
 
-Warning: Untested
+1. Go to this [link] (http://cosmosrb.com/docs/installation/) 
+2. Follow instructions for LINUX Install 
 
-1. `sudo apt-get install ruby-full`
-
-2. Clone this repo using git
-
-3. Run `ruby Launcher` from the repo to start cosmos
 
 
 ## Development
